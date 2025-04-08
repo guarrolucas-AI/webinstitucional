@@ -1,0 +1,56 @@
+:root {
+    --size-1: 250px;
+    --size-2: 250px;
+    --size-3: 250px;
+    --blur: 15px;
+    --orbit-radius: 20px; /* Ajusta la distancia de giro */
+  }
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(var(--blur));
+    opacity: 0.5;
+    animation: orbit 15s infinite linear;
+  }
+  
+  .circle-1 {
+    width: var(--size-1);
+    height: var(--size-1);
+    top: 50;  
+    left: 0;
+    bottom: 50%;
+    right: 0;
+    background: rgba(255, 60, 60, 0.788);
+    animation-delay: 0s;
+  }
+  
+  .circle-2 {
+    width: var(--size-2);
+    height: var(--size-2);
+    top: 3;  
+    left: 60;
+    right: 40;
+    bottom: 0;
+    background: rgba(77, 255, 103, 0.733);
+    animation-delay: 1.66s;
+  }
+  
+  .circle-3 {
+    width: var(--size-3);
+    height: var(--size-3);
+    top: 0;  
+    left: 0;
+    right: 0;
+    bottom: 10;
+    background: rgba(0, 0, 255, 0.943);
+    animation-delay: 3.33s;
+  }
+  
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+    }
+  }
