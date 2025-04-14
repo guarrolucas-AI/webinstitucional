@@ -4,6 +4,8 @@ import { Header } from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { gotham, inter } from "@/assets/fonts";
 import { cn } from "@/lib/utils";
+import {Inter } from ""
+import NoiseBackground from "@/components/layout/NoiseBackground";
 
 export const metadata: Metadata = {
   title: "Wikinbound",
@@ -25,8 +27,10 @@ export default function RootLayout({
         )}
       >
         <main className="flex-1">
-          <Header />
+          <NoiseBackground>
+            <Header />
             {children}
+          </NoiseBackground>
           {/*<Footer/> */}
         </main>
       </body>

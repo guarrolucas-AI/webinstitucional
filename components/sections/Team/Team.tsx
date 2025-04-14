@@ -3,11 +3,6 @@ import Image from "next/image"
 export default function TeamSection() {
   return (
     <div className="relative min-h-screen w-full p-6 md:p-12">
-      {/* Gradient effects */}
-      <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-red-600/20 blur-[100px]"></div>
-      <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-green-600/20 blur-[100px]"></div>
-      <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-blue-600/20 blur-[100px]"></div>
-
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-16 text-center">

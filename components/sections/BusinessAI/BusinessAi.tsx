@@ -19,7 +19,7 @@ export default function BusinessSimulator() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto">
+    <div className="w-full mt-20 max-w-5xl mx-auto">
       <h1 className="text-5xl font-bold text-white text-center mb-8">
         Inteligencia Artificial y tu negocio
       </h1>

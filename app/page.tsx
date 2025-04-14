@@ -1,33 +1,30 @@
-'use client'
+  'use client'
 
-import NoiseBackground from '@/components/layout/NoiseBackground';
-import BusinessSimulator from '@/components/sections/BusinessAI/BusinessAi';
-import ContactForm from '@/components/sections/Contact/Contact';
-import Hero from '@/components/sections/Hero/Hero'
-import ProyectosSection from '@/components/sections/Proyectos/Proyectos';
-import ServiciosSection from '@/components/sections/Servicios/Servicios';
-import TeamSection from '@/components/sections/Team/Team';
-import { WeAreWikinbound } from '@/components/sections/WeAreWikinbound/WeAreWikinbound';
-import React from 'react'
+  import ColorsBg from '@/components/layout/ColorsBg';
+  import BusinessSimulator from '@/components/sections/BusinessAI/BusinessAi';
+  import ContactForm from '@/components/sections/Contact/Contact';
+  import Hero from '@/components/sections/Hero/Hero'
+  import ProyectosSection from '@/components/sections/Proyectos/Proyectos';
+  import ServiciosSection from '@/components/sections/Servicios/Servicios';
+  import TeamSection from '@/components/sections/Team/Team';
+  import { WeAreWikinbound } from '@/components/sections/WeAreWikinbound/WeAreWikinbound';
+  import React from 'react'
 
-const WebInstitucional = () => {
-  return (
-    <>
-    <NoiseBackground>
+    const WebInstitucional = () => {
+      return (
+        <>
+      <ColorsBg variant="orange">
     <Hero />
-    </NoiseBackground>
-    <NoiseBackground>
     <WeAreWikinbound />
-    </NoiseBackground>
-     {/*
     <ServiciosSection />
     <ProyectosSection />
     <BusinessSimulator />
     <TeamSection />
-    <ContactForm />  */}
-    </>
-  )
-};
+    <ContactForm />
+  </ColorsBg>
+        </>
+      )
+    };
 
-export default WebInstitucional;
+  export default WebInstitucional;
 

@@ -32,17 +32,17 @@ export const inter = localFont({
     {
       path: '../fonts/Inter/Inter_24pt-ExtraLight.ttf',
       weight: '200',
-      style: 'normal',
+      style: 'extralight',
     },
     {
       path: '../fonts/Inter/Inter_24pt-SemiBold.ttf',
       weight: '600',
-      style: 'normal',
+      style: 'semibold',
     },
     {
       path: '../fonts/Inter/Inter_28pt-Medium.ttf',
       weight: '500',
-      style: 'normal',
+      style: 'medium',
     },
     {
       path: '../fonts/Inter/Inter_28pt-Regular.ttf',

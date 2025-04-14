@@ -34,23 +34,23 @@ export function Header() {
 
   return (
     <header className={cn('fixed top-0 z-50 pt-4 w-full transition-shadow duration-200', isScrolled)}>
-    <div className="flex h-16 items-center justify-around px-4 md:px-6 mt-4 w-full">
+    <div className="flex h-10 items-center mt-20  justify-between px-4 md:px-6 mt-4 w-full">
       <div>
         <Link href="/" className="flex items-center space-x-2">
-          <Image src={'/logo.png'} width={240} height={150} alt="Logo" />
+          <Image src={'/logo.svg'} width={270} height={250} alt="Logo" />
         </Link>
       </div>
       <nav
-        className="hidden rounded-xl backdrop-blur-xl pt-3 pb-3 pr-8 pl-8 md:flex md:items-center md:space-x-8"
+        className="hidden rounded-lg backdrop-blur-xl pt-2 pb-2 pr-12 pl-12 md:flex md:items-center md:space-x-8"
         style={{
-          background: `linear-gradient(to right, rgba(59,122,59,${opacityValue}), rgba(194,150,60,${opacityValue}), rgba(214,120,45,${opacityValue}), rgba(200,64,64,${opacityValue}), rgba(68,102,170,${opacityValue}))`
+          background: `linear-gradient(to right, rgba(59,122,59,${opacityValue}), rgba(200,64,64,${opacityValue}),  rgba(214,120,45,${opacityValue}), rgba(68,102,170,${opacityValue}))`
         }}
       >
         {navItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="text-sm font-medium text-white text-muted-foreground transition-colors hover:text-foreground"
+            className="text-[0.60rem] font-light text-white text-muted-foreground transition-colors hover:text-foreground"
           >
             {item.label === 'Whatsapp' ? (
               <Image src={'icons/whatsapp.svg'} width={22} height={22} alt="Whatsapp" />

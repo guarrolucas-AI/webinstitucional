@@ -1,10 +1,11 @@
 :root {
-    --size-1: 250px;
-    --size-2: 250px;
-    --size-3: 250px;
+    --size-1: 300px;
+    --size-2: 300px;
+    --size-3: 300px;
     --blur: 15px;
-    --orbit-radius: 20px; /* Ajusta la distancia de giro */
+    --orbit-radius: 10px; /* Ajusta la distancia de giro */
   }
+  
   .circle {
     position: absolute;
     border-radius: 50%;
