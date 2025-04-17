@@ -7,7 +7,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
 export default function BusinessSimulator() {
-  const [activeTab, setActiveTab] = useState("manual");
   const [salesAmount, setSalesAmount] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
@@ -47,7 +46,7 @@ export default function BusinessSimulator() {
 
           {/* Right Column */}
           <div className="space-y-6">
-            <Tabs defaultValue="manual" className="w-full" onValueChange={setActiveTab}>
+            <Tabs defaultValue="manual" className="w-full">
               <div className="flex justify-end mb-4">
                 <TabsList className="bg-transparent">
                   <TabsTrigger 

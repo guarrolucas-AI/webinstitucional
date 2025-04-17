@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { gotham, inter } from "@/assets/fonts";
 import { cn } from "@/lib/utils";
-import {Inter } from ""
 import NoiseBackground from "@/components/layout/NoiseBackground";
 
 export const metadata: Metadata = {

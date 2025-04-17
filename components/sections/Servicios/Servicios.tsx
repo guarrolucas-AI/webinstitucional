@@ -2,7 +2,6 @@
 
 import type React from "react"
 import { Instagram } from "lucide-react"
-import NoiseBackground from "@/components/layout/NoiseBackground"
 
 export default function ServiciosSection() {
   return (
