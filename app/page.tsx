@@ -13,7 +13,7 @@
     const WebInstitucional = () => {
       return (
         <>
-      <ColorsBg variant="orange">
+      <ColorsBg>
     <Hero />
     <WeAreWikinbound />
     <ServiciosSection />
