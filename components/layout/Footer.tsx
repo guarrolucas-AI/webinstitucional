@@ -3,7 +3,7 @@ import { Phone } from "lucide-react"
 
 export default function Footer() {
   return (
-        <div className="min-h-screen w-full flex items-center justify-center bg-zinc-900 p-4">
+        <div className="min-h-screen w-full flex items-center justify-center p-4">
         <div className="w-full max-w-6xl grid md:grid-cols-2 gap-8">
 
         {/* Footer */}

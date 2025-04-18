@@ -47,6 +47,7 @@ export function Header() {
         }}
       >
         {navItems.map((item) => (
+          <>
           <Link
             key={item.href}
             href={item.href}
@@ -58,6 +59,8 @@ export function Header() {
               item.label
             )}
           </Link>
+           <span className="text-white">|</span>
+          </>
         ))}
       </nav>
   
@@ -71,6 +74,7 @@ export function Header() {
           </SheetTrigger>
           <SheetContent side="right">
             <nav className="flex flex-col space-y-4 pt-10">
+               <span className="text-white">|</span>
               {navItems.map((item) => (
                 <Link
                   key={item.href}

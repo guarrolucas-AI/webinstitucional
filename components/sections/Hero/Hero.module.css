@@ -2,14 +2,14 @@
   .circle {
     position: absolute;
     border-radius: 50%;
-    filter: blur(var(--blur));
+    filter: blur(15px);
     opacity: 0.5;
     animation: orbit 15s infinite linear;
   }
   
   .circle-1 {
-    width: var(--size-1);
-    height: var(--size-1);
+    width: 300px;
+    height: 300px;
     top: 50;  
     left: 0;
     bottom: 50%;
@@ -19,8 +19,8 @@
   }
   
   .circle-2 {
-    width: var(--size-2);
-    height: var(--size-2);
+    width: 300px;
+    height: 300px;
     top: 3;  
     left: 60;
     right: 40;
@@ -30,8 +30,8 @@
   }
   
   .circle-3 {
-    width: var(--size-3);
-    height: var(--size-3);
+    width: 300px;
+    height: 300px;
     top: 0;  
     left: 0;
     right: 0;
@@ -42,9 +42,9 @@
   
   @keyframes orbit {
     0% {
-      transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+      transform: rotate(0deg) translateX(10px) rotate(0deg);
     }
     100% {
-      transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+      transform: rotate(360deg) translateX(10px) rotate(-360deg);
     }
   }
