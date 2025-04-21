@@ -1,50 +1,49 @@
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0.5;
+  animation: orbit 15s infinite linear;
+}
 
-  .circle {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(15px);
-    opacity: 0.5;
-    animation: orbit 15s infinite linear;
+.circle-1 {
+  width: 300px;
+  height: 300px;
+  top: 50px;  
+  left: 0px;
+  bottom: 50%;
+  right: 0px;
+  background: rgba(255, 60, 60, 0.788);
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 300px;
+  height: 300px;
+  top: 3px;  
+  left: 60px;
+  right: 40px;
+  bottom: 0px;
+  background: rgba(77, 255, 103, 0.733);
+  animation-delay: 1.66s;
+}
+
+.circle-3 {
+  width: 300px;
+  height: 300px;
+  top: 0px;  
+  left: 0px;
+  right: 0px;
+  bottom: 10px;
+  background: rgba(0, 0, 255, 0.943);
+  animation-delay: 3.33s;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(10px) rotate(0deg);
   }
-  
-  .circle-1 {
-    width: 300px;
-    height: 300px;
-    top: 50;  
-    left: 0;
-    bottom: 50%;
-    right: 0;
-    background: rgba(255, 60, 60, 0.788);
-    animation-delay: 0s;
+  100% {
+    transform: rotate(360deg) translateX(10px) rotate(-360deg);
   }
-  
-  .circle-2 {
-    width: 300px;
-    height: 300px;
-    top: 3;  
-    left: 60;
-    right: 40;
-    bottom: 0;
-    background: rgba(77, 255, 103, 0.733);
-    animation-delay: 1.66s;
-  }
-  
-  .circle-3 {
-    width: 300px;
-    height: 300px;
-    top: 0;  
-    left: 0;
-    right: 0;
-    bottom: 10;
-    background: rgba(0, 0, 255, 0.943);
-    animation-delay: 3.33s;
-  }
-  
-  @keyframes orbit {
-    0% {
-      transform: rotate(0deg) translateX(10px) rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg) translateX(10px) rotate(-360deg);
-    }
-  }
+}
