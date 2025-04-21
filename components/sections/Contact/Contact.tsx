@@ -28,7 +28,7 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4">
+    <div className=" w-full flex mt-15 items-center justify-center p-4">
       <div className="w-full max-w-6xl grid md:grid-cols-2 gap-8">
         {/* Sección de información de contacto */}
         <div className="space-y-12 flex flex-col justify-center">
@@ -37,7 +37,7 @@ export default function ContactForm() {
             <div className="w-full h-0.5 bg-white/20 mb-8"></div>
 
             <div className="space-y-2 mb-8">
-              <p className="text-white/70">Gmail</p>
+              <p className="text-white/70">Email</p>
               <p className="text-white text-xl">wikinbound@proyectos.com</p>
             </div>
 
@@ -49,19 +49,19 @@ export default function ContactForm() {
               </div>
               <div>
                 <p className="text-white/70">Teléfonos</p>
-                <p className="text-white text-xl">+54 11 365754258</p>
+                <p className="text-white text-xl">+54 11 232341234</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Formulario de contacto */}
-        <div className="bg-gradient-to-br from-indigo-900 via-purple-800 to-green-600 p-8 rounded-3xl">
+        <div className=" backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-3xl">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label htmlFor="nombre" className="text-white">
-                  Nombre completo
+                  Nombre
                 </label>
                 <Input
                   id="nombre"
@@ -75,7 +75,7 @@ export default function ContactForm() {
 
               <div className="space-y-2">
                 <label htmlFor="apellidos" className="text-white">
-                  Apellidos
+                  Apellido
                 </label>
                 <Input
                   id="apellidos"
@@ -91,7 +91,7 @@ export default function ContactForm() {
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label htmlFor="email" className="text-white">
-                  Gmail
+                  Email
                 </label>
                 <Input
                   id="email"
@@ -120,15 +120,33 @@ export default function ContactForm() {
               </div>
             </div>
 
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-white">
+                  Tema
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="bg-white/10 border-white/20 text-white"
+                  required
+                />
+              </div>
+
+            </div>
+
             <div className="space-y-2">
               <label htmlFor="fechaNacimiento" className="text-white">
-                Fecha de nacimiento
+                Mensaje
               </label>
               <Input
                 id="fechaNacimiento"
                 name="fechaNacimiento"
                 type="text"
-                placeholder="07 de Marzo de 2025"
+                placeholder="Ingresar el mensaje"
                 value={formData.fechaNacimiento}
                 onChange={handleChange}
                 className="bg-white/10 border-white/20 text-white"

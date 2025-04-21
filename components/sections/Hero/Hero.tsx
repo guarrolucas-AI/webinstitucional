@@ -30,7 +30,7 @@ export default function Hero() {
   ];
   
   return (
-    <section className="w-full flex justify-center py-12 mb-50 md:py-24 lg:py-32">
+    <section className="w-full flex justify-center py-12 mb-10 md:py-24 lg:py-32">
       <div className="container px-4 mt-20 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
           <div className="flex flex-col justify-center space-y-4">
@@ -38,7 +38,7 @@ export default function Hero() {
               <h1 className="font-inter text-7xl text-center lg:text-left font-regular md:text-7xl lg:text-[80px] text-white leading-[0.9] tracking-wide">
                 Explorá
                 <br />
-                <span className="md:font-extrabold sm:font-extrabold">
+                <span className="md:font-regular lg:font-regular xl:font-regular ">
                 un mundo
                 </span>
                 <br />

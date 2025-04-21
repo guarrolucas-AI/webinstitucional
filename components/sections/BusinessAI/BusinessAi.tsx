@@ -18,12 +18,12 @@ export default function BusinessSimulator() {
   };
 
   return (
-    <div className="w-full mt-20 max-w-5xl mx-auto">
+    <section id='simulador' className="w-full mt-20 max-w-5xl mx-auto">
       <h1 className="text-5xl font-bold text-white text-center mb-8">
         Inteligencia Artificial y tu negocio
       </h1>
 
-      <div className="rounded-3xl overflow-hidden bg-gradient-to-r from-blue-700 via-purple-600 to-orange-500">
+      <div className="rounded-3xl overflow-hidden  backdrop-blur-md bg-white/5 border border-white/20">
         <div className="p-8 md:p-12 grid md:grid-cols-2 gap-8">
           {/* Left Column */}
           <div className="space-y-4">
@@ -150,6 +150,6 @@ export default function BusinessSimulator() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

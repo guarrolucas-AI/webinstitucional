@@ -49,6 +49,16 @@ export const inter = localFont({
       weight: '400',
       style: 'normal',
     },
+    {
+      path: '../fonts/Inter/Inter_18pt-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Inter/Inter_18pt-Bold.ttf',
+      weight: '800',
+      style: 'normal',
+    },
   ],
   variable: '--font-inter',
   display: 'swap',

@@ -5,8 +5,8 @@ import { Instagram } from "lucide-react"
 
 export default function ServiciosSection() {
   return (
-    <section className="flex w-full py-12 md:py-24 lg:py-32 ">
-      <div className="ccontainer px-4 md:px-6 flex flex-col items-center justify-center text-center relative z-10 space-y-10">
+    <section id='servicios' className="flex w-full py-12 md:py-24 lg:py-32 ">
+      <div className="container px-4 md:px-6 flex flex-col items-center justify-center text-center relative z-10 space-y-10">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-white mb-2">Servicios</h2>
           <p className="text-gray-300 text-xl">Lorem ipsum dolor sit amet, consectetuer</p>

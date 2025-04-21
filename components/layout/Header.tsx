@@ -11,10 +11,10 @@ import { Button } from '../ui/button'
 
 
 const navItems = [
-  { label: "Servicios", href: "/#services" },
-  { label: "Proyectos", href: "/#projects" },
-  { label: "Simulador", href: "/#simulator" },
-  { label: "Team", href: "/#team" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Simulador", href: "#simulador" },
+  { label: "Team", href: "#team" },
   { label: "Whatsapp", href: "/#wpp", }, 
 ]
   const opacityValue = 0.4;
@@ -46,22 +46,24 @@ export function Header() {
           background: `linear-gradient(to right, rgba(59,122,59,${opacityValue}), rgba(200,64,64,${opacityValue}),  rgba(214,120,45,${opacityValue}), rgba(68,102,170,${opacityValue}))`
         }}
       >
-        {navItems.map((item) => (
-          <>
-          <Link
-            key={item.href}
-            href={item.href}
-            className="text-[0.60rem] font-light text-white text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {item.label === 'Whatsapp' ? (
-              <Image src={'icons/whatsapp.svg'} width={22} height={22} alt="Whatsapp" />
-            ) : (
-              item.label
-            )}
-          </Link>
+        {navItems.map((item, index) => (
+         <React.Fragment key={item.href}>
+         <Link
+           href={item.href}
+           className="text-[0.60rem] font-light text-white text-muted-foreground transition-colors hover:text-foreground"
+         >
+           {item.label === 'Whatsapp' ? (
+             <Image src={'icons/whatsapp.svg'} width={22} height={22} alt="Whatsapp" />
+           ) : (
+             item.label
+           )}
+         </Link>
+         {index < navItems.length - 1 && (
            <span className="text-white">|</span>
-          </>
+         )}
+       </React.Fragment>
         ))}
+        
       </nav>
   
       <div className="md:hidden flex items-center space-x-4">

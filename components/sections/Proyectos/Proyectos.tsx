@@ -2,7 +2,7 @@ import { User, Circle } from "lucide-react"
 
 export default function ProyectosSection() {
   return (
-    <div className="w-full min-h-screen text-white py-16 px-4">
+    <section id='proyectos' className="w-full  text-white py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-16">
@@ -99,7 +99,7 @@ export default function ProyectosSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

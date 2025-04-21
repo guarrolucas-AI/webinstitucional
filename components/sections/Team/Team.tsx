@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function TeamSection() {
   return (
-    <div className="relative min-h-screen w-full p-6 md:p-12">
+    <section id='team' className="relative mt-10 w-full p-6 md:p-12">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-16 text-center">
@@ -97,7 +97,7 @@ export default function TeamSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

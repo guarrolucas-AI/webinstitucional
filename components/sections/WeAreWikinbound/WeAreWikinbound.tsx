@@ -2,13 +2,13 @@ import { Icons } from "@/components/icons"
 
 export const WeAreWikinbound = () => {
   return (
-    <section className="w-full flex justify-center items-center py-12 md:py-24 lg:py-32">
+    <section className="w-full flex justify-center items-center py-2 md:py-14 lg:py-22">
       
     <div className="container px-4 md:px-6 flex flex-col items-center justify-center text-center relative z-10 space-y-10">
       
       {/* Título y descripción */}
       <div className="space-y-6">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-[1000] font-inter  text-white leading-tight">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
           We&apos;re  <span
     style={{
       background: "linear-gradient(to right, white 35%,rgb(4, 45, 253) 60%, #fde047 80%, #f97316 90%)",
