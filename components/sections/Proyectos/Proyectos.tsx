@@ -1,12 +1,21 @@
 import { User, Circle } from "lucide-react"
+import Image from "next/image"
 
 export default function ProyectosSection() {
   return (
-    <section id='proyectos' className="w-full  text-white py-16 px-4">
+    <section id='proyectos' className="w-full text-white py-16 px-4">
+       <div className="absolute top-480 right-100 w-full flex justify-center -translate-y-1/2 z-0">
+          <Image
+            src='w.svg'
+            width={580}
+            height={580}
+            alt="Decoración W"
+          />
+        </div>
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-16">
-          <h1 className="text-6xl font-bold mb-4">Proyectos</h1>
+          <h1 className="text-6xl font-regylar mb-4">Proyectos</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
           </p>

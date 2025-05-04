@@ -43,7 +43,7 @@ export default function BusinessSimulator() {
               Usar con precaución, proyecto experimental
             </p>
           </div>
-
+          
           {/* Right Column */}
           <div className="space-y-6">
             <Tabs defaultValue="manual" className="w-full">

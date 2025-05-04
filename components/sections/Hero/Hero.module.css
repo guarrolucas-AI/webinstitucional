@@ -7,43 +7,63 @@
 }
 
 .circle-1 {
-  width: 300px;
-  height: 300px;
-  top: 50px;  
+  width: 250px;
+  height: 250px;
+  top: -50px;  
   left: 0px;
   bottom: 50%;
   right: 0px;
-  background: rgba(255, 60, 60, 0.788);
+  background: rgba(250, 38, 38, 0.815);
   animation-delay: 0s;
 }
 
 .circle-2 {
-  width: 300px;
-  height: 300px;
-  top: 3px;  
+  width: 250px;
+  height: 250px;
+  top: -10px;  
   left: 60px;
-  right: 40px;
+  right: 80px;
   bottom: 0px;
-  background: rgba(77, 255, 103, 0.733);
-  animation-delay: 1.66s;
+  background: rgba(77, 255, 104, 0.658);
+  animation-delay: 0.66s;
 }
 
 .circle-3 {
-  width: 300px;
-  height: 300px;
-  top: 0px;  
+  width: 250px;
+  height: 250px;
+  top: 20px;  
   left: 0px;
-  right: 0px;
+  right: 80px;
   bottom: 10px;
-  background: rgba(0, 0, 255, 0.943);
-  animation-delay: 3.33s;
+  background: rgba(1, 1, 167, 0.418); 
+  animation-delay: 0.33s;
 }
 
 @keyframes orbit {
   0% {
-    transform: rotate(0deg) translateX(10px) rotate(0deg);
+    transform: rotate(0deg) translateX(20px) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg) translateX(10px) rotate(-360deg);
+    transform: rotate(360deg) translateX(20px) rotate(-360deg);
+  }
+}
+
+/* Tablet: 481px hasta 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .circle-1,
+  .circle-2,
+  .circle-3 {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Mobile: hasta 480px */
+@media (max-width: 480px) {
+  .circle-1,
+  .circle-2,
+  .circle-3 {
+    width: 200px;
+    height: 200px;
   }
 }
