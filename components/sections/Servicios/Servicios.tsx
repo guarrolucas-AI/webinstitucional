@@ -1,9 +1,11 @@
 "use client"
 
 import type React from "react"
-import { Instagram, Megaphone, BadgePercent } from "lucide-react"
 import AnimatedGraph from "@/components/ui/animated-graph"
 import Image from "next/image"
+import Cards from "@/components/ui/cards"
+import AnimatedInbound from "@/components/ui/animatedInbound"
+import AnimatedSoftware from "@/components/ui/animatedSoftware"
 
 export default function ServiciosSection() {
   return (
@@ -26,99 +28,34 @@ export default function ServiciosSection() {
       {/* Services Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full max-w-7xl">
         {/* Business Consulting Card */}
-        <ServiceCard
+        <Cards
           title="Consultoría"
           subtitle="Empresarial"
           description="Impulsamos la transformación de tu empresa con asesoramiento legal, contable, operativo, tecnológico, comercial y de capital humano."
         >
           <AnimatedGraph></AnimatedGraph>
-        </ServiceCard>
+        </Cards>
        
         {/* Marketing Card */}
-        <ServiceCard
+        <Cards
           title="Marketing"
           subtitle="Inbound"
           description="Lideramos el crecimiento de tu negocio con estrategias inbound que atraen, convierten y fidelizan clientes."
         >
-          <div>
-            <div className="flex items-center text-left gap-3 border border-white/20 backdrop-blur-sm p-1 m-3 rounded-lg text-sm">
-              <Instagram className="text-white" />
-              <div>
-                <div className="text-white font-medium">Instagram</div>
-                <div className="text-gray-400 ">Captura atención visualmente.</div>
-              </div>
-            </div>
-            <div className="flex items-center text-left gap-3 border border-white/20 backdrop-blur-sm p-1 m-3 rounded-lg text-sm">
-              <Megaphone className="text-white" />
-              <div>
-                <div className="text-white font-medium text-sm">Atracción</div>
-                <div className="text-gray-400 ">Genera tráfico cualificado.</div>
-              </div>
-            </div>
-            <div className="flex items-center text-left gap-3 border border-white/20 backdrop-blur-sm p-1 m-3 rounded-lg text-sm">
-              <BadgePercent className="text-white text-xs ml-3" />
-              <div>
-                <div className="text-white font-medium">Conversión</div>
-                <div className="text-gray-400 ">Convierte tráfico en clientes.</div>
-              </div>
-            </div>
-           
-         
-          </div>
-        </ServiceCard>
+          <AnimatedInbound/>
+        </Cards>
   
         {/* Software Solutions Card */}
-        <ServiceCard
+        <Cards
           title="Soluciones de"
           subtitle="Software"
           description="Ofrecemos soluciones de software innovadoras a través de un equipo de profesionales que transforman tu empresa."
         >
-          <div className="bg-black/30 backdrop-blur-sm p-4 rounded-lg h-48 flex items-center justify-center overflow-hidden relative">
-            <pre className="text-gray-300 text-xs">
-              {`function optimize() {
-    return {
-      efficiency: +103%,
-      cost: -67%
-    }
-  }`}
-            </pre>
-            <div className="absolute bottom-4 right-4">
-              <div className="bg-black/50 text-white text-xs px-2 py-1 rounded">Tobor B</div>
-            </div>
-          </div>
-        </ServiceCard>
+        <AnimatedSoftware/>
+        </Cards>
       </div>
     </div>
   </section>
   )
 }
 
-interface ServiceCardProps {
-  title: string
-  subtitle: string
-  description: string
-  children: React.ReactNode
-}
-
-function ServiceCard({ title, subtitle, description, children }: ServiceCardProps) {
-  return (
-    <div className="rounded-3xl overflow-hidden backdrop-blur-sm border border-white/10 flex flex-col z-1 relative">
-      <div className="absolute inset-0 opacity-20 mix-blend-soft-light pointer-events-none" 
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")`,
-        }}
-      />
-      
-      {/* Contenido principal */}
-      <div className="flexp-0 m-5  border rounded-3xl border-white/10 relative w-[280px] h-[200px]">
-      {children}
-      </div>
-      
-      <div className="p-6 pt-0 relative z-10">
-        <h3 className="text-white text-2xl text-left font-regular">{title}</h3>
-        <h4 className="text-white text-2xl text-left font-bold mb-3">{subtitle}</h4>
-        <p className="text-white/80 text-left text-sm">{description}</p>
-      </div>
-    </div>
-  )
-}

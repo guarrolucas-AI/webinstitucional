@@ -39,7 +39,7 @@ export default function Hero() {
           {/* Text Content */}
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-6 md:space-y-10 content-center">
-              <h1 className="font-inter text-4xl text-center lg:text-left font-regular md:text-7xl lg:text-[85px] text-white leading-[0.9] md:leading-[0.9] tracking-wide">
+              <h1 className="font-inter text-[42px] text-center lg:text-left font-regular md:text-7xl lg:text-[85px] text-white leading-[0.9] md:leading-[0.9] tracking-wide">
                 Explorá
                 <br />
                 <span className="md:font-regular lg:font-regular xl:font-regular">
@@ -54,7 +54,7 @@ export default function Hero() {
           </div>
 
           {/* Circles and Buttons */}
-          <div className="relative z-0 h-64 lg:mt-0 mt-20 md:h-auto">
+          <div className="relative z-0 h-64 ml-15 mt-15 lg:mt-0 ml-0  md:h-auto">
             <div className="flex justify-center items-center h-full">
               <div className={`${styles.circle} ${styles["circle-1"]}`} />
               <div className={`${styles.circle} ${styles["circle-2"]}`} />

@@ -17,7 +17,7 @@ export default function ColorsBg({ children, className }: ColorsBgProps) {
       )}
       style={{
         backgroundImage: `
-          radial-gradient(circle at -45% 25%, rgba(255, 72, 0, 0.94) 5%, transparent 35%),
+          radial-gradient(circle at -45% 30%, rgba(255, 72, 0, 0.94) 5%, transparent 35%),
           radial-gradient(circle at 45% 45%, rgb(23, 5, 65) 20%, transparent 40%),
           radial-gradient(circle at 20% 65%, #000000 20%, transparent 80%),
           radial-gradient(circle at 98% 95%, #309e30 0%, transparent 70%),

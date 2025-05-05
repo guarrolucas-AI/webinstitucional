@@ -53,7 +53,7 @@ export function Header() {
 
         {/* Nav desktop */}
         <nav
-          className="hidden md:flex items-center font-inter space-x-4 rounded-lg backdrop-blur-xl pt-2 pb-2 pr-13 pl-8 mr-13"
+          className="hidden md:flex items-center font-inter space-x-4 rounded-lg backdrop-blur-xl pt-2 pb-2 pr-8 pl-8 mr-13"
           style={{
             background: `linear-gradient(126deg, 
               rgba(59,122,9,${opacityValue}) 0%, 

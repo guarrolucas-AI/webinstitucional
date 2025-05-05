@@ -36,7 +36,7 @@ export default function AnimatedGraph() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full h-48 aspect-[16/9] rounded-3xl relative overflow-hidden" style={{
+      <div className="w-full h-48 aspect-[16/7] rounded-3xl relative overflow-hidden" style={{
             background: `linear-gradient(126deg, rgba(59,122,59,${opacityValue}), rgba(200,64,64,${opacityValue}), rgba(214,120,45,${opacityValue}), rgba(68,102,170,${opacityValue}))`,
           }}>
         {/* Efficiency line */}

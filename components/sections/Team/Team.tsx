@@ -16,9 +16,9 @@ const teamMembers = [
     description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit Lorem ipsum dolor sit amet, consectetuer adipiscing elit....",
   },
   {
-    name: "Micaela Enriquez",
+    name: "Gonzalo S. A. Gómez",
     role: "Colaborador",
-    image: "/placeholder.svg?height=128&width=128",
+    image: "/gonzalo.png",
     description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit...",
   },
   {
