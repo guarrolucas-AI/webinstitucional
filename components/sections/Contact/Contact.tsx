@@ -6,6 +6,8 @@ import { useState } from "react"
 import { Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import emailjs from "@emailjs/browser";
+
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -13,7 +15,8 @@ export default function ContactForm() {
     apellidos: "",
     email: "",
     telefono: "",
-    fechaNacimiento: "",
+    tema: "",
+    mensaje: "",
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,8 +26,34 @@ export default function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Datos enviados:", formData)
-    // Aquí iría la lógica para enviar los datos
+
+    const templateParams = {
+      nombre: formData.nombre,
+      apellidos: formData.apellidos,
+      email: formData.email,
+      telefono: formData.telefono,
+      tema: formData.tema,
+      mensaje: formData.mensaje,
+    };
+
+    // Enviar el correo usando EmailJS
+    emailjs
+      .send(
+        "service_7098h1l", // Reemplaza con tu Service ID
+        "template_38pikwd", // Reemplaza con tu Template ID
+        templateParams,
+        "P7uTbplF4ZBiNftvn" // Reemplaza con tu Public Key
+      )
+      .then(
+        (response) => {
+          console.log("Correo enviado con éxito:", response);
+          alert("¡Mensaje enviado con éxito!");
+        },
+        (error) => {
+          console.error("Error al enviar el correo:", error);
+          alert("Ocurrió un error al enviar el mensaje.");
+        }
+      );
   }
 
   return (
@@ -126,10 +155,10 @@ export default function ContactForm() {
                   Tema
                 </label>
                 <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
+                  id="tema"
+                  name="tema"
+                  type="input"
+                  value={formData.tema}
                   onChange={handleChange}
                   className="bg-white/10 border-white/20 text-white"
                   required
@@ -139,15 +168,15 @@ export default function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="fechaNacimiento" className="text-white">
+              <label htmlFor="mensaje" className="text-white">
                 Mensaje
               </label>
               <Input
-                id="fechaNacimiento"
-                name="fechaNacimiento"
+                id="mensaje"
+                name="mensaje"
                 type="text"
                 placeholder="Ingresar el mensaje"
-                value={formData.fechaNacimiento}
+                value={formData.mensaje}
                 onChange={handleChange}
                 className="bg-white/10 border-white/20 text-white"
                 required

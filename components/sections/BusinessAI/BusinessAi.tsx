@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export default function BusinessSimulator() {
   const [salesAmount, setSalesAmount] = useState("");
@@ -19,11 +20,19 @@ export default function BusinessSimulator() {
 
   return (
     <section id='simulador' className="w-full mt-20 max-w-5xl mx-auto">
+       <div className="absolute top-780 right-50 w-full flex justify-center -translate-y-1/2">
+                <Image
+                  src='w.svg'
+                  width={980}
+                  height={980}
+                  alt="Decoración W"
+                />
+              </div>
       <h1 className="text-5xl font-bold text-white text-center mb-8">
         Inteligencia Artificial y tu negocio
       </h1>
 
-      <div className="rounded-3xl overflow-hidden  backdrop-blur-md bg-white/5 border border-white/20">
+      <div className="rounded-3xl overflow-hidden  backdrop-blur-sm bg-white/5 border border-white/20">
         <div className="p-8 md:p-12 grid md:grid-cols-2 gap-8">
           {/* Left Column */}
           <div className="space-y-4">

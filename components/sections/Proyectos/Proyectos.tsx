@@ -16,7 +16,7 @@ export default function ProyectosSection() {
         {/* Heading */}
         <div className="text-center mb-16">
           <h1 className="text-6xl font-regylar mb-4">Proyectos</h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300/70 max-w-3xl mx-auto">
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
           </p>
         </div>

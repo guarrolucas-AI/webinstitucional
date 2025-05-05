@@ -1,20 +1,20 @@
 "use client"
 
 import type React from "react"
-import { Instagram } from "lucide-react"
+import { Instagram, Megaphone, BadgePercent } from "lucide-react"
 import AnimatedGraph from "@/components/ui/animated-graph"
 import Image from "next/image"
 
 export default function ServiciosSection() {
   return (
     <section id='servicios' className="flex w-full py-12 md:py-24 lg:py-10">
-        <div className="absolute top-280 left-60 w-full flex justify-center -translate-y-1/2 z-0">
+        <div className="absolute top-280 left-50 w-full flex justify-center -translate-y-1/2 -z-20">
     <Image
       src='w.svg'
-      width={1580}
-      height={1580}
+      width={1680}
+      height={1680}
       alt="Decoración W"
-      className="-scale-x-100 opacity-30"
+      className="-scale-x-100  opacity-40"
     />
   </div>
     <div className="container mx-auto px-4 md:px-6 flex flex-col items-center justify-center text-center relative z-10 space-y-10">
@@ -41,18 +41,25 @@ export default function ServiciosSection() {
           description="Lideramos el crecimiento de tu negocio con estrategias inbound que atraen, convierten y fidelizan clientes."
         >
           <div>
-            <div className="flex items-center text-left gap-3 border border-white/20 backdrop-blur-sm p-2 m-3 rounded-lg text-sm">
+            <div className="flex items-center text-left gap-3 border border-white/20 backdrop-blur-sm p-1 m-3 rounded-lg text-sm">
               <Instagram className="text-white" />
               <div>
                 <div className="text-white font-medium">Instagram</div>
-                <div className="text-gray-400 ">Lorem ipsum dolor sit</div>
+                <div className="text-gray-400 ">Captura atención visualmente.</div>
               </div>
             </div>
-            <div className="flex items-center text-left gap-3 border border-white/20 backdrop-blur-sm p-2 m-3 rounded-lg text-sm">
-              <Instagram className="text-white" />
+            <div className="flex items-center text-left gap-3 border border-white/20 backdrop-blur-sm p-1 m-3 rounded-lg text-sm">
+              <Megaphone className="text-white" />
               <div>
-                <div className="text-white font-medium">Instagram</div>
-                <div className="text-gray-400 ">Lorem ipsum dolor sit</div>
+                <div className="text-white font-medium text-sm">Atracción</div>
+                <div className="text-gray-400 ">Genera tráfico cualificado.</div>
+              </div>
+            </div>
+            <div className="flex items-center text-left gap-3 border border-white/20 backdrop-blur-sm p-1 m-3 rounded-lg text-sm">
+              <BadgePercent className="text-white text-xs ml-3" />
+              <div>
+                <div className="text-white font-medium">Conversión</div>
+                <div className="text-gray-400 ">Convierte tráfico en clientes.</div>
               </div>
             </div>
            
@@ -103,8 +110,8 @@ function ServiceCard({ title, subtitle, description, children }: ServiceCardProp
       />
       
       {/* Contenido principal */}
-      <div className="p-0 m-5 border rounded-3xl border-white/10 relative">
-        {children}
+      <div className="flexp-0 m-5  border rounded-3xl border-white/10 relative w-[280px] h-[200px]">
+      {children}
       </div>
       
       <div className="p-6 pt-0 relative z-10">

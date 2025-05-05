@@ -12,14 +12,14 @@ export default function ColorsBg({ children, className }: ColorsBgProps) {
   return (
     <div
       className={classNames(
-        'relative w-full min-h-screen overflow-hidden',
+        'relative w-full z-0 min-h-screen overflow-hidden',
         className
       )}
       style={{
         backgroundImage: `
           radial-gradient(circle at -45% 25%, rgba(255, 72, 0, 0.94) 5%, transparent 35%),
-          radial-gradient(circle at 45% 35%, rgb(23, 5, 65) 20%, transparent 40%),
-          radial-gradient(circle at 20% 32%, #000000 20%, transparent 80%),
+          radial-gradient(circle at 45% 45%, rgb(23, 5, 65) 20%, transparent 40%),
+          radial-gradient(circle at 20% 65%, #000000 20%, transparent 80%),
           radial-gradient(circle at 98% 95%, #309e30 0%, transparent 70%),
           radial-gradient(circle at bottom right, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 50%)
         `,
@@ -41,6 +41,7 @@ export default function ColorsBg({ children, className }: ColorsBgProps) {
 
       {/* Contenido */}
       <div className="relative z-10">
+
         {children}
       </div>
     </div>
