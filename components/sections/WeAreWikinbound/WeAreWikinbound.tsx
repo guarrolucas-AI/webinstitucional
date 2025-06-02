@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Github, Figma, Sparkles, SquareCode, FramerIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const opacityValue = 0.2;
 const opacityValue1 = 0.6;
@@ -11,74 +11,134 @@ const icons = [
   {
     id: 1,
     component: (
-      <div className="bg-white rounded p-2">
-        <span className="text-orange-600 font-bold">Ps</span>
-      </div>
+     <Image
+     src='/icons/photoshop.svg'
+     alt='Photoshop'
+     width={40}
+     height={40}
+     />
     ),
     name: "Photoshop",
   },
   {
     id: 2,
     component: (
-      <div className="bg-white rounded p-2">
-        <span className="text-orange-600 font-bold">Ai</span>
-      </div>
+       <Image
+     src='/icons/illustrator.svg'
+     alt='Illustrator'
+     width={40}
+     height={40}
+     />
     ),
     name: "Illustrator",
   },
   {
     id: 3,
     component: (
-      <div className="p-2">
-        <Figma className="text-white" size={32} />
-      </div>
+       <Image
+     src='/icons/figma.svg'
+     alt='Figma'
+     width={40}
+     height={40}
+     />
     ),
     name: "Figma",
   },
   {
     id: 4,
     component: (
-      <div className="p-2">
-        <Sparkles className="text-white" size={32} />
-      </div>
+      <Image
+     src='/icons/nodejs.svg'
+     alt='NodeJS'
+     width={40}
+     height={40}
+     />
     ),
-    name: "Spark",
+    name: "NodeJS",
   },
   {
     id: 5,
     component: (
-      <div className="bg-white rounded-full p-2">
-        <SquareCode className="text-purple-600" size={24} />
-      </div>
+       <Image
+     src='/icons/react.svg'
+     alt='React'
+     width={40}
+     height={40}
+     />
     ),
-    name: "Discord",
+    name: "React",
   },
   {
     id: 6,
     component: (
-      <div className="bg-white rounded p-2">
-        <span className="font-bold">N</span>
-      </div>
+       <Image
+     src='/icons/notion.svg'
+     alt='Notion'
+     width={40}
+     height={40}
+     />
     ),
     name: "Notion",
   },
   {
     id: 7,
     component: (
-      <div className="p-2">
-        <FramerIcon className="text-white" size={32} />
-      </div>
+     <Image
+     src='/icons/wordpress.svg'
+     alt='Wordpress'
+     width={40}
+     height={40}
+     />
     ),
-    name: "Framer",
+    name: "Wordpress",
   },
   {
     id: 8,
     component: (
-      <div className="p-2">
-        <Github className="text-white" size={32} />
-      </div>
+    <Image
+     src='/icons/github.svg'
+     alt='Github'
+     width={40}
+     height={40}
+     />
     ),
     name: "GitHub",
+  },
+  {
+    id: 9,
+    component: (
+    <Image
+     src='/icons/nestjs.svg'
+     alt='Nestjs'
+     width={40}
+     height={40}
+     />
+    ),
+    name: "Nestjs",
+  },
+   {
+    id: 10,
+    component: (
+    <Image
+     src='/icons/nextjs.svg'
+     alt='Nextjs'
+     width={40}
+     height={40}
+     />
+    ),
+    name: "Nextjs",
+  },
+   {
+    id: 11,
+    component: (
+    <Image
+     src='/icons/git.svg'
+     alt='Git'
+     width={40}
+     height={40}
+     />
+    ),
+    name: "Git",
   },
 ];
 
@@ -194,14 +254,14 @@ export const WeAreWikinbound = () => {
 
         {/* Animated icons carousel - full width */}
         <div
-          className="w-screen py-4 flex mt-20  justify-center items-center overflow-hidden"
+          className="w-screen py-4 flex mt-10 justify-center items-center overflow-hidden"
           style={{
             background: `linear-gradient(to right, rgba(59,122,59,${opacityValue}), rgba(194,150,60,${opacityValue}), rgba(214,120,45,${opacityValue}), rgba(200,64,64,${opacityValue}), rgba(68,102,170,${opacityValue}))`,
           }}
         >
           <div
             ref={containerRef}
-            className="relative flex justify-center h-24 w-full"
+            className="relative flex justify-center items-center h-24 w-full"
           >
             {icons.map((icon, index) => (
               <div

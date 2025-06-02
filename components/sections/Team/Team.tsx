@@ -5,33 +5,45 @@ import Image from "next/image";
 const teamMembers = [
   {
     name: "Lucas Cesar Guarro",
-    role: "CEO & Consultant",
+    role: "CEO Founder",
     image: "/lucas.png",
-    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit...",
+    description: "Consultor en desarrollo de negocios. Especializado en estrategias de crecimiento y expansión para tu empresa que esta comenzando y también para aquella que necesita un impulso. 15 años de experiencia en multinacional y pymes.Especializado en incubación de proyectos, análisis de viabilidad y proyecciones económicas y de mercado. Agenda una reunión conmigo para que podamos evaluar juntos tus ideas, emprendimiento o tu empresa.",
   },
   {
     name: "Cintia Vanina Christiansen",
-    role: "CEO / Founder",
+    role: "Co-Founder",
     image: "/cintia.png",
-    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit Lorem ipsum dolor sit amet, consectetuer adipiscing elit....",
+    description: "Fundadora de Wikinbound con grandes habilidades de diseño y estrategias de CM, especializada en creación de marca, captación de concepto de comunicación y estrategias de proyección efectiva.",
   },
   {
     name: "Gonzalo S. A. Gómez",
-    role: "Colaborador",
+    role: "CTO",
     image: "/gonzalo.png",
-    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit...",
+    description: "Responsable de tecnología, software factory. Apasionado IT con numerosas habilidades para poder acompañarte en el desarrollo de tu idea. No dejes de soñar, de imaginar, nosotros podemos hacer realidad eso que siempre quisiste desarrollar.",
   },
   {
-    name: "Juan Pérez",
-    role: "Colaborador",
+    name: "Juan",
+    role: "Contador",
     image: "/placeholder.svg?height=128&width=128",
-    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit...",
+    description: "Contador público con gran experiencia nacional e internacional, integra nuestro equipo con el fin de garantizar los requerimientos contables y la viabilidad financiera de tus proyectos.",
   },
   {
-    name: "Ana González",
-    role: "Colaboradora",
+    name: "Lourdes",
+    role: "Community Manager",
     image: "/placeholder.svg?height=128&width=128",
-    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit...",
+    description: "Diseño y CM especializada en expresión artística, para que tus diseños sean únicos.",
+  },
+  {
+    name: "Jose Luis",
+    role: "Consultor",
+    image: "/placeholder.svg?height=128&width=128",
+    description: "Consultor con mas de 30 años de experiencia trabajando para multinacionales en las áreas soft de capital humano, gracias a él te podemos garantizar que vas a poder contar con los mejores profesionales para cada una de las tareas que tengas que delegar y desarrollar.",
+  },
+  {
+    name: "Profesionales a disposición en Wikinbound",
+    role: "Más equipo",
+    image: "/placeholder.svg?height=128&width=128",
+    description: "Contamos con muchos profesionales mas para poder acompañarte a desarrollar tu negocio, no dudes en contactarnos para poder conocerlos.",
   },
 ];
 

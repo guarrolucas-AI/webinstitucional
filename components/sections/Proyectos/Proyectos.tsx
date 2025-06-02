@@ -83,7 +83,7 @@ export default function ProyectosSection() {
             subtitle="Leads"
             description="Organizamos y automatizamos el seguimiento de prospectos."
           >
-              <div className="flex flex-col justify-center space-y-6  rounded-3xl p-6 w-full mx-auto ">
+              <div className="flex flex-col justify-center space-y-6  rounded-3xl px-12w-full mx-auto ">
       {/* Lead 1 */}
       <div className="flex items-center justify-end space-x-3">
         <div className="text-right">
@@ -96,7 +96,7 @@ export default function ProyectosSection() {
       </div>
       
       {/* Estrategia */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center m-2 space-x-3">
         <div className="bg-transparent border border-white rounded-md p-1">
           <Circle size={20} className="text-white" />
         </div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
-const opacityValue = 0.2;
+
 
 export default function AnimatedGraph() {
   const [progress, setProgress] = useState(0)
@@ -36,9 +36,7 @@ export default function AnimatedGraph() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full h-48 aspect-[16/7] rounded-3xl relative overflow-hidden" style={{
-            background: `linear-gradient(126deg, rgba(59,122,59,${opacityValue}), rgba(200,64,64,${opacityValue}), rgba(214,120,45,${opacityValue}), rgba(68,102,170,${opacityValue}))`,
-          }}>
+      <div className="w-full h-50 aspect-[16/7] rounded-3xl relative overflow-hidden" >
         {/* Efficiency line */}
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <motion.path
@@ -85,7 +83,7 @@ export default function AnimatedGraph() {
             transform: "translate(-50%, -50%)",
           }}
         >
-          Efficiency +{efficiency.toFixed(0)}%
+         Eficiencia +{efficiency.toFixed(0)}%
         </motion.div>
 
         {/* Cost dot and label */}
@@ -108,7 +106,7 @@ export default function AnimatedGraph() {
             transform: "translate(-50%, -50%)",
           }}
         >
-          Cost {cost.toFixed(0)}%
+          Costo {cost.toFixed(0)}%
         </motion.div>
       </div>
     </div>

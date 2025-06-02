@@ -9,6 +9,7 @@ import ProyectosSection from "@/components/sections/Proyectos/Proyectos";
 import ServiciosSection from "@/components/sections/Servicios/Servicios";
 import TeamSection from "@/components/sections/Team/Team";
 import { WeAreWikinbound } from "@/components/sections/WeAreWikinbound/WeAreWikinbound";
+import MeetingRequestForm from "@/components/ui/meeting-request-form";
 import React from "react";
 
 const WebInstitucional = () => {
@@ -21,7 +22,7 @@ const WebInstitucional = () => {
         <ProyectosSection />
         <BusinessSimulator />
         <TeamSection />
-        <ContactForm />
+        <ContactForm /> 
         <Footer/>
       </ColorsBg>
     </>

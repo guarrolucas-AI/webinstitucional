@@ -24,7 +24,7 @@ export default function Footer() {
 
       {/* Navigation */}
       <nav
-        className="rounded-lg backdrop-blur-xl px-20 py-3 flex items-center justify-center"
+        className="rounded-lg backdrop-blur-xl px-10 py-2 flex items-center justify-between"
         style={{
           background: `linear-gradient(to right, rgba(59,122,59,${opacityValue}), rgba(200,64,64,${opacityValue}), rgba(214,120,45,${opacityValue}), rgba(68,102,170,${opacityValue}))`,
         }}
@@ -47,7 +47,7 @@ export default function Footer() {
               )}
             </Link>
             {index < navItems.length - 1 && (
-              <span className="text-white mx-3">|</span>
+              <span className="text-white font-light text-[15px]  mx-3">|</span>
             )}
           </React.Fragment>
         ))}
