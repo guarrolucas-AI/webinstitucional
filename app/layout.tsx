@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { gotham, inter } from "@/assets/fonts";
 import { cn } from "@/lib/utils";
 import NoiseBackground from "@/components/layout/NoiseBackground";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Wikinbound",
@@ -25,10 +26,11 @@ export default function RootLayout({
         )}
       >
         <main className="flex-1">
-          <NoiseBackground>
+         {/*  <NoiseBackground> */}
             <Header />
             {children}
-          </NoiseBackground>
+        {/*   </NoiseBackground> */}
+          <CustomCursor/>
         </main>
       </body>
     </html>

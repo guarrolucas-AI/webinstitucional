@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import { motion, } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const navItems = [
   { label: "Servicios", href: "#servicios" },
@@ -13,8 +15,19 @@ const navItems = [
 const opacityValue = 0.4;
 
 export default function Footer() {
+  const { ref, inView } = useInView({
+    triggerOnce: false, // para que se repita cada vez que entra en pantalla
+    threshold: 0.1, // se activa cuando al menos el 10% del footer se ve
+  });
+
   return (
-    <footer className="w-full bg-black/20  mt-20 flex flex-col items-center">
+    <motion.footer
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-full bg-black/20 mt-20 flex flex-col items-center"
+    >
       {/* Logo */}
       <div className="py-12">
         <Link href="/" className="flex items-center justify-center">
@@ -47,7 +60,7 @@ export default function Footer() {
               )}
             </Link>
             {index < navItems.length - 1 && (
-              <span className="text-white font-light text-[15px]  mx-3">|</span>
+              <span className="text-white font-light text-[15px] mx-3">|</span>
             )}
           </React.Fragment>
         ))}
@@ -59,6 +72,6 @@ export default function Footer() {
         <span>|</span>
         <p>Copyright © 2025</p>
       </div>
-    </footer>
+    </motion.footer>
   );
 }
