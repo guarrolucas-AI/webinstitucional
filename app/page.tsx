@@ -21,7 +21,7 @@ const WebInstitucional = () => {
         <ProyectosSection />
         <BusinessSimulator />
         <TeamSection />
-        <ContactForm />
+        <ContactForm /> 
         <Footer/>
       </ColorsBg>
     </>

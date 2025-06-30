@@ -13,7 +13,7 @@ const navItems = [
   { label: "Proyectos", href: "#proyectos" },
   { label: "Simulador", href: "#simulador" },
   { label: "Team", href: "#team" },
-  { label: "Whatsapp", href: "/#wpp" },
+  { label: "Whatsapp", href: "https://wa.me/5491166614164" },
 ];
 
 const opacityValue = 0.4;
@@ -75,6 +75,7 @@ export function Header() {
                     height={22}
                     alt="Whatsapp"
                   />
+                  
                 ) : (
                   item.label
                 )}

@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const AnimatedSoftware = () => {
-  const [tech, setTech] = useState<"Nodejs" | "React" | "NextJS">("Nodejs");
-  const [codeText, setCodeText] = useState("");
-
-  const techOrder: Array<"Nodejs" | "React" | "NextJS"> = ["Nodejs", "React", "NextJS"];
+const techOrder: Array<"Nodejs" | "React" | "NextJS"> = ["Nodejs", "React", "NextJS"];
 
   const code: Record<"Nodejs" | "React" | "NextJS", { description: string; code: string }> = {
     Nodejs: {
@@ -24,6 +20,11 @@ app.listen(3000);`
 }`
     },
   };
+
+const AnimatedSoftware = () => {
+  const [tech, setTech] = useState<"Nodejs" | "React" | "NextJS">("Nodejs");
+  const [codeText, setCodeText] = useState("");
+
 
   const handleChangeTech = (newTech: "Nodejs" | "React" | "NextJS") => {
     setTech(newTech);
