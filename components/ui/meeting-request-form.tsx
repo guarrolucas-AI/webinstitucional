@@ -123,14 +123,13 @@ export default function ContactForm() {
       setSubmitStatus({ type: null, message: "" })
     }
   
-    const formatTime = (time: string) => {
-      const [hour, minute] = time.split(":")
-      const hourNum = Number.parseInt(hour)
-      const ampm = hourNum >= 12 ? "PM" : "AM"
-      const displayHour = hourNum > 12 ? hourNum - 12 : hourNum === 0 ? 12 : hourNum
-      return ${displayHour}:${minute} ${ampm}
-    }
-
+   const formatTime = (time: string) => {
+  const [hour, minute] = time.split(":")
+  const hourNum = Number.parseInt(hour)
+  const ampm = hourNum >= 12 ? "PM" : "AM"
+  const displayHour = hourNum > 12 ? hourNum - 12 : hourNum === 0 ? 12 : hourNum
+  return `${displayHour}:${minute} ${ampm}`
+}
   return (
     <div className=" w-full flex mt-15 items-center justify-center p-4">
       <div className="w-full max-w-6xl grid md:grid-cols-2 gap-8">
