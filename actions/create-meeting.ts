@@ -1,6 +1,7 @@
 "use server"
 
 import { google } from "googleapis"
+import { JWT } from "google-auth-library"
 
 interface MeetingData {
   nombre: string
@@ -20,7 +21,7 @@ interface TimeSlot {
   end: Date
 }
 
-const calendarId = '2c152f33717417f9979585e14ba55927f9aafbb35c008a2a0aa9a8ed26170e60@group.calendar.google.com'
+const calendarId = 'proyectos@wikinbound.com'
 
 async function checkAvailability(auth: any, startDate: Date, endDate: Date): Promise<boolean> {
   try {
@@ -34,12 +35,10 @@ async function checkAvailability(auth: any, startDate: Date, endDate: Date): Pro
       orderBy: "startTime",
     })
 
-    const events = response.data.items || []
-
-    return events.length === 0
+    return (response.data.items ?? []).length === 0
   } catch (error) {
     console.error("Error checking availability:", error)
-    return true
+    return true // Por las dudas no bloquear si falla
   }
 }
 
@@ -59,8 +58,7 @@ async function getAvailableSlots(auth: any, date: string): Promise<string[]> {
       orderBy: "startTime",
     })
 
-    const events = response.data.items || []
-    const busySlots: TimeSlot[] = events.map((event) => ({
+    const busySlots: TimeSlot[] = (response.data.items ?? []).map(event => ({
       start: new Date(event.start?.dateTime || event.start?.date || ""),
       end: new Date(event.end?.dateTime || event.end?.date || ""),
     }))
@@ -70,18 +68,14 @@ async function getAvailableSlots(auth: any, date: string): Promise<string[]> {
 
     while (current < dayEnd) {
       const slotEnd = new Date(current.getTime() + 30 * 60000)
-
-      const isAvailable = !busySlots.some(
-        (busy) =>
-          (current >= busy.start && current < busy.end) ||
-          (slotEnd > busy.start && slotEnd <= busy.end) ||
-          (current <= busy.start && slotEnd >= busy.end),
+      const isBusy = busySlots.some(busy =>
+        (current >= busy.start && current < busy.end) ||
+        (slotEnd > busy.start && slotEnd <= busy.end) ||
+        (current <= busy.start && slotEnd >= busy.end)
       )
-
-      if (isAvailable) {
+      if (!isBusy) {
         availableSlots.push(current.toTimeString().slice(0, 5))
       }
-
       current.setMinutes(current.getMinutes() + 30)
     }
 
@@ -94,28 +88,24 @@ async function getAvailableSlots(auth: any, date: string): Promise<string[]> {
 
 export async function createMeetingAction(data: MeetingData) {
   try {
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-      },
+    // Autenticación JWT con delegación de dominio
+    const auth = new JWT({
+      email: process.env.GOOGLE_CLIENT_EMAIL!,
+      key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
       scopes: ["https://www.googleapis.com/auth/calendar"],
+      subject: calendarId, // Cuenta que delega (usuario administrador o calendario)
     })
 
+    const calendar = google.calendar({ version: "v3", auth })
+
+    // Parsear fecha y hora
     const [year, month, day] = data.fechaPreferida.split("-")
     const [hour, minute] = data.horaPreferida.split(":")
-
-    const startDate = new Date(
-      Number(year),
-      Number(month) - 1,
-      Number(day),
-      Number(hour),
-      Number(minute),
-    )
+    const startDate = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute))
     const endDate = new Date(startDate.getTime() + Number(data.duracion) * 60000)
 
+    // Verificar disponibilidad
     const isAvailable = await checkAvailability(auth, startDate, endDate)
-
     if (!isAvailable) {
       const availableSlots = await getAvailableSlots(auth, data.fechaPreferida)
       return {
@@ -125,9 +115,7 @@ export async function createMeetingAction(data: MeetingData) {
       }
     }
 
-    const calendar = google.calendar({ version: "v3", auth })
-
-    // Evento SIN conferenceData para evitar error invalid conference type
+    // Crear evento con Google Meet y asistentes
     const event = {
       summary: `${data.asunto} - ${data.nombre} ${data.apellido}`,
       description: `
@@ -150,10 +138,20 @@ Esta reunión fue creada automáticamente desde el formulario web.
         dateTime: endDate.toISOString(),
         timeZone: "America/Argentina/Buenos_Aires",
       },
+      attendees: [
+        { email: data.email, displayName: `${data.nombre} ${data.apellido}` },
+        { email: calendarId, displayName: "Equipo Wikinbound" },
+      ],
+      conferenceData: {
+        createRequest: {
+          requestId: `meet-${Date.now()}`,
+          conferenceSolutionKey: { type: "hangoutsMeet" },
+        },
+      },
       reminders: {
         useDefault: false,
         overrides: [
-          { method: "email", minutes: 24 * 60 },
+          { method: "email", minutes: 1440 },
           { method: "email", minutes: 60 },
           { method: "popup", minutes: 15 },
         ],
@@ -166,20 +164,21 @@ Esta reunión fue creada automáticamente desde el formulario web.
     const response = await calendar.events.insert({
       calendarId,
       requestBody: event,
-      // NO conferenceDataVersion ni sendUpdates para evitar errores
+      conferenceDataVersion: 1,
+      sendUpdates: "all", // Envía invitaciones automáticamente
     })
 
     return {
       success: true,
       eventId: response.data.id,
-      meetLink: null, // No se genera link Meet automáticamente
+      meetLink: response.data.hangoutLink,
       htmlLink: response.data.htmlLink,
     }
   } catch (error: any) {
     console.error("Error creating meeting:", error.response?.data || error.message || error)
     return {
       success: false,
-      error: "No se pudo crear la reunión. Verifica la configuración de Google Calendar.",
+      error: "No se pudo crear la reunión. Verifica la configuración de Google Calendar y la delegación de dominio.",
       details: error.response?.data || error.message || error,
     }
   }

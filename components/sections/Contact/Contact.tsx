@@ -73,53 +73,53 @@ export default function ContactForm() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: "", meetLink: undefined, alternativeSlots: undefined });
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitStatus({ type: null, message: "", meetLink: undefined, alternativeSlots: undefined });
 
-    try {
-      const result = await createMeetingAction(formData);
+  try {
+    const result = await createMeetingAction(formData);
 
-      if (result.success) {
-        setSubmitStatus({
-          type: "success",
-          message: "Reunión creada exitosamente. Se han enviado las invitaciones por email.",
-          meetLink: result.meetLink ?? undefined,
-        });
-        setFormData({
-          nombre: "",
-          apellido: "",
-          email: "",
-          telefono: "",
-          asunto: "",
-          fechaPreferida: "",
-          horaPreferida: "",
-          duracion: "",
-          participantes: "",
-          agenda: "",
-        });
-        setAvailableSlots([]);
-      } else if (result.availableSlots) {
-        setSubmitStatus({
-          type: "conflict",
-          message: result.error || "El horario seleccionado no está disponible.",
-          alternativeSlots: result.availableSlots,
-        });
-      } else {
-        setSubmitStatus({
-          type: "error",
-          message: result.error || "Error al crear la reunión. Inténtalo de nuevo.",
-        });
-      }
-    } catch {
+    if (result.success) {
+      setSubmitStatus({
+        type: "success",
+        message: "Reunión creada exitosamente. Se han enviado las invitaciones por email.",
+        meetLink: result.meetLink ?? undefined,
+      });
+      setFormData({
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        asunto: "",
+        fechaPreferida: "",
+        horaPreferida: "",
+        duracion: "",
+        participantes: "",
+        agenda: "",
+      });
+      setAvailableSlots([]);
+    } else if (result.availableSlots) {
+      setSubmitStatus({
+        type: "conflict",
+        message: result.error || "El horario seleccionado no está disponible.",
+        alternativeSlots: result.availableSlots,
+      });
+    } else {
       setSubmitStatus({
         type: "error",
-        message: "Error inesperado. Por favor, inténtalo de nuevo.",
+        message: result.error || "Error al crear la reunión. Inténtalo de nuevo.",
       });
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  } catch {
+    setSubmitStatus({
+      type: "error",
+      message: "Error inesperado. Por favor, inténtalo de nuevo.",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
