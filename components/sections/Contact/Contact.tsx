@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
-import { Calendar, Clock, Users, Video, Phone, RefreshCw, CheckCircle, AlertCircle } from "lucide-react";
+import { Calendar, Clock, Users, Video, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createMeetingAction, getAvailableSlotsAction } from "@/actions/create-meeting";

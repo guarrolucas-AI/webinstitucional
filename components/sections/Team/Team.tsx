@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -58,6 +58,45 @@ const teamMembers = [
 
 
 
+type TeamMemberProps = {
+  member: {
+    name: string;
+    role: string;
+    image: string;
+    description: string;
+  };
+  index: number;
+  isLast: boolean;
+};
+
+function TeamMember({ member, index, isLast }: TeamMemberProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className={`flex flex-col md:flex-row items-center bg-white/5 rounded-xl p-6 gap-6 ${
+        isLast ? "border-b-0" : "border-b border-white/10"
+      }`}
+    >
+      <div className="flex-shrink-0">
+        <Image
+          src={member.image}
+          alt={member.name}
+          width={128}
+          height={128}
+          className="rounded-full object-cover"
+        />
+      </div>
+      <div className="flex-1 text-center md:text-left">
+        <h2 className="text-2xl font-semibold text-white">{member.name}</h2>
+        <p className="text-lg text-gray-400">{member.role}</p>
+        <p className="mt-2 text-gray-300">{member.description}</p>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function TeamSection() {
 const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
@@ -88,46 +127,14 @@ const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 </motion.div>
 
         <div className="space-y-8">
-          {teamMembers.slice(0, visibleCount).map((member, index) => {
-            const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.15 });
-
-            return (
-              <motion.div
-                key={index}
-                ref={ref}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <div className="flex flex-col space-y-6 md:flex-row md:space-x-8 md:space-y-0">
-                  <div className="flex-shrink-0">
-                    <div className="h-32 w-32 overflow-hidden rounded-full border-4 border-white">
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        width={128}
-                        height={128}
-                        className="h-full w-full grayscale object-cover"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col md:flex-row justify-between gap-6 w-full mb-1">
-                    <div className="w-full md:w-1/3 mb-2">
-                      <h2 className="text-2xl font-bold text-white">{member.role}</h2>
-                      <p className="text-1xl text-gray-400">{member.name}</p>
-                    </div>
-                    <div className="w-full md:w-3/3">
-                      <p className="text-gray-400">{member.description}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {index < visibleCount - 1 && (
-                  <hr className="border-white my-6 ml-40" />
-                )}
-              </motion.div>
-            );
-          })}
+          {teamMembers.slice(0, visibleCount).map((member, index) => (
+            <TeamMember
+              key={index}
+              member={member}
+              index={index}
+              isLast={index >= visibleCount - 1}
+            />
+          ))}
 
           <div className="text-center mt-8">
             {visibleCount < teamMembers.length ? (
