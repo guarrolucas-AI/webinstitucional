@@ -141,7 +141,7 @@ export default function ContactForm() {
 
             <div className="space-y-2 mb-8">
               <p className="text-white/70">Email</p>
-              <p className="text-white text-xl">wikinbound@proyectos.com</p>
+              <p className="text-white text-xl">proyectos@wikinbound.com</p>
 
             <div className="w-full h-0.5 bg-white/20 mb-8"></div>
 
@@ -151,7 +151,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <p className="text-white/70">Teléfonos</p>
-                <p className="text-white text-xl">+54 11 232341234</p>
+                <p className="text-white text-xl">+54 9 11 6661-4164</p>
               </div>
             </div>
 
