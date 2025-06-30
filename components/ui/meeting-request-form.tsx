@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { createMeetingAction, getAvailableSlotsAction } from "@/actions/create-meeting"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import emailjs from "@emailjs/browser";
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 
@@ -123,14 +122,13 @@ export default function ContactForm() {
       setSubmitStatus({ type: null, message: "" })
     }
   
-    const formatTime = (time: string) => {
-      const [hour, minute] = time.split(":")
-      const hourNum = Number.parseInt(hour)
-      const ampm = hourNum >= 12 ? "PM" : "AM"
-      const displayHour = hourNum > 12 ? hourNum - 12 : hourNum === 0 ? 12 : hourNum
-      return ${displayHour}:${minute} ${ampm}
-    }
-
+   const formatTime = (time: string) => {
+  const [hour, minute] = time.split(":")
+  const hourNum = Number.parseInt(hour)
+  const ampm = hourNum >= 12 ? "PM" : "AM"
+  const displayHour = hourNum > 12 ? hourNum - 12 : hourNum === 0 ? 12 : hourNum
+  return `${displayHour}:${minute} ${ampm}`
+}
   return (
     <div className=" w-full flex mt-15 items-center justify-center p-4">
       <div className="w-full max-w-6xl grid md:grid-cols-2 gap-8">
@@ -186,11 +184,11 @@ export default function ContactForm() {
                       <button
                         key={slot}
                         onClick={() => handleChange("horaPreferida", slot)}
-                        className={text-xs p-2 rounded transition-colors ${
-                          formData.horaPreferida === slot
-                            ? "bg-green-600 text-white"
-                            : "bg-green-800/50 text-green-200 hover:bg-green-700/50"
-                        }}
+                       className={`text-xs p-2 rounded transition-colors ${
+  formData.horaPreferida === slot
+    ? "bg-green-600 text-white"
+    : "bg-green-800/50 text-green-200 hover:bg-green-700/50"
+}`}
                       >
                         {formatTime(slot)}
                       </button>
@@ -240,32 +238,32 @@ export default function ContactForm() {
           <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
             {submitStatus.type && (
               <div
-                className={mb-6 p-4 rounded-lg flex items-start space-x-3 ${
-                  submitStatus.type === "success"
-                    ? "bg-green-900/50 border border-green-500/30"
-                    : submitStatus.type === "conflict"
-                      ? "bg-yellow-900/50 border border-yellow-500/30"
-                      : "bg-red-900/50 border border-red-500/30"
-                }}
+              className={`mb-6 p-4 rounded-lg flex items-start space-x-3 ${
+  submitStatus.type === "success"
+    ? "bg-green-900/50 border border-green-500/30"
+    : submitStatus.type === "conflict"
+      ? "bg-yellow-900/50 border border-yellow-500/30"
+      : "bg-red-900/50 border border-red-500/30"
+}`}
               >
                 {submitStatus.type === "success" ? (
                   <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                 ) : (
                   <AlertCircle
-                    className={w-5 h-5 mt-0.5 flex-shrink-0 ${
-                      submitStatus.type === "conflict" ? "text-yellow-400" : "text-red-400"
-                    }}
+                      className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
+    submitStatus.type === "conflict" ? "text-yellow-400" : "text-red-400"
+  }`}
                   />
                 )}
                 <div className="flex-1">
                   <p
-                    className={text-sm ${
-                      submitStatus.type === "success"
-                        ? "text-green-200"
-                        : submitStatus.type === "conflict"
-                          ? "text-yellow-200"
-                          : "text-red-200"
-                    }}
+                   className={`text-sm ${
+  submitStatus.type === "success"
+    ? "text-green-200"
+    : submitStatus.type === "conflict"
+      ? "text-yellow-200"
+      : "text-red-200"
+}`}
                   >
                     {submitStatus.message}
                   </p>
