@@ -2,8 +2,9 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
-import { Calendar, Clock, Users, Video, Phone, RefreshCw, CheckCircle, AlertCircle, } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { motion, easeInOut, useAnimation, useInView } from "framer-motion"
+import { Calendar, Clock, Users, Video, Phone, RefreshCw, CheckCircle, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { createMeetingAction, getAvailableSlotsAction } from "@/actions/create-meeting"
@@ -11,6 +12,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 
+const containerVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeInOut } },
+}
 
 
 export default function ContactForm() {
@@ -37,7 +42,14 @@ export default function ContactForm() {
       alternativeSlots?: string[]
     }>({ type: null, message: "" })
   
-    // Verificar disponibilidad cuando cambia la fecha
+ const ref = useRef<HTMLDivElement | null>(null)
+  const isInView = useInView(ref, { amount: 0.3, once: false }) // 30% visible para disparar
+  const controls = useAnimation()
+
+    useEffect(() => {
+    controls.start(isInView ? "visible" : "hidden")
+  }, [isInView, controls])
+
     useEffect(() => {
       if (formData.fechaPreferida) {
         checkAvailableSlots(formData.fechaPreferida)
@@ -131,7 +143,13 @@ export default function ContactForm() {
     }
 
   return (
-    <div className=" w-full flex mt-15 items-center justify-center p-4">
+    <motion.div
+      ref={ref}
+      variants={containerVariants}
+      initial="hidden"
+      animate={controls}
+      className="w-full flex mt-15 items-center justify-center p-4"
+    >
       <div className="w-full max-w-6xl grid md:grid-cols-2 gap-8">
         {/* Sección de información de contacto */}
         <div className="space-y-12 flex flex-col justify-center">
@@ -497,6 +515,6 @@ export default function ContactForm() {
             </form>
           </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

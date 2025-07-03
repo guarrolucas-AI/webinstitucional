@@ -1,10 +1,9 @@
-"use client";
+'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
 const teamMembers = [
   {
     name: "Lucas Cesar Guarro",
@@ -97,11 +96,13 @@ function TeamMember({ member, index, isLast }: { member: typeof teamMembers[0]; 
 }
 
 export default function TeamSection() {
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.2 });
   const [visibleCount, setVisibleCount] = useState(3);
 
-  const showMore = () => setVisibleCount(teamMembers.length);
-  const showLess = () => setVisibleCount(3);
+  useEffect(() => {
+    controls.start(inView ? "visible" : "hidden");
+  }, [inView, controls]);
 
   return (
     <section
@@ -109,74 +110,60 @@ export default function TeamSection() {
       id="team"
       className="relative mt-10 w-full p-6 md:p-12 max-w-4xl mx-auto"
     >
-      <AnimatePresence mode="wait">
-        {inView && (
-          <>
-            <motion.div
-              key="header"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.8 }}
-              className="mb-16 text-center"
-            >
-              <h1 className="mb-4 text-6xl font-bold text-white">Team</h1>
-              <p className="text-xl text-gray-400">
-                Tecnología, estrategia y personas construyendo soluciones integrales.
-              </p>
-            </motion.div>
+      {/* Cabecera */}
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+        }}
+        initial="hidden"
+        animate={controls}
+        className="mb-16 text-center"
+      >
+        <h1 className="mb-4 text-6xl font-bold text-white">Team</h1>
+        <p className="text-xl text-gray-400">
+          Tecnología, estrategia y personas construyendo soluciones integrales.
+        </p>
+      </motion.div>
 
-            <motion.div
-              key="members"
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.1,
-                  },
-                },
-                exit: {
-                  transition: {
-                    staggerChildren: 0.05,
-                    staggerDirection: -1,
-                  },
-                },
-              }}
-              className="space-y-8"
-            >
-              {teamMembers.slice(0, visibleCount).map((member, index) => (
-                <TeamMember
-                  key={member.name}
-                  member={member}
-                  index={index}
-                  isLast={index === visibleCount - 1}
-                />
-              ))}
+      {/* Miembros */}
+      <motion.div
+        initial="hidden"
+        animate={controls}
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.1 } },
+        }}
+        className="space-y-8"
+      >
+        {teamMembers.slice(0, visibleCount).map((m, i) => (
+          <TeamMember
+            key={m.name}
+            member={m}
+            index={i}
+            isLast={i === visibleCount - 1}
+          />
+        ))}
 
-              <div className="text-center mt-8">
-                {visibleCount < teamMembers.length ? (
-                  <button
-                    onClick={showMore}
-                    className="rounded-xl border border-white/10 px-6 py-2 text-white hover:bg-white/10 transition"
-                  >
-                    Ver más colaboradores
-                  </button>
-                ) : (
-                  <button
-                    onClick={showLess}
-                    className="rounded-xl border border-white/10 px-6 py-2 text-white hover:bg-white/10 transition"
-                  >
-                    Ver menos colaboradores
-                  </button>
-                )}
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+        {/* Botón Ver más / Ver menos */}
+        <div className="text-center mt-8">
+          {visibleCount < teamMembers.length ? (
+            <button
+              onClick={() => setVisibleCount(teamMembers.length)}
+              className="rounded-xl border border-white/10 px-6 py-2 text-white hover:bg-white/10 transition"
+            >
+              Ver más colaboradores
+            </button>
+          ) : (
+            <button
+              onClick={() => setVisibleCount(3)}
+              className="rounded-xl border border-white/10 px-6 py-2 text-white hover:bg-white/10 transition"
+            >
+              Ver menos colaboradores
+            </button>
+          )}
+        </div>
+      </motion.div>
     </section>
   );
 }
