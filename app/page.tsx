@@ -15,14 +15,16 @@ const WebInstitucional = () => {
   return (
     <>
       <ColorsBg>
-        <Hero />
-        <WeAreWikinbound />
-        <ServiciosSection />
-        <ProyectosSection />
-        <BusinessSimulator />
-        <TeamSection />
-        <ContactForm /> 
-        <Footer/>
+        <main className="flex flex-col space-y-24">
+          <Hero />
+          <WeAreWikinbound />
+          <ServiciosSection />
+          <ProyectosSection />
+          <BusinessSimulator />
+          <TeamSection />
+          <ContactForm />
+        </main>
+        <Footer />
       </ColorsBg>
     </>
   );

@@ -37,7 +37,7 @@ export default function ProyectosSection() {
     <section
       id="proyectos"
       ref={sectionRef}
-      className="w-full text-white py-16 px-4 relative"
+      className="flex w-full"
     >
       {/* Fondo decorativo */}
       <div className="absolute top-480 right-100 w-full flex justify-center -translate-y-1/2 z-0">
@@ -51,10 +51,10 @@ export default function ProyectosSection() {
         animate={isInView ? "visible" : "hidden"}
       >
         {/* Encabezado */}
-        <motion.div variants={fadeInUp} className="text-center mb-16">
+        <motion.div variants={fadeInUp} className="text-center text-white  mb-16">
           <h1 className="text-6xl font-regular mb-4">Proyectos</h1>
           <p className="text-xl text-gray-300/70 max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+           Implementamos estrategias de innovación y fortalecimiento empresarial mejorando significativamente organizaciones.
           </p>
         </motion.div>
 
@@ -97,11 +97,11 @@ export default function ProyectosSection() {
               subtitle="Leads"
               description="Organizamos y automatizamos el seguimiento de prospectos."
             >
-              <div className="flex flex-col justify-center space-y-6 rounded-3xl px-12 w-full mx-auto">
+             <div className="flex flex-col justify-center gap-y-6 w-full mx-auto">
                 <div className="flex items-center justify-end space-x-3">
                   <div className="text-right">
                     <div className="font-medium text-white">Lead 1</div>
-                    <div className="text-sm text-gray-300">Lorem ipsum dolor sit</div>
+                    <div className="text-sm text-gray-300">Estoy interesado en el producto ... </div>
                   </div>
                   <div className="bg-transparent border border-white rounded-md p-1">
                     <User size={20} className="text-white" />
@@ -113,7 +113,7 @@ export default function ProyectosSection() {
                   </div>
                   <div>
                     <div className="font-medium text-white">Estrategia</div>
-                    <div className="text-sm text-gray-300">Lorem ipsum dolor sit</div>
+                    <div className="text-sm text-gray-300">Propuesta solida de alto valor</div>
                   </div>
                 </div>
                 <div className="w-full h-10 bg-transparent border border-white rounded-full overflow-hidden flex items-center px-3 justify-between">

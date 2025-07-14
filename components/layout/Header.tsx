@@ -4,15 +4,15 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
 import { Button } from "../ui/button";
 
 const navItems = [
   { label: "Servicios", href: "#servicios" },
   { label: "Proyectos", href: "#proyectos" },
-  { label: "Simulador", href: "#simulador" },
   { label: "Team", href: "#team" },
+  { label: "Contacto", href: "#contacto" },
   { label: "Whatsapp", href: "https://wa.me/5491166614164" },
 ];
 
@@ -38,7 +38,6 @@ export function Header() {
       )}
     >
       <div className="flex h-10 items-center justify-between px-4 md:px-6 mt-4 md:mt-20 w-full">
-        {/* Logo */}
         <div>
           <Link href="/" className="flex items-center space-x-2">
             <Image
@@ -50,8 +49,6 @@ export function Header() {
             />
           </Link>
         </div>
-
-        {/* Nav desktop */}
         <nav
           className="hidden md:flex items-center font-inter space-x-4 rounded-lg backdrop-blur-xl pt-2 pb-2 pr-8 pl-8 mr-13"
           style={{
@@ -61,7 +58,8 @@ export function Header() {
               rgba(200,64,64,${opacityValue}) 40%, 
               rgba(200,64,64,${opacityValue}) 60%, 
               rgba(68,102,170,${opacityValue}) 100%)`,
-          }}>
+          }}
+        >
           {navItems.map((item, index) => (
             <React.Fragment key={item.href}>
               <Link
@@ -73,15 +71,15 @@ export function Header() {
                     src="icons/whatsapp.svg"
                     width={22}
                     height={22}
+                    className="opacity-80"
                     alt="Whatsapp"
                   />
-                  
                 ) : (
                   item.label
                 )}
               </Link>
               {index < navItems.length - 1 && (
-                <span className="text-white/80  text-[10px]">|</span>
+                <span className="text-white/80 text-[10px]">|</span>
               )}
             </React.Fragment>
           ))}
@@ -91,50 +89,70 @@ export function Header() {
         <div className="md:hidden flex items-center space-x-4">
           <Sheet>
             <SheetTrigger asChild>
-            <Button
-  variant="ghost"
-  size="icon"
-  className="w-10 h-10 rounded-md backdrop-blur-sm border border-white/20 shadow-md transition hover:scale-105"
-  style={{
-    background: `linear-gradient(
-      250deg,
-      rgba(59, 122, 59, 0.5) 0%,
-      rgba(200, 64, 64, 0.5) 33%,
-      rgba(214, 120, 45, 0.5) 66%,
-      rgba(68, 102, 170, 0.5) 100%
-    )`,
-    backgroundSize: "cover",
-  }}
->
-  <Menu className="h-5 w-5 text-white" />
-  <span className="sr-only">Menu</span>
-</Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="w-10 h-10 rounded-md border border-white/30 bg-white/5 backdrop-blur-md shadow-md transition hover:scale-105 hover:bg-white/10"
+              >
+                <Menu className="h-5 w-5 text-white/70" />
+                <span className="sr-only">Menu</span>
+              </Button>
             </SheetTrigger>
             <SheetContent
-              side="right"
-              className="bg-black/90 backdrop-blur-sm text-white"
-            >
-              <nav className="flex flex-col gap-6 mt-16 items-start">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-lg font-medium hover:text-primary transition-colors"
-                  >
-                    {item.label === "Whatsapp" ? (
-                      <Image
-                        src="icons/whatsapp.svg"
-                        width={24}
-                        height={24}
-                        alt="Whatsapp"
-                      />
-                    ) : (
-                      item.label
-                    )}
-                  </Link>
-                ))}
-              </nav>
-            </SheetContent>
+  side="right"
+  className="bg-gradient-to-b from-black/90 via-neutral-900/80 to-black/80 backdrop-blur-md text-white border-l border-white/10 shadow-xl px-6 py-8"
+>
+  <div className="flex flex-col h-full justify-between">
+
+    {/* TÍTULO + LOGO */}
+    <div className="flex flex-col items-center">
+      <Image
+        src="/logo.png"
+        width={140}
+        height={140}
+        alt="Wikinbound"
+        className="object-contain"
+        priority
+      />
+      <SheetTitle className="text-sm mt-2 font-semibold text-white/80 tracking-wide mb-4">
+        Gestión del cambio con innovación y tecnología.       </SheetTitle>
+    </div>
+
+    {/* NAVEGACIÓN */}
+    <div className="flex-1 mt-10">
+      <nav className="flex flex-col gap-5">
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="flex items-center gap-3 text-base font-medium tracking-wide hover:text-teal-400 transition-all"
+          >
+            {item.label === "Whatsapp" ? (
+              <>
+                <Image
+                  src="/icons/whatsapp.svg"
+                  width={20}
+                  height={20}
+                  alt="WhatsApp"
+                  className="animate-pulse"
+                />
+                <span>Whatsapp</span>
+              </>
+            ) : (
+              <span>{item.label}</span>
+            )}
+          </Link>
+        ))}
+      </nav>
+    </div>
+
+    {/* FOOTER */}
+    <div className="pt-8 border-t border-white/10 text-center text-xs text-white/50">
+      <p className="mb-1 font-semibold tracking-wide">Wikinbound</p>
+      <p>© {new Date().getFullYear()} Todos los derechos reservados</p>
+    </div>
+  </div>
+</SheetContent>
           </Sheet>
         </div>
       </div>
