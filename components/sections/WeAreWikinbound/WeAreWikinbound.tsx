@@ -26,63 +26,31 @@ export const WeAreWikinbound = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
 
-  const containerRef = useRef(null);
-  const [iconStates, setIconStates] = useState(
-    icons.map((_, i) => ({
-      position: -100 - i * 120,
-      opacity: 0,
-    }))
-  );
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const speed = 1.2;
+  const spacing = 120;
+
+  const scrollingIcons = [...icons, ...icons]; // Duplicamos íconos para loop infinito
+  const totalWidth = icons.length * spacing;
 
   useEffect(() => {
-    const updateDimensions = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-
-  useEffect(() => {
-    if (!windowWidth || !isInView) return;
-
-    const animationInterval = setInterval(() => {
-      setIconStates((prevStates) =>
-        prevStates.map((state) => {
-          let newPosition = state.position + 3;
-          if (newPosition > windowWidth + 100) newPosition = -120;
-
-          let newOpacity = 0;
-          if (newPosition < 0) {
-            newOpacity = Math.max(0, 1 + newPosition / 60);
-          } else if (newPosition > windowWidth - 100) {
-            newOpacity = Math.max(
-              0,
-              1 - (newPosition - (windowWidth - 100)) / 100
-            );
-          } else {
-            newOpacity = 1;
-          }
-
-          return { position: newPosition, opacity: newOpacity };
-        })
-      );
+    if (!isInView) return;
+    const interval = setInterval(() => {
+      setOffset((prev) => prev - speed);
     }, 16);
-
-    return () => clearInterval(animationInterval);
-  }, [windowWidth, isInView]);
+    return () => clearInterval(interval);
+  }, [isInView]);
 
   return (
     <section
       ref={sectionRef}
-      className="w-full flex justify-center mt-15 items-center py-2 md:py-14 lg:py-22"
+      className="w-full flex justify-center  pt-48 pb-24 relative items-center"
     >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1 }}
-        className="container px-4 md:px-6 flex flex-col items-center justify-center text-center relative z-10"
+        className="container px-4 md:px-6 flex flex-col items-center justify-center text-center relative lg:z-10"
       >
         <div className="space-y-6 relative w-full">
           <Link href="#simulador">
@@ -138,7 +106,6 @@ export const WeAreWikinbound = () => {
           </motion.p>
         </div>
 
-        {/* Animated icons carousel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -148,29 +115,25 @@ export const WeAreWikinbound = () => {
             background: `linear-gradient(to right, rgba(59,122,59,${opacityValue}), rgba(194,150,60,${opacityValue}), rgba(214,120,45,${opacityValue}), rgba(200,64,64,${opacityValue}), rgba(68,102,170,${opacityValue}))`,
           }}
         >
-          <div
-            ref={containerRef}
-            className="relative flex justify-center items-center h-24 w-full"
-          >
-            {icons.map((icon, index) => (
-              <div
-                key={icon.id}
-                className="absolute flex flex-col items-center justify-center w-16 h-16"
-                style={{
-                  left: `${iconStates[index].position}px`,
-                  opacity: iconStates[index].opacity,
-                  transition: "opacity 0.2s ease-in-out",
-                }}
-              >
-                <Image
-                  src={icon.src}
-                  alt={icon.name}
-                  width={40}
-                  height={40}
-                />
-                <span className="text-xs text-white mt-1">{icon.name}</span>
-              </div>
-            ))}
+          <div className="relative w-full h-20 overflow-hidden">
+            <div
+              className="absolute flex"
+              style={{
+                width: `${scrollingIcons.length * spacing}px`,
+                transform: `translateX(${offset % -totalWidth}px)`,
+                transition: "transform 0.016s linear",
+              }}
+            >
+              {scrollingIcons.map((icon, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col mt-2 items-center justify-center w-28"
+                >
+                  <Image src={icon.src} alt={icon.name} width={40} height={40} />
+                  <span className="text-xs text-white mt-1">{icon.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </motion.div>

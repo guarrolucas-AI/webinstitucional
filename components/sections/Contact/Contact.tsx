@@ -148,9 +148,9 @@ export default function ContactForm() {
       variants={containerVariants}
       initial="hidden"
       animate={controls}
-      className="w-full flex mt-15 items-center justify-center p-4"
+      className="w-full flex mt-15 pb-30 items-center justify-center p-4"
     >
-      <div className="w-full max-w-6xl grid md:grid-cols-2 gap-8">
+      <div id='contacto' className="w-full max-w-6xl grid md:grid-cols-2 gap-8">
         {/* Sección de información de contacto */}
         <div className="space-y-12 flex flex-col justify-center">
           <div>
@@ -391,49 +391,56 @@ export default function ContactForm() {
               </div>
 
               <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <Label className="text-white text-sm font-medium mb-3 block">Fecha y hora preferida *</Label>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 z-10" />
-                      <Input
-                        id="fechaPreferida"
-                        type="date"
-                        value={formData.fechaPreferida}
-                        onChange={(e) => handleChange("fechaPreferida", e.target.value)}
-                        className="pl-10 bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-green-400 focus:ring-2 focus:ring-green-400/20"
-                        required
-                        disabled={isSubmitting}
-                        min={new Date().toISOString().split("T")[0]}
-                      />
-                    </div>
-                    <div className="relative">
-                      <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 z-10" />
-                      <Select
-                        onValueChange={(value) => handleChange("horaPreferida", value)}
-                        disabled={isSubmitting}
-                        value={formData.horaPreferida}
-                      >
-                        <SelectTrigger className="pl-10 bg-black/30 border-white/20 text-white focus:border-green-400 focus:ring-2 focus:ring-green-400/20">
-                          <SelectValue placeholder="Seleccionar hora" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-gray-900 border-gray-700">
-                          {availableSlots.map((slot) => (
-                            <SelectItem key={slot} value={slot} className="text-white hover:bg-gray-800">
-                              {formatTime(slot)}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  <p className="text-green-200/70 text-xs mt-2">
-                    {formData.fechaPreferida && availableSlots.length === 0 && !isCheckingAvailability
-                      ? "No hay horarios disponibles para esta fecha"
-                      : "Horario disponible: Lunes a Viernes, 9:00 AM - 6:00 PM (GMT-3)"}
-                  </p>
-                </div>
-              </div>
+  <div>
+    <Label className="text-white text-sm font-medium mb-3 block">Fecha y hora preferida *</Label>
+
+    {/* Grilla responsiva: 1 columna en mobile, 2 en md+ */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Fecha */}
+      <div className="relative">
+        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 z-10" />
+        <Input
+          id="fechaPreferida"
+          type="date"
+          value={formData.fechaPreferida}
+          onChange={(e) => handleChange("fechaPreferida", e.target.value)}
+          className="pl-10 bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-green-400 focus:ring-2 focus:ring-green-400/20 w-full"
+          required
+          disabled={isSubmitting}
+          min={new Date().toISOString().split("T")[0]}
+        />
+      </div>
+
+      {/* Hora */}
+      <div className="relative">
+        <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 z-10" />
+        <Select
+          onValueChange={(value) => handleChange("horaPreferida", value)}
+          disabled={isSubmitting}
+          value={formData.horaPreferida}
+        >
+          <SelectTrigger className="pl-10 bg-black/30 border-white/20 text-white focus:border-green-400 focus:ring-2 focus:ring-green-400/20 w-full">
+            <SelectValue placeholder="Seleccionar hora" />
+          </SelectTrigger>
+          <SelectContent className="bg-gray-900 border-gray-700">
+            {availableSlots.map((slot) => (
+              <SelectItem key={slot} value={slot} className="text-white hover:bg-gray-800">
+                {formatTime(slot)}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+
+    <p className="text-green-200/70 text-xs mt-2">
+      {formData.fechaPreferida && availableSlots.length === 0 && !isCheckingAvailability
+        ? "No hay horarios disponibles para esta fecha"
+        : "Horario disponible: Lunes a Viernes, 9:00 AM - 6:00 PM (GMT-3)"}
+    </p>
+  </div>
+</div>
+
 
               <div>
                 <Label htmlFor="duracion" className="text-white text-sm font-medium">
@@ -452,12 +459,6 @@ export default function ContactForm() {
                     </SelectItem>
                     <SelectItem value="60" className="text-white hover:bg-gray-800">
                       1 hora
-                    </SelectItem>
-                    <SelectItem value="90" className="text-white hover:bg-gray-800">
-                      1.5 horas
-                    </SelectItem>
-                    <SelectItem value="120" className="text-white hover:bg-gray-800">
-                      2 horas
                     </SelectItem>
                   </SelectContent>
                 </Select>

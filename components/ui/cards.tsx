@@ -9,7 +9,7 @@ interface CardsProps {
 
   function Cards({ title, subtitle, description, children }: CardsProps) {
     return (
-      <div className="rounded-3xl overflow-hidden backdrop-blur-sm border border-white/10 flex flex-col z-1 relative w-full max-w-md mx-auto" >
+      <div className="rounded-3xl overflow-hidden backdrop-blur-sm border border-white/10 flex flex-col z-1 relative w-full max-w-full sm:max-w-xl md:max-w-2xl mx-auto">
         <div
           className="absolute inset-0 opacity-20 mix-blend-soft-light pointer-events-none"
           style={{
@@ -18,9 +18,12 @@ interface CardsProps {
         />
   
         {/* Contenido principal */}
-        <div className="flex items-center justify-center m-4 sm:m-5 p-4 border rounded-3xl border-white/80 relative h-[180px] sm:h-[200px] overflow-hidden" style={{
-            background: `linear-gradient(126deg, rgba(59,122,59,${opacityValue}), rgba(200,64,64,${opacityValue}), rgba(214,120,45,${opacityValue}), rgba(68,102,170,${opacityValue}))`,
-          }}>
+        <div
+  className="flex items-center justify-center m-4 sm:m-5 p-4 sm:p-6 border rounded-3xl border-white/80 relative min-h-[200px] sm:min-h-[240px] overflow-hidden"
+  style={{
+    background: `linear-gradient(126deg, rgba(59,122,59,${opacityValue}), rgba(200,64,64,${opacityValue}), rgba(214,120,45,${opacityValue}), rgba(68,102,170,${opacityValue}))`,
+  }}
+>
           {children}
         </div>
   

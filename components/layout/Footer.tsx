@@ -7,9 +7,9 @@ import { useInView } from "react-intersection-observer";
 const navItems = [
   { label: "Servicios", href: "#servicios" },
   { label: "Proyectos", href: "#proyectos" },
-  { label: "Simulador", href: "#simulador" },
   { label: "Team", href: "#team" },
-  { label: "Whatsapp", href: "/#wpp" },
+  { label: "Contacto", href: "#contacto" },
+  { label: "Whatsapp", href: "https://wa.me/5491166614164" },
 ];
 
 const opacityValue = 0.4;
@@ -54,6 +54,7 @@ export default function Footer() {
                   width={22}
                   height={22}
                   alt="Whatsapp"
+                  className="opacity-80"
                 />
               ) : (
                 item.label
@@ -67,10 +68,10 @@ export default function Footer() {
       </nav>
 
       {/* Copyright */}
-      <div className="flex justify-center items-center text-center pt-6 pb-12 text-white text-xs space-x-4">
-        <p>Desarrollado por Wikinbound</p>
+      <div className="flex justify-center items-center text-center pt-6 pb-12 text-white/80 text-xs space-x-4">
+        <p>Desarrollado con pasión por Wikinbound</p>
         <span>|</span>
-        <p>Copyright © 2025</p>
+          <p>© {new Date().getFullYear()} Todos los derechos reservados</p>
       </div>
     </motion.footer>
   );

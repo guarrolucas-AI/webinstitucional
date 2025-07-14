@@ -10,17 +10,17 @@ const buttons = [
   {
     label: "Software factory",
     position: "bottom-35 left-70",
-    mobilePosition: "bottom-10 left-1/2 transform -translate-x-1/2",
+    mobilePosition: "bottom-12 left-[25px] transform translate-x-1/2",
   },
   {
     label: "Marketing",
     position: "top-10 left-5",
-    mobilePosition: "top-20 left-1/2 transform -translate-x-1/2",
+    mobilePosition: "top-10 left-1/2 transform -translate-x-1/2",
   },
   {
     label: "Consultoría",
-    position: "top-25 left-80",
-    mobilePosition: "top-1/3 left-1/2 transform -translate-x-1/2",
+    position: "top-10 left-5",
+    mobilePosition: "top-1 left-[10px] transform translate-x-1/1",
   },
 ];
 
@@ -46,7 +46,8 @@ const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
   return (
     <section
       ref={sectionRef}
-      className="w-full flex justify-center lg:mt-40 mt-20 lg:ml-10 py-12 md:py-24 lg:py-32 mb-20 md:mb-0"
+      className="w-full flex justify-center pt-30 md:pt-58 pb-30 lg:ml-10
+      "
     >
       <motion.div
         className="container px-4 md:px-6"
@@ -76,7 +77,7 @@ const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
           {/* Círculos y botones */}
           <motion.div
             variants={containerFade}
-            className="relative z-0 h-64 ml-15 mt-15 lg:mt-0 ml-0 md:h-auto"
+            className="relative w-full z-0 h-64 ml-15 md:ml-48 lg:ml-15 mt-24 lg:mt-0"
           >
             <div className="flex justify-center items-center h-full relative">
               {[0, 1, 2].map((i) => (
@@ -96,7 +97,7 @@ const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
                   style={{
                     background: `linear-gradient(to right, rgba(59,122,59,${opacityValue}), rgba(194,150,60,${opacityValue}), rgba(214,120,45,${opacityValue}), rgba(200,64,64,${opacityValue}), rgba(68,102,170,${opacityValue}))`,
                   }}
-                  className={`absolute ${btn.mobilePosition} md:${btn.position} focus:outline-none font-inter font-light text-sm md:text-base text-white backdrop-blur-sm px-4 py-2 md:px-5 md:py-2 rounded-md flex items-center tracking-widest gap-3`}
+                  className={`absolute ${btn.mobilePosition} sm:${btn.position} focus:outline-none font-inter font-light text-sm md:text-base text-white backdrop-blur-sm px-4 py-2 md:px-5 md:py-2 rounded-md flex items-center tracking-widest gap-3`}
                 >
                   <motion.span
                     className="w-1.5 h-1.5 bg-white rounded-full"

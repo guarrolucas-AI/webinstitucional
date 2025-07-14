@@ -31,8 +31,9 @@ export default function ServiciosSection() {
     <section
       id='servicios'
       ref={sectionRef}
-      className="flex w-full py-12 md:py-24 lg:py-10"
+      className="flex w-full py-12 md:py-24 lg:py-10 relative"
     >
+      {/* Fondo decorativo */}
       <div className="absolute top-280 left-50 w-full flex justify-center -translate-y-1/2 -z-20">
         <Image
           src='w.svg'
@@ -44,49 +45,60 @@ export default function ServiciosSection() {
       </div>
 
       <motion.div
-        className="container mx-auto px-4 md:px-6 flex flex-col items-center justify-center text-center relative z-10 space-y-10"
+        className="w-full max-w-7xl mx-auto px-4 md:px-0 flex flex-col items-center justify-center text-center relative z-10 space-y-16"
         variants={containerFade}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        <motion.div variants={fadeInUp} className="text-center mb-12">
-          <h2 className="text-5xl font-regular text-white mb-2">Servicios</h2>
-          <p className="text-gray-300/70 text-xl">
+        {/* Título y subtítulo */}
+        <motion.div variants={fadeInUp} className="text-center mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold text-white mb-2">Servicios</h2>
+          <p className="text-gray-300/70 text-lg md:text-xl">
             Consultoría, marketing y tecnología para transformar tu negocio
           </p>
         </motion.div>
 
+        {/* Grid de tarjetas */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full max-w-7xl"
+          className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full auto-rows-fr"
           variants={containerFade}
         >
-          <motion.div variants={fadeInUp}>
+          {/* Card 1 */}
+          <motion.div variants={fadeInUp} className="h-full">
             <Cards
               title="Consultoría"
               subtitle="Empresarial"
               description="Impulsamos la transformación de tu empresa con asesoramiento legal, contable, operativo, tecnológico, comercial y de capital humano."
             >
-              <AnimatedGraph />
+              <div className="min-h-[200px] flex items-center justify-center w-full">
+                <AnimatedGraph />
+              </div>
             </Cards>
           </motion.div>
 
-          <motion.div variants={fadeInUp}>
+          {/* Card 2 */}
+          <motion.div variants={fadeInUp} className="h-full">
             <Cards
               title="Marketing"
               subtitle="Inbound"
               description="Lideramos el crecimiento de tu negocio con estrategias inbound que atraen, convierten y fidelizan clientes."
             >
-              <AnimatedInbound />
+              <div className="min-h-[200px] flex items-center justify-center w-full">
+                <AnimatedInbound />
+              </div>
             </Cards>
           </motion.div>
 
-          <motion.div variants={fadeInUp}>
+          {/* Card 3 */}
+          <motion.div variants={fadeInUp} className="h-full">
             <Cards
               title="Soluciones de"
               subtitle="Software"
               description="Ofrecemos soluciones de software innovadoras a través de un equipo de profesionales que transforman tu empresa."
             >
-              <AnimatedSoftware />
+              <div className="min-h-[200px] flex items-center justify-center w-full">
+                <AnimatedSoftware />
+              </div>
             </Cards>
           </motion.div>
         </motion.div>
