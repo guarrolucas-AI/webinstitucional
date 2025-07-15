@@ -78,14 +78,19 @@ export default function BusinessSimulator() {
                 </TabsList>
 
                 <TabsContent value="manual">
-                  <div className="relative border border-white/20  rounded-lg p-6 text-white overflow-hidden">
-                    <div className="absolute inset-0 z-10 bg-black/20 backdrop-blur-xs flex items-center justify-center">
-                      <p className="text-white text-xl font-semibold text-center px-4">
-                        Funcionalidad en desarrollo, muy pronto
-                      </p>
+                  <div className="relative border border-white/20 rounded-lg p-6 text-white overflow-hidden">
+                    <div className="absolute inset-0 z-10 bg-black/20 backdrop-blur-sm flex items-center justify-center rounded-lg">
+                      <div className="text-center">
+                        <p className="text-white text-xl font-semibold px-4 mb-2">
+                          Funcionalidad en desarrollo
+                        </p>
+                        <p className="text-white/70 text-sm">
+                          Muy pronto disponible
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="pointer-events-none select-none opacity-50">
+                    <div className="pointer-events-none select-none opacity-30 space-y-6">
                       <h3 className="text-xl mb-4">Simulación de Crecimiento y Consultoría Empresarial</h3>
                       <form className="space-y-4">
                         <div className="space-y-2">
@@ -128,73 +133,86 @@ export default function BusinessSimulator() {
                     </div>
                   </div>
                 </TabsContent>
-<TabsContent value="chat">
-  <div className="relative border border-white/20 rounded-lg p-6 text-white overflow-hidden">
-    <div className="absolute inset-0 z-10 bg-black/20 backdrop-blur-xs flex items-center justify-center">
-      <p className="text-white text-xl font-semibold text-center px-4">
-        Chat AI en desarrollo, muy pronto
-      </p>
-    </div>
 
-    <div className="pointer-events-none select-none opacity-50 space-y-4">
-      <h3 className="text-xl mb-3">Chat IA para Consultoría Empresarial</h3>
-      <div className="bg-white/10 rounded-lg p-3 max-w-sm self-start">
-        <p> Usuario: ¿Cómo puedo aumentar mis ventas este mes?</p>
-      </div>
-      <div className="bg-green-500/20 rounded-lg p-3 max-w-sm self-end">
-        <p> IA: Una buena opción sería ofrecer descuentos por tiempo limitado o analizar tus productos más vendidos.</p>
-      </div>
-      <div className="bg-white/10 rounded-lg p-3 max-w-sm self-start">
-        <p> Usuario: ¿Y cómo hago para proyectar mis ingresos?</p>
-      </div>
-      <div className="bg-green-500/20 rounded-lg p-3 max-w-sm self-end">
-        <p>IA: Puedo ayudarte con eso si me das tus ingresos mensuales estimados y el crecimiento esperado.</p>
-      </div>
+                <TabsContent value="chat">
+                  <div className="relative border border-white/20 rounded-lg p-6 text-white overflow-hidden">
+                    <div className="absolute inset-0 z-10 bg-black/20 backdrop-blur-sm flex items-center justify-center rounded-lg">
+                      <div className="text-center">
+                        <p className="text-white text-xl font-semibold px-4 mb-2">
+                          Chat AI en desarrollo
+                        </p>
+                        <p className="text-white/70 text-sm">
+                          Muy pronto disponible
+                        </p>
+                      </div>
+                    </div>
 
-      <form className="mt-4 flex gap-2">
-        <Input type="text" placeholder="Escribí tu mensaje..." className="bg-transparent border-white/30 text-white flex-1" disabled />
-        <Button type="submit" className="bg-white text-black hover:bg-white/90" disabled>
-          Enviar
-        </Button>
-      </form>
-    </div>
-  </div>
-</TabsContent>
+                    <div className="pointer-events-none select-none opacity-30 space-y-6">
+                      <h3 className="text-xl mb-3">Chat IA para Consultoría Empresarial</h3>
+                      <div className="bg-white/10 rounded-lg p-3 max-w-sm self-start">
+                        <p> Usuario: ¿Cómo puedo aumentar mis ventas este mes?</p>
+                      </div>
+                      <div className="bg-green-500/20 rounded-lg p-3 max-w-sm self-end">
+                        <p> IA: Una buena opción sería ofrecer descuentos por tiempo limitado o analizar tus productos más vendidos.</p>
+                      </div>
+                      <div className="bg-white/10 rounded-lg p-3 max-w-sm self-start">
+                        <p> Usuario: ¿Y cómo hago para proyectar mis ingresos?</p>
+                      </div>
+                      <div className="bg-green-500/20 rounded-lg p-3 max-w-sm self-end">
+                        <p>IA: Puedo ayudarte con eso si me das tus ingresos mensuales estimados y el crecimiento esperado.</p>
+                      </div>
+
+                      <form className="mt-4 flex gap-2">
+                        <Input type="text" placeholder="Escribí tu mensaje..." className="bg-transparent border-white/30 text-white flex-1" disabled />
+                        <Button type="submit" className="bg-white text-black hover:bg-white/90" disabled>
+                          Enviar
+                        </Button>
+                      </form>
+                    </div>
+                  </div>
+                </TabsContent>
 
                 <TabsContent value="dashboard">
-  <div className="relative border border-white/20 rounded-lg p-6 text-white overflow-hidden">
-    <div className="absolute inset-0 z-10 bg-black/20 backdrop-blur-xs flex items-center justify-center">
-      <p className="text-white text-xl font-semibold text-center px-4">
-        Dashboard en desarrollo, muy pronto
-      </p>
-    </div>
+                  <div className="relative border border-white/20 rounded-lg p-6 text-white overflow-hidden">
+                    <div className="absolute inset-0 z-10 bg-black/20 backdrop-blur-sm flex items-center justify-center rounded-lg">
+                      <div className="text-center">
+                        <p className="text-white text-xl font-semibold px-4 mb-2">
+                          Dashboard en desarrollo
+                        </p>
+                        <p className="text-white/70 text-sm">
+                          Muy pronto disponible
+                        </p>
+                      </div>
+                    </div>
 
-    <div className="pointer-events-none select-none opacity-50 space-y-6">
-      <h3 className="text-xl font-regular">Resumen de Proyección</h3>
-      <div className="grid grid-cols-2 gap-4 text-sm">
-        <div className="space-y-1">
-          <p className="text-white/60">Monto Total Ingresado</p>
-          <p className="text-green-300 text-xl">$25,000</p>
-        </div>
-        <div className="space-y-1">
-          <p className="text-white/60">Ubicación Promedio</p>
-          <p className="text-green-300 text-xl">Posadas, Misiones</p>
-        </div>
-        <div className="space-y-1">
-          <p className="text-white/60">Proyección IA</p>
-          <p className="text-green-300 text-xl">+18% en 3 meses</p>
-        </div>
-        <div className="space-y-1">
-          <p className="text-white/60">Sugerencia</p>
-          <p className="text-green-300 text-xl">Expandir red online</p>
-        </div>
-      </div>
-      <div className="mt-6">
-        <p className="text-white/70 text-sm">* Basado en datos estimados y análisis experimental.</p>
-      </div>
-    </div>
-  </div>
-</TabsContent>
+                    <div className="pointer-events-none select-none opacity-30 space-y-6">
+                      <h3 className="text-xl font-regular">Resumen de Proyección</h3>
+                      
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div className="space-y-1">
+                          <p className="text-white/60">Monto Total Ingresado</p>
+                          <p className="text-green-300 text-xl">$25,000</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-white/60">Ubicación Promedio</p>
+                          <p className="text-green-300 text-xl">Posadas, Misiones</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-white/60">Proyección IA</p>
+                          <p className="text-green-300 text-xl">+18% en 3 meses</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-white/60">Sugerencia</p>
+                          <p className="text-green-300 text-xl">Expandir red online</p>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-6">
+                        <p className="text-white/70 text-sm">* Basado en datos estimados y análisis experimental.</p>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
               </Tabs>
             </div>
           </div>

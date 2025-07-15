@@ -45,7 +45,7 @@ export default function ServiciosSection() {
       </div>
 
       <motion.div
-        className="w-full max-w-7xl mx-auto px-4 md:px-0 flex flex-col items-center justify-center text-center relative z-10 space-y-16"
+        className="w-full max-w-7xl mx-auto flex flex-col items-center justify-center text-center relative z-10 space-y-16"
         variants={containerFade}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -53,7 +53,7 @@ export default function ServiciosSection() {
         {/* Título y subtítulo */}
         <motion.div variants={fadeInUp} className="text-center mb-4">
           <h2 className="text-4xl md:text-5xl font-semibold text-white mb-2">Servicios</h2>
-          <p className="text-gray-300/70 text-lg md:text-xl">
+          <p className="text-gray-300/90 text-lg md:text-xl">
             Consultoría, marketing y tecnología para transformar tu negocio
           </p>
         </motion.div>

@@ -27,7 +27,9 @@ export default function RootLayout({
         <main className="flex-1">
             <Header />
             {children}
-            <CustomCursor/>
+            <div className="hidden md:flex ">
+              <CustomCursor/>
+            </div>
         </main>
       </body>
     </html>

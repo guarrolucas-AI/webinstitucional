@@ -53,7 +53,7 @@ export default function ProyectosSection() {
         {/* Encabezado */}
         <motion.div variants={fadeInUp} className="text-center text-white  mb-16">
           <h1 className="text-6xl font-regular mb-4">Proyectos</h1>
-          <p className="text-xl text-gray-300/70 max-w-3xl mx-auto">
+          <p className="text-gray-300/90 text-lg md:text-xl max-w-4xl mx-auto">
            Implementamos estrategias de innovación y fortalecimiento empresarial mejorando significativamente organizaciones.
           </p>
         </motion.div>

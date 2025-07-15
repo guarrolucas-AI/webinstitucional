@@ -148,11 +148,11 @@ export default function ContactForm() {
       variants={containerVariants}
       initial="hidden"
       animate={controls}
-      className="w-full flex mt-15 pb-30 items-center justify-center p-4"
+      className="w-full flex mt-15 pb-30 items-center justify-center"
     >
       <div id='contacto' className="w-full max-w-6xl grid md:grid-cols-2 gap-8">
         {/* Sección de información de contacto */}
-        <div className="space-y-12 flex flex-col justify-center">
+        <div className="space-y-12 w-full flex flex-col justify-center">
           <div>
             <h1 className="text-5xl font-bold text-white mb-4">Agendá una reunión</h1>
             <div className="w-full h-0.5 bg-white/20 mb-8"></div>
@@ -254,7 +254,7 @@ export default function ContactForm() {
 
 
         {/* Formulario de contacto */}
-          <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+          <div className="bg-black/20 backdrop-blur-sm  w-full rounded-2xl p-8 border border-white/10">
             {submitStatus.type && (
               <div
                 className={`mb-6 p-4 rounded-lg flex items-start space-x-3 ${

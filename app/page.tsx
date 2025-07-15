@@ -15,7 +15,7 @@ const WebInstitucional = () => {
   return (
     <>
       <ColorsBg>
-        <main className="flex flex-col space-y-24">
+        <main className="flex flex-col px-4 space-y-24">
           <Hero />
           <WeAreWikinbound />
           <ServiciosSection />
