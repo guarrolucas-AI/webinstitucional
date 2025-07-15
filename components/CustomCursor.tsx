@@ -39,8 +39,8 @@ export default function CustomCursor() {
     <div
       ref={cursorRef}
       style={{
-        width: "20px",
-        height: "20px",
+        width: "15px",
+        height: "15px",
         position: "fixed",
         top: 0,
         left: 0,
@@ -55,7 +55,7 @@ export default function CustomCursor() {
   #c84040,
   #4466aa)`,
         mixBlendMode: "exclusion",
-        transition: "transform 0.1s ease",
+        transition: "transform 0.2s ease",
       }}
     />
   );

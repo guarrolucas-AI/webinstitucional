@@ -41,7 +41,7 @@ export default function BusinessSimulator() {
           <Image src='w.svg' width={980} height={980} alt="Decoración W" />
         </div>
 
-        <motion.h1 variants={fadeInUp} className="text-5xl font-normal text-white text-center mb-12">
+        <motion.h1 variants={fadeInUp} className="text-5xl mb-16 font-normal text-white text-center">
           Inteligencia Artificial y tu negocio
         </motion.h1>
 
