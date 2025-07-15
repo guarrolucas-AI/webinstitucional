@@ -51,7 +51,7 @@ export default function ServiciosSection() {
         animate={isInView ? "visible" : "hidden"}
       >
         {/* Título y subtítulo */}
-        <motion.div variants={fadeInUp} className="text-center mb-4">
+        <motion.div variants={fadeInUp} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-semibold text-white mb-2">Servicios</h2>
           <p className="text-gray-300/90 text-lg md:text-xl">
             Consultoría, marketing y tecnología para transformar tu negocio

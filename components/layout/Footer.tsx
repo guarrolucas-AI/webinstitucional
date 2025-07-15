@@ -46,7 +46,7 @@ export default function Footer() {
           <React.Fragment key={item.href}>
             <Link
               href={item.href}
-              className="text-[0.60rem] font-light text-white text-muted-foreground transition-colors hover:text-foreground"
+              className="text-[0.60rem] font-light text-white text-muted-foreground transition-colors hover:text-orange-400"
             >
               {item.label === "Whatsapp" ? (
                 <Image
@@ -54,7 +54,7 @@ export default function Footer() {
                   width={22}
                   height={22}
                   alt="Whatsapp"
-                  className="opacity-80"
+                  className="opacity-80 animate-pulse"
                 />
               ) : (
                 item.label
@@ -69,9 +69,9 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="flex justify-center items-center text-center pt-6 pb-12 text-white/80 text-xs space-x-4">
-        <p>Desarrollado con pasión por Wikinbound</p>
+        <p>Desarrollado con estrategia e innovación por Wikinbound</p>
         <span>|</span>
-          <p>© {new Date().getFullYear()} Todos los derechos reservados</p>
+          <p>© {new Date().getFullYear()} Todos los derechos reservados.</p>
       </div>
     </motion.footer>
   );
