@@ -16,7 +16,7 @@ const navItems = [
   { label: "Whatsapp", href: "https://wa.me/5491166614164" },
 ];
 
-const opacityValue = 0.4;
+const opacityValue = 0.5;
 
 export function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -64,14 +64,14 @@ export function Header() {
             <React.Fragment key={item.href}>
               <Link
                 href={item.href}
-                className="text-[0.60rem] font-light text-white transition-colors  hover:text-foreground"
+                className="text-[0.60rem] font-light text-white transition-colors  hover:text-orange-400"
               >
                 {item.label === "Whatsapp" ? (
                   <Image
                     src="icons/whatsapp.svg"
                     width={22}
                     height={22}
-                    className="opacity-80"
+                    className="opacity-80 animate-pulse"
                     alt="Whatsapp"
                   />
                 ) : (
@@ -105,17 +105,17 @@ export function Header() {
   <div className="flex flex-col h-full justify-between">
 
     {/* TÍTULO + LOGO */}
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-start">
       <Image
-        src="/logo.png"
-        width={140}
+        src="/logo.svg"
+        width={180}
         height={140}
         alt="Wikinbound"
-        className="object-contain"
+        className="object-contain -ml-5"
         priority
       />
-      <SheetTitle className="text-sm mt-2 font-semibold text-white/80 tracking-wide mb-4">
-        Gestión del cambio con innovación y tecnología.       </SheetTitle>
+      <SheetTitle className="text-[11px] mt-2 font-semibold text-white/80 tracking-wide mb-2">
+        Gestión del cambio con innovación y tecnología.</SheetTitle>
     </div>
 
     {/* NAVEGACIÓN */}
@@ -125,7 +125,7 @@ export function Header() {
           <Link
             key={item.href}
             href={item.href}
-            className="flex items-center gap-3 text-base font-medium tracking-wide hover:text-teal-400 transition-all"
+            className="flex items-center gap-3 text-base font-medium tracking-wide hover:text-orange-400 transition-all"
           >
             {item.label === "Whatsapp" ? (
               <>
