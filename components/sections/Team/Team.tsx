@@ -8,7 +8,7 @@ const teamMembers = [
   {
     name: "Lucas Cesar Guarro",
     role: "CEO Founder",
-    image: "/lucas.png",
+    image: "/lucas.jpeg",
     description:
       "Consultor en desarrollo de negocios. Especializado en estrategias de crecimiento y expansión para tu empresa...",
   },
@@ -45,6 +45,13 @@ const teamMembers = [
     image: "/placeholder.svg?height=128&width=128",
     description:
       "Consultor con más de 30 años de experiencia trabajando para multinacionales...",
+  },
+  {
+    name: "Mauro Young",
+    role: "Abogado",
+    image: "/placeholder.svg?height=128&width=128",
+    description:
+      "Abogado especializado en desarrollo de negocios con experiencia en derecho inmobiliario, penal y migraciones...",
   },
   {
     name: "Profesionales a disposición en Wikinbound",
