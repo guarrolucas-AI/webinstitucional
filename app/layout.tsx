@@ -6,8 +6,33 @@ import { cn } from "@/lib/utils";
 import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
-  title: "Wikinbound",
-  description: "Wikinbound es una pyme argentina dedicada al servicio de consultoría para negocios, incubadora de proyectos y desarrollo de software. Cuenta con 6 años en el mercado brindado servicios especializado a empresas nacionales e internacionales. La organización tiene un enfoque personalizado desde la empatía y desde la capacidad de análisis e interpretación de las necesidades del cliente. Tiene la capacidad de interpretar y de llevar a la realidad las ideas de los clientes en un tiempo reducido y con un nivel de servicio de excelencia",
+  title: "Wikinbound – Soluciones digitales para negocios modernos",
+  description:
+    "Potenciamos empresas con desarrollo web, marketing digital, automatización y sistemas personalizados. Consultoría, diseño e innovación desde Argentina para el mundo.",
+  openGraph: {
+    title: "Wikinbound – Soluciones digitales para trasformar negocios modernos",
+    description:
+      "Consultoría, desarrollo web y automatización de procesos para empresas que buscan crecer. 6 años de experiencia en el mercado.",
+    url: "https://wikinbound.com",
+    siteName: "Wikinbound",
+    images: [
+      {
+        url: "https://wikinbound.com/og-image.png", 
+        width: 1200,
+        height: 630,
+        alt: "Wikinbound - Servicios digitales",
+      },
+    ],
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wikinbound – Soluciones digitales para trasformar negocios modernos",
+    description:
+      "Desarrollo web, sistemas y consultoría con enfoque ágil y personalizado. Transformamos ideas en soluciones reales.",
+    images: ["https://wikinbound.com/og-image.png"], 
+  },
 };
 
 export default function RootLayout({
