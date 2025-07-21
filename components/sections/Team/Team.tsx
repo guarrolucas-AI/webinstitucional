@@ -27,6 +27,13 @@ const teamMembers = [
       "Responsable de tecnología, software factory. Apasionado IT con numerosas habilidades...",
   },
   {
+    name: "Jose Luis",
+    role: "Consultor",
+    image: "/jose-luis.jpeg",
+    description:
+      "Consultor con más de 30 años de experiencia trabajando para multinacionales...",
+  },
+  {
     name: "Juan",
     role: "Contador",
     image: "/placeholder.svg?height=128&width=128",
@@ -38,13 +45,6 @@ const teamMembers = [
     role: "Community Manager",
     image: "/placeholder.svg?height=128&width=128",
     description: "Diseño y CM especializada en expresión artística...",
-  },
-  {
-    name: "Jose Luis",
-    role: "Consultor",
-    image: "/placeholder.svg?height=128&width=128",
-    description:
-      "Consultor con más de 30 años de experiencia trabajando para multinacionales...",
   },
   {
     name: "Mauro Young",
