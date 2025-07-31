@@ -99,9 +99,8 @@ export async function createMeetingAction(data: MeetingData) {
     const calendar = google.calendar({ version: "v3", auth })
 
     // Parsear fecha y hora
-    const [year, month, day] = data.fechaPreferida.split("-")
-    const [hour, minute] = data.horaPreferida.split(":")
-    const startDate = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute))
+      const dateISO = `${data.fechaPreferida}T${data.horaPreferida}:00-03:00`
+      const startDate = new Date(dateISO)
     const endDate = new Date(startDate.getTime() + Number(data.duracion) * 60000)
 
     // Verificar disponibilidad
