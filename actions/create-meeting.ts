@@ -1,8 +1,7 @@
 "use server"
 
 import { google } from "googleapis"
-//auth library
-import { JWT } from "google-auth-library"
+
 
 interface MeetingData {
   nombre: string
@@ -24,9 +23,9 @@ interface TimeSlot {
 
 const calendarId = 'proyectos@wikinbound.com'
 
-async function checkAvailability(auth: any, startDate: Date, endDate: Date): Promise<boolean> {
+async function checkAvailability(auth: InstanceType<typeof google.auth.JWT>, startDate: Date, endDate: Date): Promise<boolean> {
   try {
-    const calendar = google.calendar({ version: "v3", auth })
+const calendar = google.calendar({ version: "v3", auth })
 
     const response = await calendar.events.list({
       calendarId,
@@ -45,7 +44,7 @@ async function checkAvailability(auth: any, startDate: Date, endDate: Date): Pro
 
 async function getAvailableSlots(auth: any, date: string): Promise<string[]> {
   try {
-    const calendar = google.calendar({ version: "v3", auth })
+    const calendar = google.calendar({ version: "v3", auth})
     const [year, month, day] = date.split("-")
 
     const dayStart = new Date(Number(year), Number(month) - 1, Number(day), 9, 0)
@@ -90,12 +89,12 @@ async function getAvailableSlots(auth: any, date: string): Promise<string[]> {
 export async function createMeetingAction(data: MeetingData) {
   try {
     // Autenticación JWT con delegación de dominio
-    const auth = new JWT({
-      email: process.env.GOOGLE_CLIENT_EMAIL!,
-      key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
-      scopes: ["https://www.googleapis.com/auth/calendar"],
-      subject: calendarId, // Cuenta que delega (usuario administrador o calendario)
-    })
+    const auth = new google.auth.JWT({
+  email: process.env.GOOGLE_CLIENT_EMAIL!,
+  key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
+  scopes: ["https://www.googleapis.com/auth/calendar"],
+  subject: calendarId,
+})
 
     const calendar = google.calendar({ version: "v3", auth })
 
