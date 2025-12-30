@@ -24,7 +24,11 @@ const buttons = [
   },
 ];
 
-export default function Hero() {
+interface HeroProps {
+  section: string
+}
+export default function Hero({ section }: HeroProps) {
+  
   const sectionRef = useRef(null);
 const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
 
@@ -66,11 +70,28 @@ const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
               variants={fadeInUp}
               transition={{ duration: 1 }}
             >
-              Explorá
-              <br />
-              <span>un mundo</span>
-              <br />
-              <span className="font-extrabold">sin límites</span>
+              {
+                (section === "home" && (
+                  <div>
+                    Explorá
+                    <br />
+                    <span>un mundo</span>
+                    <br />
+                    <span className="font-extrabold">sin límites</span>
+                  </div>
+                ))
+              }
+              {
+                (section === "projects" && (
+                  <div>
+                    Conocé
+                    <br />
+                    <span>nuestros</span>
+                    <br />
+                    <span className="font-extrabold">éxitos.</span>
+                  </div>
+                ))
+              }
             </motion.h1>
           </motion.div>
 

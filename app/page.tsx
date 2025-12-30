@@ -16,7 +16,7 @@ const WebInstitucional = () => {
     <>
       <ColorsBg>
         <main className="flex flex-col px-4 space-y-24">
-          <Hero />
+          <Hero section={ "home" } />
           <WeAreWikinbound />
           <ServiciosSection />
           <ProyectosSection />
