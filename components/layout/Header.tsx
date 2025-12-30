@@ -13,7 +13,7 @@ const navItems = [
   { label: "Proyectos", href: "#proyectos" },
   { label: "Team", href: "#team" },
   { label: "Contacto", href: "#contacto" },
-  { label: "Whatsapp", href: "https://wa.me/5491166614164" },
+  { label: "Whatsapp", href: "https://wa.me/5491158346643" },
 ];
 
 const opacityValue = 0.5;
