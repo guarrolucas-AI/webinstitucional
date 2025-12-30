@@ -201,7 +201,7 @@ export default function ContactForm() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group inline-flex items-center gap-2 rounded-full px-1 py-2
-             text-green-500/70 hover:text-green-400 transition"
+             text-green-500/70w hover:text-green-400 transition"
                   >
                     <p>WhatsApp</p>
 
