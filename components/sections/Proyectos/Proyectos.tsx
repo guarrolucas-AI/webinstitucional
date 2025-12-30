@@ -148,6 +148,7 @@ export default function ProyectosSection() {
           </motion.div>
         </div>
       </motion.div>
+
     </section>
   )
 }
