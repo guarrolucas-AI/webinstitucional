@@ -1,6 +1,14 @@
 export type Locale = "es" | "en";
 
 const es = {
+  meta: {
+    title: "Wikinbound – Soluciones digitales para negocios modernos",
+    description:
+      "Potenciamos empresas con desarrollo web, marketing digital, automatización y sistemas personalizados. Consultoría, diseño e innovación desde Argentina para el mundo.",
+    ogTitle: "Wikinbound – Soluciones digitales para transformar negocios modernos",
+    ogDescription:
+      "Consultoría, desarrollo web y automatización de procesos para empresas que buscan crecer. 6 años de experiencia en el mercado.",
+  },
   nav: {
     servicios: "Servicios",
     proyectos: "Proyectos",
@@ -213,6 +221,14 @@ const es = {
 };
 
 const en: typeof es = {
+  meta: {
+    title: "Wikinbound – Digital solutions for modern businesses",
+    description:
+      "We power businesses with web development, digital marketing, automation, and custom systems. Consulting, design, and innovation from Argentina for the world.",
+    ogTitle: "Wikinbound – Digital solutions to transform modern businesses",
+    ogDescription:
+      "Consulting, web development, and process automation for companies looking to grow. 6 years of experience in the market.",
+  },
   nav: {
     servicios: "Services",
     proyectos: "Projects",
