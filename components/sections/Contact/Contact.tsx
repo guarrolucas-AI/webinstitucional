@@ -31,6 +31,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
+import { useI18n } from "@/lib/i18n/LocaleContext";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 60 },
@@ -38,6 +39,8 @@ const containerVariants = {
 };
 
 export default function ContactForm() {
+  const { t } = useI18n();
+  const c = t.contact;
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -100,8 +103,7 @@ export default function ContactForm() {
       if (result.success) {
         setSubmitStatus({
           type: "success",
-          message:
-            "Reunión creada exitosamente. Se han enviado las invitaciones por email.",
+          message: c.status.success,
           meetLink: result.meetLink ?? undefined,
         });
         // Limpiar formulario
@@ -121,21 +123,19 @@ export default function ContactForm() {
       } else if (result.availableSlots) {
         setSubmitStatus({
           type: "conflict",
-          message:
-            result.error || "El horario seleccionado no está disponible.",
+          message: result.error || c.status.genericError,
           alternativeSlots: result.availableSlots,
         });
       } else {
         setSubmitStatus({
           type: "error",
-          message:
-            result.error || "Error al crear la reunión. Inténtalo de nuevo.",
+          message: result.error || c.status.genericError,
         });
       }
     } catch {
       setSubmitStatus({
         type: "error",
-        message: "Error inesperado. Por favor, inténtalo de nuevo.",
+        message: c.status.unexpectedError,
       });
     } finally {
       setIsSubmitting(false);
@@ -178,12 +178,12 @@ export default function ContactForm() {
         <div className="space-y-12 w-full flex flex-col justify-center">
           <div>
             <h1 className="text-5xl font-bold text-white mb-4">
-              Agendá una reunión
+              {c.heading}
             </h1>
             <div className="w-full h-0.5 bg-white/20 mb-8"></div>
 
             <div className="space-y-2 mb-8">
-              <p className="text-white/70">Email</p>
+              <p className="text-white/70">{c.email}</p>
               <p className="text-white text-xl">contacto@wikinbound.com</p>
 
               <div className="w-full h-0.5 bg-white/20 mb-8"></div>
@@ -193,7 +193,7 @@ export default function ContactForm() {
                   <Phone className="text-white h-6 w-6" />
                 </div>
                 <div>
-                  <p className="text-white/70">Teléfonos</p>
+                  <p className="text-white/70">{c.phones}</p>
                   <p className="text-white text-xl">+54 9 11 5834-6643</p>
 
                   <Link
@@ -203,7 +203,7 @@ export default function ContactForm() {
                     className="group inline-flex items-center gap-2 rounded-full px-1 py-2
              text-green-500/70w hover:text-green-400 transition"
                   >
-                    <p>WhatsApp</p>
+                    <p>{c.whatsapp}</p>
 
                     <span className="relative flex h-6 w-6">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500/70 opacity-30"></span>
@@ -218,28 +218,28 @@ export default function ContactForm() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3 text-green-200">
                   <Calendar className="w-5 h-5" />
-                  <span>Reuniones disponibles de Lunes a Viernes</span>
+                  <span>{c.availableDays}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-green-200">
                   <Clock className="w-5 h-5" />
-                  <span>Horario: 9:00 AM - 6:00 PM (GMT-3)</span>
+                  <span>{c.schedule}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-green-200">
                   <Users className="w-5 h-5" />
-                  <span>Hasta 50 participantes por reunión</span>
+                  <span>{c.maxParticipants}</span>
                 </div>
                 {formData.fechaPreferida && (
                   <div className="bg-green-900/30 rounded-lg p-6 mt-8">
                     <h3 className="text-white font-semibold mb-4 flex items-center">
                       <Clock className="w-5 h-5 mr-2" />
-                      Horarios disponibles
+                      {c.availableSlots}
                       {isCheckingAvailability && (
                         <RefreshCw className="w-4 h-4 ml-2 animate-spin" />
                       )}
                     </h3>
                     {isCheckingAvailability ? (
                       <p className="text-green-200 text-sm">
-                        Verificando disponibilidad...
+                        {c.checkingAvailability}
                       </p>
                     ) : availableSlots.length > 0 ? (
                       <div className="grid grid-cols-3 gap-2">
@@ -259,7 +259,7 @@ export default function ContactForm() {
                       </div>
                     ) : (
                       <p className="text-red-300 text-sm">
-                        No hay horarios disponibles para esta fecha.
+                        {c.noSlots}
                       </p>
                     )}
                   </div>
@@ -269,29 +269,15 @@ export default function ContactForm() {
                 <div className="bg-green-900/30 rounded-lg p-6 mt-8">
                   <h3 className="text-white font-semibold mb-4 flex items-center">
                     <Video className="w-5 h-5 mr-2" />
-                    Proceso automático
+                    {c.automaticProcess}
                   </h3>
                   <div className="space-y-3 text-green-200 text-sm">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span>Verificación automática de disponibilidad</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span>
-                        Se crea automáticamente la reunión de Google Meet
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span>
-                        Se envían invitaciones por email a ambas partes
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span>Recordatorios automáticos 15 min antes</span>
-                    </div>
+                    {c.process.map((step) => (
+                      <div key={step} className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span>{step}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -341,14 +327,14 @@ export default function ContactForm() {
                     rel="noopener noreferrer"
                     className="text-green-400 hover:text-green-300 text-sm underline mt-2 block"
                   >
-                    Abrir enlace de Google Meet
+                    {c.status.openMeet}
                   </a>
                 )}
                 {submitStatus.alternativeSlots &&
                   submitStatus.alternativeSlots.length > 0 && (
                     <div className="mt-3">
                       <p className="text-yellow-200 text-sm mb-2">
-                        Horarios alternativos disponibles:
+                        {c.status.alternativeSlots}
                       </p>
                       <div className="grid grid-cols-3 gap-2">
                         {submitStatus.alternativeSlots.map((slot) => (
@@ -374,7 +360,7 @@ export default function ContactForm() {
                   htmlFor="nombre"
                   className="text-white text-sm font-medium"
                 >
-                  Nombre *
+                  {c.form.nombre}
                 </Label>
                 <Input
                   id="nombre"
@@ -390,7 +376,7 @@ export default function ContactForm() {
                   htmlFor="apellido"
                   className="text-white text-sm font-medium"
                 >
-                  Apellido *
+                  {c.form.apellido}
                 </Label>
                 <Input
                   id="apellido"
@@ -409,7 +395,7 @@ export default function ContactForm() {
                   htmlFor="email"
                   className="text-white text-sm font-medium"
                 >
-                  Email *
+                  {c.form.email}
                 </Label>
                 <Input
                   id="email"
@@ -426,7 +412,7 @@ export default function ContactForm() {
                   htmlFor="telefono"
                   className="text-white text-sm font-medium"
                 >
-                  Teléfono
+                  {c.form.telefono}
                 </Label>
                 <Input
                   id="telefono"
@@ -443,14 +429,14 @@ export default function ContactForm() {
                 htmlFor="asunto"
                 className="text-white text-sm font-medium"
               >
-                Asunto de la reunión *
+                {c.form.asunto}
               </Label>
               <Input
                 id="asunto"
                 value={formData.asunto}
                 onChange={(e) => handleChange("asunto", e.target.value)}
                 className="mt-2 bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-green-400"
-                placeholder="Ej: Revisión de proyecto, Consulta técnica..."
+                placeholder={c.form.asuntoPlaceholder}
                 required
                 disabled={isSubmitting}
               />
@@ -459,7 +445,7 @@ export default function ContactForm() {
             <div className="grid grid-cols-1 gap-6">
               <div>
                 <Label className="text-white text-sm font-medium mb-3 block">
-                  Fecha y hora preferida *
+                  {c.form.fechaHora}
                 </Label>
 
                 {/* Grilla responsiva: 1 columna en mobile, 2 en md+ */}
@@ -492,7 +478,7 @@ export default function ContactForm() {
                       value={formData.horaPreferida}
                     >
                       <SelectTrigger className="pl-10 bg-black/30 border-white/20 text-white focus:border-green-400 focus:ring-2 focus:ring-green-400/20 w-full">
-                        <SelectValue placeholder="Seleccionar hora" />
+                        <SelectValue placeholder={c.form.seleccionarHora} />
                       </SelectTrigger>
                       <SelectContent className="bg-gray-900 border-gray-700">
                         {availableSlots.map((slot) => (
@@ -513,8 +499,8 @@ export default function ContactForm() {
                   {formData.fechaPreferida &&
                   availableSlots.length === 0 &&
                   !isCheckingAvailability
-                    ? "No hay horarios disponibles para esta fecha"
-                    : "Horario disponible: Lunes a Viernes, 9:00 AM - 6:00 PM (GMT-3)"}
+                    ? c.form.helperNoSlots
+                    : c.form.helperDefault}
                 </p>
               </div>
             </div>
@@ -524,33 +510,33 @@ export default function ContactForm() {
                 htmlFor="duracion"
                 className="text-white text-sm font-medium"
               >
-                Duración estimada *
+                {c.form.duracion}
               </Label>
               <Select
                 onValueChange={(value) => handleChange("duracion", value)}
                 disabled={isSubmitting}
               >
                 <SelectTrigger className="mt-2 bg-black/30 border-white/20 text-white focus:border-green-400 focus:ring-2 focus:ring-green-400/20">
-                  <SelectValue placeholder="Seleccionar duración" />
+                  <SelectValue placeholder={c.form.seleccionarDuracion} />
                 </SelectTrigger>
                 <SelectContent className="bg-gray-900 border-gray-700">
                   <SelectItem
                     value="30"
                     className="text-white hover:bg-gray-800"
                   >
-                    30 minutos
+                    {c.form.dur30}
                   </SelectItem>
                   <SelectItem
                     value="45"
                     className="text-white hover:bg-gray-800"
                   >
-                    45 minutos
+                    {c.form.dur45}
                   </SelectItem>
                   <SelectItem
                     value="60"
                     className="text-white hover:bg-gray-800"
                   >
-                    1 hora
+                    {c.form.dur60}
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -561,7 +547,7 @@ export default function ContactForm() {
                 htmlFor="participantes"
                 className="text-white text-sm font-medium"
               >
-                Número de participantes
+                {c.form.participantes}
               </Label>
               <Input
                 id="participantes"
@@ -571,7 +557,7 @@ export default function ContactForm() {
                 value={formData.participantes}
                 onChange={(e) => handleChange("participantes", e.target.value)}
                 className="mt-2 bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-green-400"
-                placeholder="Ej: 5"
+                placeholder={c.form.participantesPlaceholder}
                 disabled={isSubmitting}
               />
             </div>
@@ -581,14 +567,14 @@ export default function ContactForm() {
                 htmlFor="agenda"
                 className="text-white text-sm font-medium"
               >
-                Agenda / Descripción *
+                {c.form.agenda}
               </Label>
               <Textarea
                 id="agenda"
                 value={formData.agenda}
                 onChange={(e) => handleChange("agenda", e.target.value)}
                 className="mt-2 bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-green-400 min-h-[100px]"
-                placeholder="Describe los temas a tratar en la reunión..."
+                placeholder={c.form.agendaPlaceholder}
                 required
                 disabled={isSubmitting}
               />
@@ -606,12 +592,12 @@ export default function ContactForm() {
               {isSubmitting ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  <span>CREANDO REUNIÓN...</span>
+                  <span>{c.form.submitting}</span>
                 </>
               ) : (
                 <>
                   <Video className="w-5 h-5" />
-                  <span>CREAR REUNIÓN DE GOOGLE MEET</span>
+                  <span>{c.form.submit}</span>
                 </>
               )}
             </Button>

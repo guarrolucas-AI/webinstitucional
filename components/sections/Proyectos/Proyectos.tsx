@@ -5,8 +5,10 @@ import Image from "next/image";
 import Cards from "@/components/ui/cards";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useI18n } from "@/lib/i18n/LocaleContext";
 
 export default function ProyectosSection() {
+  const { t } = useI18n();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
 
@@ -52,9 +54,9 @@ export default function ProyectosSection() {
       >
         {/* Encabezado */}
         <motion.div variants={fadeInUp} className="text-center text-white  mb-16">
-          <h1 className="text-6xl font-regular mb-4">Proyectos</h1>
+          <h1 className="text-6xl font-regular mb-4">{t.proyectos.heading}</h1>
           <p className="text-gray-300/90 text-lg md:text-xl max-w-4xl mx-auto">
-           Implementamos estrategias de innovación y fortalecimiento empresarial mejorando significativamente organizaciones.
+           {t.proyectos.subheading}
           </p>
         </motion.div>
 
@@ -63,9 +65,9 @@ export default function ProyectosSection() {
           {/* Card 1 */}
           <motion.div variants={fadeInUp}>
             <Cards
-              title="E-Commerce"
-              subtitle="para Negocios"
-              description="Buscamos las mejores automatizaciones para hacer crecer empresas y emprendimientos"
+              title={t.proyectos.cards.ecommerce.title}
+              subtitle={t.proyectos.cards.ecommerce.subtitle}
+              description={t.proyectos.cards.ecommerce.description}
             >
               <div className="flex-1 flex items-center justify-center relative">
                 <div className="absolute inset-0 opacity-20 flex items-center justify-center">
@@ -83,7 +85,7 @@ export default function ProyectosSection() {
                 <div className="relative z-10 rounded-full border-2 border-white/50 w-32 h-32 flex items-center justify-center">
                   <div className="text-center text-white">
                     <div className="text-4xl font-bold">100+</div>
-                    <div className="text-[12px]">Automatizaciones</div>
+                    <div className="text-[12px]">{t.proyectos.cards.ecommerce.stat}</div>
                   </div>
                 </div>
               </div>
@@ -93,15 +95,15 @@ export default function ProyectosSection() {
           {/* Card 2 */}
           <motion.div variants={fadeInUp}>
             <Cards
-              title="Estrategia de"
-              subtitle="Leads"
-              description="Organizamos y automatizamos el seguimiento de prospectos."
+              title={t.proyectos.cards.leads.title}
+              subtitle={t.proyectos.cards.leads.subtitle}
+              description={t.proyectos.cards.leads.description}
             >
              <div className="flex flex-col justify-center gap-y-6 w-full mx-auto">
                 <div className="flex items-center justify-end space-x-3">
                   <div className="text-right">
-                    <div className="font-medium text-white">Lead 1</div>
-                    <div className="text-sm text-gray-300">Estoy interesado en el producto ... </div>
+                    <div className="font-medium text-white">{t.proyectos.cards.leads.lead1Title}</div>
+                    <div className="text-sm text-gray-300">{t.proyectos.cards.leads.lead1Desc}</div>
                   </div>
                   <div className="bg-transparent border border-white rounded-md p-1">
                     <User size={20} className="text-white" />
@@ -112,8 +114,8 @@ export default function ProyectosSection() {
                     <Circle size={20} className="text-white" />
                   </div>
                   <div>
-                    <div className="font-medium text-white">Estrategia</div>
-                    <div className="text-sm text-gray-300">Propuesta solida de alto valor</div>
+                    <div className="font-medium text-white">{t.proyectos.cards.leads.strategyTitle}</div>
+                    <div className="text-sm text-gray-300">{t.proyectos.cards.leads.strategyDesc}</div>
                   </div>
                 </div>
                 <div className="w-full h-10 bg-transparent border border-white rounded-full overflow-hidden flex items-center px-3 justify-between">
@@ -127,9 +129,9 @@ export default function ProyectosSection() {
           {/* Card 3 */}
           <motion.div variants={fadeInUp}>
             <Cards
-              title="Sistemas de"
-              subtitle="Gestión personalizados"
-              description="Creamos sistemas a medida para digitalizar tu operación."
+              title={t.proyectos.cards.gestion.title}
+              subtitle={t.proyectos.cards.gestion.subtitle}
+              description={t.proyectos.cards.gestion.description}
             >
               <div className="w-full h-40 relative flex items-center justify-center">
                 <svg viewBox="0 0 300 100" className="w-full h-full">

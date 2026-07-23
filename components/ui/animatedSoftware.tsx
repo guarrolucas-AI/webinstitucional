@@ -2,46 +2,50 @@ import React, { useState, useEffect } from "react";
 
 const techOrder: Array<"Nodejs" | "React" | "NextJS"> = ["Nodejs", "React", "NextJS"];
 
-  const code: Record<"Nodejs" | "React" | "NextJS", { description: string; code: string }> = {
-    Nodejs: {
-      description: "Node.js permite crear servidores y APIs eficientes usando JavaScript en el backend.",
-      code: `coonst express = require('express');
+const codeSnippets: Record<"Nodejs" | "React" | "NextJS", string> = {
+  Nodejs: `coonst express = require('express');
 const app = express();
-app.listen(3000);`
-    },
-    React: {
-      description: "React es una biblioteca para construir interfaces de usuario reutilizables mediante componentes.",
-      code: `coonst App = () => <Component optimized />;`
-    },
-    NextJS: {
-      description: "Next.js extiende React con renderizado del lado del servidor, rutas automáticas y más rendimiento.",
-      code: `exxport async function getServerSideProps() {
+app.listen(3000);`,
+  React: `coonst App = () => <Component optimized />;`,
+  NextJS: `exxport async function getServerSideProps() {
   return { props: { fast: true } };
-}`
-    },
-  };
+}`,
+};
 
-const AnimatedSoftware = () => {
+const defaultDescriptions: Record<"Nodejs" | "React" | "NextJS", string> = {
+  Nodejs: "Node.js permite crear servidores y APIs eficientes usando JavaScript en el backend.",
+  React: "React es una biblioteca para construir interfaces de usuario reutilizables mediante componentes.",
+  NextJS: "Next.js extiende React con renderizado del lado del servidor, rutas automáticas y más rendimiento.",
+};
+
+interface AnimatedSoftwareProps {
+  descriptions?: Record<"Nodejs" | "React" | "NextJS", string>
+}
+
+const AnimatedSoftware = ({ descriptions = defaultDescriptions }: AnimatedSoftwareProps) => {
   const [tech, setTech] = useState<"Nodejs" | "React" | "NextJS">("Nodejs");
   const [codeText, setCodeText] = useState("");
 
+  const code: Record<"Nodejs" | "React" | "NextJS", { description: string; code: string }> = {
+    Nodejs: { description: descriptions.Nodejs, code: codeSnippets.Nodejs },
+    React: { description: descriptions.React, code: codeSnippets.React },
+    NextJS: { description: descriptions.NextJS, code: codeSnippets.NextJS },
+  };
 
   const handleChangeTech = (newTech: "Nodejs" | "React" | "NextJS") => {
     setTech(newTech);
   };
 
   useEffect(() => {
-    const current = code[tech];
-    if (!current) return;
-
     setCodeText(""); // Reinicia el texto antes de comenzar
 
     let index = 0;
-    const codeToType = current.code;
+    const codeToType = codeSnippets[tech];
 
     const intervalId = setInterval(() => {
-      if (index < codeToType.length) {
-        setCodeText((prev) => prev + codeToType[index]);
+      const nextChar = codeToType[index];
+      if (nextChar !== undefined) {
+        setCodeText((prev) => prev + nextChar);
         index++;
       } else {
         clearInterval(intervalId);

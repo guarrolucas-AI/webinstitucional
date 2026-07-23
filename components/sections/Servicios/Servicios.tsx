@@ -8,8 +8,10 @@ import AnimatedInbound from "@/components/ui/animatedInbound"
 import AnimatedSoftware from "@/components/ui/animatedSoftware"
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
+import { useI18n } from "@/lib/i18n/LocaleContext"
 
 export default function ServiciosSection() {
+  const { t } = useI18n();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
 
@@ -52,9 +54,9 @@ export default function ServiciosSection() {
       >
         {/* Título y subtítulo */}
         <motion.div variants={fadeInUp} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold text-white mb-2">Servicios</h2>
+          <h2 className="text-4xl md:text-5xl font-semibold text-white mb-2">{t.servicios.heading}</h2>
           <p className="text-gray-300/90 text-lg md:text-xl">
-            Consultoría, marketing y tecnología para transformar tu negocio
+            {t.servicios.subheading}
           </p>
         </motion.div>
 
@@ -66,12 +68,12 @@ export default function ServiciosSection() {
           {/* Card 1 */}
           <motion.div variants={fadeInUp} className="h-full">
             <Cards
-              title="Consultoría"
-              subtitle="Empresarial"
-              description="Impulsamos la transformación de tu empresa con asesoramiento legal, contable, operativo, tecnológico, comercial y de capital humano."
+              title={t.servicios.cards.consultoria.title}
+              subtitle={t.servicios.cards.consultoria.subtitle}
+              description={t.servicios.cards.consultoria.description}
             >
               <div className="min-h-[200px] flex items-center justify-center w-full">
-                <AnimatedGraph />
+                <AnimatedGraph efficiencyLabel={t.servicios.graph.efficiency} costLabel={t.servicios.graph.cost} />
               </div>
             </Cards>
           </motion.div>
@@ -79,12 +81,12 @@ export default function ServiciosSection() {
           {/* Card 2 */}
           <motion.div variants={fadeInUp} className="h-full">
             <Cards
-              title="Marketing"
-              subtitle="Inbound"
-              description="Lideramos el crecimiento de tu negocio con estrategias inbound que atraen, convierten y fidelizan clientes."
+              title={t.servicios.cards.marketing.title}
+              subtitle={t.servicios.cards.marketing.subtitle}
+              description={t.servicios.cards.marketing.description}
             >
               <div className="min-h-[200px] flex items-center justify-center w-full">
-                <AnimatedInbound />
+                <AnimatedInbound items={t.servicios.inboundCards} />
               </div>
             </Cards>
           </motion.div>
@@ -92,12 +94,12 @@ export default function ServiciosSection() {
           {/* Card 3 */}
           <motion.div variants={fadeInUp} className="h-full">
             <Cards
-              title="Soluciones de"
-              subtitle="Software"
-              description="Ofrecemos soluciones de software innovadoras a través de un equipo de profesionales que transforman tu empresa."
+              title={t.servicios.cards.software.title}
+              subtitle={t.servicios.cards.software.subtitle}
+              description={t.servicios.cards.software.description}
             >
               <div className="min-h-[200px] flex items-center justify-center w-full">
-                <AnimatedSoftware />
+                <AnimatedSoftware descriptions={t.servicios.softwareDescriptions} />
               </div>
             </Cards>
           </motion.div>

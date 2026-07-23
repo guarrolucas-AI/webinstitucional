@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { gotham, inter } from "@/assets/fonts";
 import { cn } from "@/lib/utils";
 import CustomCursor from "@/components/CustomCursor";
+import { LocaleProvider } from "@/lib/i18n/LocaleContext";
+import type { Locale } from "@/lib/i18n/dictionary";
 
 export const metadata: Metadata = {
   title: "Wikinbound – Soluciones digitales para negocios modernos",
@@ -35,13 +38,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const locale: Locale = cookieStore.get("NEXT_LOCALE")?.value === "en" ? "en" : "es";
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={cn(
           'min-h-screen bg-[#121212] font-inter flex flex-col antialiased',
@@ -49,13 +55,15 @@ export default function RootLayout({
           inter.variable
         )}
       >
-        <main className="flex-1">
-            <Header />
-            {children}
-            <div className="hidden md:flex ">
-              <CustomCursor/>
-            </div>
-        </main>
+        <LocaleProvider locale={locale}>
+          <main className="flex-1">
+              <Header />
+              {children}
+              <div className="hidden md:flex ">
+                <CustomCursor/>
+              </div>
+          </main>
+        </LocaleProvider>
       </body>
     </html>
   );

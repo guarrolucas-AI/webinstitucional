@@ -3,22 +3,23 @@ import Image from "next/image";
 import React from "react";
 import { motion, } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
-const navItems = [
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Team", href: "#team" },
-  { label: "Contacto", href: "#contacto" },
-  { label: "Whatsapp", href: "https://wa.me/5491158346643" },
-];
+import { useI18n } from "@/lib/i18n/LocaleContext";
 
 const opacityValue = 0.4;
 
 export default function Footer() {
+  const { t } = useI18n();
   const { ref, inView } = useInView({
     triggerOnce: false, // para que se repita cada vez que entra en pantalla
     threshold: 0.1, // se activa cuando al menos el 10% del footer se ve
   });
+
+  const navItems = [
+    { label: t.nav.servicios, href: "#servicios" },
+    { label: t.nav.proyectos, href: "#proyectos" },
+    { label: t.nav.contacto, href: "#contacto" },
+    { label: t.nav.whatsapp, href: "https://wa.me/5491158346643" },
+  ];
 
   return (
     <motion.footer
@@ -69,9 +70,9 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="flex justify-center items-center text-center pt-6 pb-12 text-white/80 text-xs space-x-4">
-        <p>Desarrollado con estrategia e innovación por Wikinbound</p>
+        <p>{t.footer.tagline}</p>
         <span>|</span>
-          <p>© {new Date().getFullYear()} Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} {t.footer.rights}</p>
       </div>
     </motion.footer>
   );
