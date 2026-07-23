@@ -3,32 +3,34 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import styles from "./Hero.module.css";
+import { useI18n } from "@/lib/i18n/LocaleContext";
 
 const opacityValue = 0.4;
-
-const buttons = [
-  {
-    label: "Software factory",
-    position: "bottom-35 left-70",
-    mobilePosition: "bottom-12 left-[25px] transform translate-x-1/2",
-  },
-  {
-    label: "Marketing",
-    position: "top-10 left-5",
-    mobilePosition: "top-10 left-1/2 transform -translate-x-1/2",
-  },
-  {
-    label: "Consultoría",
-    position: "top-10 left-5",
-    mobilePosition: "top-1 left-[10px] transform translate-x-1/1",
-  },
-];
 
 interface HeroProps {
   section: string
 }
 export default function Hero({ section }: HeroProps) {
-  
+  const { t } = useI18n();
+
+  const buttons = [
+    {
+      label: t.hero.buttons.software,
+      position: "bottom-35 left-70",
+      mobilePosition: "bottom-12 left-[25px] transform translate-x-1/2",
+    },
+    {
+      label: t.hero.buttons.marketing,
+      position: "top-10 left-5",
+      mobilePosition: "top-10 left-1/2 transform -translate-x-1/2",
+    },
+    {
+      label: t.hero.buttons.consultoria,
+      position: "top-10 left-5",
+      mobilePosition: "top-1 left-[10px] transform translate-x-1/1",
+    },
+  ];
+
   const sectionRef = useRef(null);
 const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
 
@@ -73,22 +75,22 @@ const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
               {
                 (section === "home" && (
                   <div>
-                    Explorá
+                    {t.hero.home.line1}
                     <br />
-                    <span>un mundo</span>
+                    <span>{t.hero.home.line2}</span>
                     <br />
-                    <span className="font-extrabold">sin límites</span>
+                    <span className="font-extrabold">{t.hero.home.line3}</span>
                   </div>
                 ))
               }
               {
                 (section === "projects" && (
                   <div>
-                    Conocé
+                    {t.hero.projects.line1}
                     <br />
-                    <span>nuestros</span>
+                    <span>{t.hero.projects.line2}</span>
                     <br />
-                    <span className="font-extrabold">éxitos.</span>
+                    <span className="font-extrabold">{t.hero.projects.line3}</span>
                   </div>
                 ))
               }

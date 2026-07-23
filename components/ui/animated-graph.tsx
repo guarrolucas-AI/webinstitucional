@@ -5,7 +5,12 @@ import { motion } from "framer-motion"
 
 
 
-export default function AnimatedGraph() {
+interface AnimatedGraphProps {
+  efficiencyLabel?: string
+  costLabel?: string
+}
+
+export default function AnimatedGraph({ efficiencyLabel = "Eficiencia", costLabel = "Costo" }: AnimatedGraphProps) {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
@@ -83,7 +88,7 @@ export default function AnimatedGraph() {
             transform: "translate(-50%, -50%)",
           }}
         >
-         Eficiencia +{efficiency.toFixed(0)}%
+         {efficiencyLabel} +{efficiency.toFixed(0)}%
         </motion.div>
 
         {/* Cost dot and label */}
@@ -106,7 +111,7 @@ export default function AnimatedGraph() {
             transform: "translate(-50%, -50%)",
           }}
         >
-          Costo {cost.toFixed(0)}%
+          {costLabel} {cost.toFixed(0)}%
         </motion.div>
       </div>
     </div>

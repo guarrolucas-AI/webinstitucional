@@ -7,19 +7,20 @@ import React from "react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
 import { Button } from "../ui/button";
-
-const navItems = [
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Team", href: "#team" },
-  { label: "Contacto", href: "#contacto" },
-  { label: "Whatsapp", href: "https://wa.me/5491158346643" },
-];
+import { useI18n } from "@/lib/i18n/LocaleContext";
 
 const opacityValue = 0.5;
 
 export function Header() {
+  const { t } = useI18n();
   const [isScrolled, setIsScrolled] = React.useState(false);
+
+  const navItems = [
+    { label: t.nav.servicios, href: "#servicios" },
+    { label: t.nav.proyectos, href: "#proyectos" },
+    { label: t.nav.contacto, href: "#contacto" },
+    { label: t.nav.whatsapp, href: "https://wa.me/5491158346643" },
+  ];
 
   React.useEffect(() => {
     const handleScroll = () => {

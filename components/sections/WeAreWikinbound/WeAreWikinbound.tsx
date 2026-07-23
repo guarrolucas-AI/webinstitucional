@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useInView, motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useI18n } from "@/lib/i18n/LocaleContext";
 
 const opacityValue = 0.2;
 const opacityValue1 = 0.6;
@@ -23,6 +24,7 @@ const icons = [
 ];
 
 export const WeAreWikinbound = () => {
+  const { t } = useI18n();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
 
@@ -71,7 +73,7 @@ export const WeAreWikinbound = () => {
                 }}
                 className="rounded-md tracking-wider px-4 py-3 text-white/80 text-xs md:text-md shadow-md"
               >
-                Simulador de Negocio con AI
+                {t.weAre.badge}
               </div>
             </motion.div>
           </Link>
@@ -82,7 +84,7 @@ export const WeAreWikinbound = () => {
             transition={{ duration: 1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight"
           >
-            We&apos;re{" "}
+            {t.weAre.title}{" "}
             <span
               style={{
                 background:
@@ -101,8 +103,7 @@ export const WeAreWikinbound = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-lg md:text-3xl text-white/70 max-w-4xl mx-auto mb-4"
           >
-            Desarrollamos soluciones innovadoras utilizando las tecnologías más
-            avanzadas del mercado para garantizar resultados excepcionales.
+            {t.weAre.description}
           </motion.p>
         </div>
 
