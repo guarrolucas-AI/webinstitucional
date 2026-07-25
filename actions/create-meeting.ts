@@ -2,7 +2,7 @@
 "use server"
 
 import { google } from "googleapis"
-
+import { getCalendarAuth, CALENDAR_ID } from "@/lib/google-calendar-auth"
 
 interface MeetingData {
   nombre: string
@@ -22,9 +22,9 @@ interface TimeSlot {
   end: Date
 }
 
-const calendarId = 'proyectos@wikinbound.com'
+const calendarId = CALENDAR_ID
 
-async function checkAvailability(auth: InstanceType<typeof google.auth.JWT>, startDate: Date, endDate: Date): Promise<boolean> {
+async function checkAvailability(auth: InstanceType<typeof google.auth.OAuth2>, startDate: Date, endDate: Date): Promise<boolean> {
   try {
 const calendar = google.calendar({ version: "v3", auth })
 
@@ -89,14 +89,7 @@ async function getAvailableSlots(auth: any, date: string): Promise<string[]> {
 
 export async function createMeetingAction(data: MeetingData) {
   try {
-    // Autenticación JWT con delegación de dominio
-    const auth = new google.auth.JWT({
-  email: process.env.GOOGLE_CLIENT_EMAIL!,
-  key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
-  scopes: ["https://www.googleapis.com/auth/calendar"],
-  subject: calendarId,
-})
-
+    const auth = getCalendarAuth()
     const calendar = google.calendar({ version: "v3", auth })
 
     // Parsear fecha y hora
@@ -140,7 +133,6 @@ Esta reunión fue creada automáticamente desde el formulario web.
       },
       attendees: [
         { email: data.email, displayName: `${data.nombre} ${data.apellido}` },
-        { email: calendarId, displayName: "Equipo Wikinbound" },
       ],
       conferenceData: {
         createRequest: {
@@ -178,7 +170,7 @@ Esta reunión fue creada automáticamente desde el formulario web.
     console.error("Error creating meeting:", error.response?.data || error.message || error)
     return {
       success: false,
-      error: "No se pudo crear la reunión. Verifica la configuración de Google Calendar y la delegación de dominio.",
+      error: "No se pudo crear la reunión. Verifica la configuración de las variables de entorno de Google OAuth.",
       details: error.response?.data || error.message || error,
     }
   }
@@ -186,14 +178,7 @@ Esta reunión fue creada automáticamente desde el formulario web.
 
 export async function getAvailableSlotsAction(date: string) {
   try {
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-      },
-      scopes: ["https://www.googleapis.com/auth/calendar.readonly"],
-    })
-
+    const auth = getCalendarAuth()
     const availableSlots = await getAvailableSlots(auth, date)
 
     return {
