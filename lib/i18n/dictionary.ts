@@ -71,30 +71,122 @@ const es = {
   proyectos: {
     heading: "Proyectos",
     subheading:
-      "Implementamos estrategias de innovación y fortalecimiento empresarial mejorando significativamente organizaciones.",
-    cards: {
-      ecommerce: {
-        title: "E-Commerce",
-        subtitle: "para Negocios",
+      "Sistemas reales, en producción, hoy. No mockups — así es el trabajo por dentro.",
+    cases: [
+      {
+        icon: "wrench",
+        name: "Service Express Alpha",
+        role: "Marketplace B2B2C de mecánica (Taller Alpha)",
+        caps: [
+          "Pagos con split automático vía Mercado Pago Marketplace, webhooks verificados",
+          "Ranking de talleres estilo Uber (eficiencia, NPS, tasa de aceptación)",
+          "Mantenimiento predictivo: avisa por WhatsApp antes de que algo se rompa",
+        ],
+        tags: ["Next.js · Prisma", "Mercado Pago Marketplace", "WhatsApp Cloud API"],
+      },
+      {
+        icon: "car",
+        name: "Cero Cars",
+        role: "Plataforma multi-marca para concesionarias",
+        caps: [
+          "Sincronización automática de stock con MercadoLibre, sin carga manual",
+          "Tasación de vehículos con IA y límites numéricos anti-alucinación",
+          "Verificación de leads por WhatsApp (OTP) y ruteo automático a vendedores",
+        ],
+        tags: ["Next.js · Supabase", "Claude (IA)", "Multi-tenant"],
+      },
+      {
+        icon: "layout-dashboard",
+        name: "Cero Cars DMS",
+        role: "Sistema de gestión de concesionaria — dms.cerocars.com.ar",
+        caps: [
+          "Portal de clientes: pagan sus cuotas online, antes era 100% efectivo/manual",
+          "Pipeline de leads tipo Kanban con campañas automáticas por WhatsApp",
+          "PWA instalable, pensada para el piso de venta",
+        ],
+        tags: ["Supabase", "Mercado Pago", "PWA"],
+      },
+      {
+        icon: "clipboard-check",
+        name: "PintoCert",
+        role: "Certificación de avance de obra",
+        caps: [
+          "Agente de IA arma presupuestos completos por rubro en tiempo real",
+          "Flujo de aprobación con estados y permisos validados en el servidor",
+          "Certificados de avance mensuales con PDF con marca propia",
+        ],
+        tags: ["Next.js 16", "Supabase RLS", "Agente IA"],
+      },
+      {
+        icon: "dumbbell",
+        name: "Leopardi Sports",
+        role: "Gestión de gimnasios — 3 roles",
+        caps: [
+          "Dashboard de ingresos y riesgo de baja calculado en vivo",
+          "Rutinas guiadas con temporizador y registro de récords personales",
+          "Reserva de clases con cupo real y conciliación automática de pagos",
+        ],
+        tags: ["Next.js · Prisma", "Neon Postgres"],
+      },
+      {
+        icon: "sparkles",
+        name: "wikinbound.com",
+        role: "Este mismo sitio",
+        caps: [
+          "Detecta el país del visitante y sirve el sitio en español o inglés",
+          "Simulador interactivo que manda cada lead directo a Google Calendar",
+          "Reconstruido y relanzado en días con el mismo proceso que ofrecemos",
+        ],
+        tags: ["Next.js", "OAuth2", "Caso testigo"],
+      },
+    ],
+  },
+  packages: {
+    heading: "Cinco formas de trabajar juntos",
+    subheading:
+      "Cada modelo está atado a una capacidad ya probada arriba — nada acá es teórico.",
+    items: [
+      {
+        num: "01",
+        name: "Sprint de Automatización",
+        scope: "2–3 semanas · alcance fijo",
         description:
-          "Buscamos las mejores automatizaciones para hacer crecer empresas y emprendimientos",
-        stat: "Automatizaciones",
+          "Tomamos un proceso manual y con errores —cobros, ruteo de leads, sincronización de stock, recordatorios— y lo convertimos en software que funciona solo.",
+        proof: "Prueba: portal de pagos online de Cero Cars DMS, sincronización con MercadoLibre.",
       },
-      leads: {
-        title: "Estrategia de",
-        subtitle: "Leads",
-        description: "Organizamos y automatizamos el seguimiento de prospectos.",
-        lead1Title: "Lead 1",
-        lead1Desc: "Estoy interesado en el producto ...",
-        strategyTitle: "Estrategia",
-        strategyDesc: "Propuesta solida de alto valor",
+      {
+        num: "02",
+        name: "MVP de Producto",
+        scope: "4–8 semanas · alcance fijo",
+        description:
+          "Una aplicación web completa por roles para un flujo de negocio central —login, base de datos, dashboards— lista para producción desde el día uno.",
+        proof: "Prueba: flujo de aprobación de PintoCert, dashboards por rol de Leopardi Sports.",
       },
-      gestion: {
-        title: "Sistemas de",
-        subtitle: "Gestión personalizados",
-        description: "Creamos sistemas a medida para digitalizar tu operación.",
+      {
+        num: "03",
+        name: "Marketplace y Pagos",
+        scope: "6–10 semanas · alcance fijo",
+        description:
+          "Plataformas multi-lado: pagos con split, aislamiento multi-tenant, lógica de ranking o matching entre las dos puntas del mercado.",
+        proof: "Prueba: split de pagos de Service Express Alpha, arquitectura multi-tenant de Cero Cars.",
       },
-    },
+      {
+        num: "04",
+        name: "Agentes de IA en Producción",
+        scope: "3–5 semanas · alcance fijo",
+        description:
+          "No un chatbot pegado con cinta adhesiva: un modelo conectado a la lógica de negocio real, con límites numéricos y control de costo.",
+        proof: "Prueba: agente de presupuestos de PintoCert, tasación con guardrails de Cero Cars.",
+      },
+      {
+        num: "05",
+        name: "Equipo de Desarrollo Fraccional",
+        scope: "Continuo · mensual",
+        description:
+          "Para equipos que ya lanzaron su v1 y necesitan seguir sumando funcionalidades sin contratar in-house.",
+        proof: "Prueba: cada sistema de esta lista tiene historial real de iteración post-lanzamiento.",
+      },
+    ],
   },
   simulador: {
     heading: "Inteligencia Artificial y tu negocio",
@@ -297,29 +389,121 @@ const en: typeof es = {
   proyectos: {
     heading: "Projects",
     subheading:
-      "We implement innovation and business-strengthening strategies that significantly improve organizations.",
-    cards: {
-      ecommerce: {
-        title: "E-Commerce",
-        subtitle: "for Business",
-        description: "We find the best automations to help companies and ventures grow",
-        stat: "Automations",
+      "Real systems, in production, today. Not mockups — this is what the work looks like under the hood.",
+    cases: [
+      {
+        icon: "wrench",
+        name: "Service Express Alpha",
+        role: "B2B2C mechanical-workshop marketplace (Taller Alpha)",
+        caps: [
+          "Split-payment marketplace via Mercado Pago Marketplace, HMAC-verified webhooks",
+          "Uber-style workshop ranking (time-efficiency, NPS, acceptance rate)",
+          "Predictive maintenance: nudges customers on WhatsApp before something breaks",
+        ],
+        tags: ["Next.js · Prisma", "Mercado Pago Marketplace", "WhatsApp Cloud API"],
       },
-      leads: {
-        title: "Lead",
-        subtitle: "Strategy",
-        description: "We organize and automate prospect follow-up.",
-        lead1Title: "Lead 1",
-        lead1Desc: "I'm interested in the product ...",
-        strategyTitle: "Strategy",
-        strategyDesc: "Solid high-value proposal",
+      {
+        icon: "car",
+        name: "Cero Cars",
+        role: "Multi-brand platform for car dealerships",
+        caps: [
+          "Automatic inventory sync with MercadoLibre, zero manual re-listing",
+          "AI vehicle appraisal with hard numeric guardrails against hallucinated pricing",
+          "WhatsApp OTP lead verification and automatic routing to sales reps",
+        ],
+        tags: ["Next.js · Supabase", "Claude (AI)", "Multi-tenant"],
       },
-      gestion: {
-        title: "Custom",
-        subtitle: "Management Systems",
-        description: "We build tailor-made systems to digitize your operations.",
+      {
+        icon: "layout-dashboard",
+        name: "Cero Cars DMS",
+        role: "Dealer management system — dms.cerocars.com.ar",
+        caps: [
+          "Customer portal: clients pay installments online — replaced a cash-only process",
+          "Kanban lead pipeline with automated WhatsApp campaigns",
+          "Installable PWA built for the showroom floor",
+        ],
+        tags: ["Supabase", "Mercado Pago", "PWA"],
       },
-    },
+      {
+        icon: "clipboard-check",
+        name: "PintoCert",
+        role: "Construction progress certification",
+        caps: [
+          "AI agent drafts full multi-category quotes in real time",
+          "Approval workflow with states and permissions enforced server-side",
+          "Monthly progress certificates with auto-generated branded PDFs",
+        ],
+        tags: ["Next.js 16", "Supabase RLS", "AI agent"],
+      },
+      {
+        icon: "dumbbell",
+        name: "Leopardi Sports",
+        role: "Gym management — 3 roles",
+        caps: [
+          "Revenue and renewal-risk dashboard computed live",
+          "Guided workout sessions with rest timers and personal-record tracking",
+          "Class booking with real capacity limits and automatic payment reconciliation",
+        ],
+        tags: ["Next.js · Prisma", "Neon Postgres"],
+      },
+      {
+        icon: "sparkles",
+        name: "wikinbound.com",
+        role: "This very site",
+        caps: [
+          "Detects the visitor's country and serves the site in Spanish or English",
+          "Interactive simulator that sends every lead straight to Google Calendar",
+          "Rebuilt and relaunched in days using the same process we offer clients",
+        ],
+        tags: ["Next.js", "OAuth2", "Living case study"],
+      },
+    ],
+  },
+  packages: {
+    heading: "Five ways to work together",
+    subheading: "Each engagement model maps to a capability already proven above — nothing here is theoretical.",
+    items: [
+      {
+        num: "01",
+        name: "Automation Sprint",
+        scope: "2–3 weeks · fixed scope",
+        description:
+          "Take one manual, error-prone process — payments, lead routing, inventory sync, reminder campaigns — and turn it into software that runs itself.",
+        proof: "Proof: Cero Cars DMS's cash-to-online payment portal, MercadoLibre sync.",
+      },
+      {
+        num: "02",
+        name: "Product MVP Build",
+        scope: "4–8 weeks · fixed scope",
+        description:
+          "A full role-based web application for one core business workflow — auth, database, dashboards — production-ready from day one.",
+        proof: "Proof: PintoCert's approval workflow, Leopardi Sports' role-based dashboards.",
+      },
+      {
+        num: "03",
+        name: "Marketplace & Payments",
+        scope: "6–10 weeks · fixed scope",
+        description:
+          "Multi-sided platforms: split payments, multi-tenant isolation, ranking or matching logic between two sides of a market.",
+        proof: "Proof: Service Express Alpha's MercadoPago Marketplace split, Cero Cars' multi-tenant architecture.",
+      },
+      {
+        num: "04",
+        name: "AI Agents in Production",
+        scope: "3–5 weeks · fixed scope",
+        description:
+          "Not a chatbot bolted on — an LLM wired into real business logic, with numeric guardrails and cost control.",
+        proof: "Proof: PintoCert's budgeting agent, Cero Cars' guardrailed appraisal model.",
+      },
+      {
+        num: "05",
+        name: "Fractional Dev Team",
+        scope: "Ongoing · monthly",
+        description:
+          "For teams that shipped a v1 and need to keep shipping — bug fixes, new features, infra — without hiring in-house.",
+        proof: "Proof: every system above has a live commit history of post-launch iteration.",
+      },
+    ],
   },
   simulador: {
     heading: "Artificial Intelligence and your business",

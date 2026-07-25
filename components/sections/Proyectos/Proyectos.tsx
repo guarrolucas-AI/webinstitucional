@@ -1,10 +1,27 @@
 "use client"
 
-import { User, Circle, ArrowRight, Paperclip, CreditCard, Users, ShoppingCart, Cloud, Settings, MessageSquare } from "lucide-react";
 import Image from "next/image";
-import Cards from "@/components/ui/cards";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import {
+  Wrench,
+  Car,
+  LayoutDashboard,
+  ClipboardCheck,
+  Dumbbell,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
+
+const ICONS: Record<string, LucideIcon> = {
+  wrench: Wrench,
+  car: Car,
+  "layout-dashboard": LayoutDashboard,
+  "clipboard-check": ClipboardCheck,
+  dumbbell: Dumbbell,
+  sparkles: Sparkles,
+};
+
 import { useI18n } from "@/lib/i18n/LocaleContext";
 
 export default function ProyectosSection() {
@@ -21,19 +38,10 @@ export default function ProyectosSection() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
       },
     },
   };
-
-  const icons = [
-    { id: 'credit-card', icon: CreditCard },
-    { id: 'users', icon: Users },
-    { id: 'shopping-cart', icon: ShoppingCart },
-    { id: 'cloud', icon: Cloud },
-    { id: 'settings', icon: Settings },
-    { id: 'message', icon: MessageSquare },
-  ];
 
   return (
     <section
@@ -47,110 +55,63 @@ export default function ProyectosSection() {
       </div>
 
       <motion.div
-        className="max-w-7xl mx-auto relative z-10"
+        className="max-w-7xl mx-auto relative z-10 w-full"
         variants={containerFade}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
         {/* Encabezado */}
-        <motion.div variants={fadeInUp} className="text-center text-white  mb-16">
+        <motion.div variants={fadeInUp} className="text-center text-white mb-16">
           <h1 className="text-6xl font-regular mb-4">{t.proyectos.heading}</h1>
           <p className="text-gray-300/90 text-lg md:text-xl max-w-4xl mx-auto">
-           {t.proyectos.subheading}
+            {t.proyectos.subheading}
           </p>
         </motion.div>
 
-        {/* Grid de tarjetas */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full max-w-7xl">
-          {/* Card 1 */}
-          <motion.div variants={fadeInUp}>
-            <Cards
-              title={t.proyectos.cards.ecommerce.title}
-              subtitle={t.proyectos.cards.ecommerce.subtitle}
-              description={t.proyectos.cards.ecommerce.description}
-            >
-              <div className="flex-1 flex items-center justify-center relative">
-                <div className="absolute inset-0 opacity-20 flex items-center justify-center">
-                  <div className="grid grid-cols-3 gap-4">
-                    {icons.map(({ id, icon: Icon }) => (
-                      <div
-                        key={id}
-                        className="w-16 h-16 bg-white/30 rounded-md flex items-center justify-center"
-                      >
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="relative z-10 rounded-full border-2 border-white/50 w-32 h-32 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-4xl font-bold">100+</div>
-                    <div className="text-[12px]">{t.proyectos.cards.ecommerce.stat}</div>
-                  </div>
-                </div>
-              </div>
-            </Cards>
-          </motion.div>
-
-          {/* Card 2 */}
-          <motion.div variants={fadeInUp}>
-            <Cards
-              title={t.proyectos.cards.leads.title}
-              subtitle={t.proyectos.cards.leads.subtitle}
-              description={t.proyectos.cards.leads.description}
-            >
-             <div className="flex flex-col justify-center gap-y-6 w-full mx-auto">
-                <div className="flex items-center justify-end space-x-3">
-                  <div className="text-right">
-                    <div className="font-medium text-white">{t.proyectos.cards.leads.lead1Title}</div>
-                    <div className="text-sm text-gray-300">{t.proyectos.cards.leads.lead1Desc}</div>
-                  </div>
-                  <div className="bg-transparent border border-white rounded-md p-1">
-                    <User size={20} className="text-white" />
-                  </div>
-                </div>
-                <div className="flex items-center m-2 space-x-3">
-                  <div className="bg-transparent border border-white rounded-md p-1">
-                    <Circle size={20} className="text-white" />
-                  </div>
+        {/* Grid de casos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          {t.proyectos.cases.map((c) => {
+            const Icon = ICONS[c.icon] ?? Sparkles;
+            return (
+              <motion.article
+                key={c.name}
+                variants={fadeInUp}
+                className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 flex flex-col gap-4"
+              >
+                <div className="flex items-start justify-between gap-4">
                   <div>
-                    <div className="font-medium text-white">{t.proyectos.cards.leads.strategyTitle}</div>
-                    <div className="text-sm text-gray-300">{t.proyectos.cards.leads.strategyDesc}</div>
+                    <h3 className="text-white text-xl font-semibold">{c.name}</h3>
+                    <p className="text-gray-400 text-sm mt-1">{c.role}</p>
+                  </div>
+                  <div className="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <Icon className="w-5 h-5 text-green-300" />
                   </div>
                 </div>
-                <div className="w-full h-10 bg-transparent border border-white rounded-full overflow-hidden flex items-center px-3 justify-between">
-                  <Paperclip size={20} className="text-white" />
-                  <ArrowRight size={20} className="text-white" />
-                </div>
-              </div>
-            </Cards>
-          </motion.div>
 
-          {/* Card 3 */}
-          <motion.div variants={fadeInUp}>
-            <Cards
-              title={t.proyectos.cards.gestion.title}
-              subtitle={t.proyectos.cards.gestion.subtitle}
-              description={t.proyectos.cards.gestion.description}
-            >
-              <div className="w-full h-40 relative flex items-center justify-center">
-                <svg viewBox="0 0 300 100" className="w-full h-full">
-                  <path
-                    d="M0,50 Q75,10 150,50 Q225,90 300,50"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    className="opacity-50"
-                  />
-                  <circle cx="150" cy="50" r="4" fill="white" />
-                  <circle cx="300" cy="50" r="4" fill="white" />
-                </svg>
-              </div>
-            </Cards>
-          </motion.div>
+                <ul className="space-y-2">
+                  {c.caps.map((cap) => (
+                    <li key={cap} className="text-white/80 text-sm leading-relaxed pl-4 relative">
+                      <span className="absolute left-0 top-[0.6em] w-2 h-px bg-green-300/70" />
+                      {cap}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-white/10">
+                  {c.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[11px] text-gray-300 border border-white/15 rounded-full px-2.5 py-1"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
       </motion.div>
-
     </section>
   )
 }

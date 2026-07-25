@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import BusinessSimulator from "@/components/sections/BusinessAI/BusinessAi";
 import ContactForm from "@/components/sections/Contact/Contact";
 import Hero from "@/components/sections/Hero/Hero";
+import PackagesSection from "@/components/sections/Packages/Packages";
 import ProyectosSection from "@/components/sections/Proyectos/Proyectos";
 import ServiciosSection from "@/components/sections/Servicios/Servicios";
 import { WeAreWikinbound } from "@/components/sections/WeAreWikinbound/WeAreWikinbound";
@@ -19,6 +20,7 @@ const WebInstitucional = () => {
           <WeAreWikinbound />
           <ServiciosSection />
           <ProyectosSection />
+          <PackagesSection />
           <BusinessSimulator />
           <ContactForm />
         </main>
