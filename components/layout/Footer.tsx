@@ -17,6 +17,7 @@ export default function Footer() {
   const navItems = [
     { label: t.nav.servicios, href: "#servicios" },
     { label: t.nav.proyectos, href: "#proyectos" },
+    { label: t.nav.precios, href: "#precios" },
     { label: t.nav.contacto, href: "#contacto" },
     { label: t.nav.whatsapp, href: "https://wa.me/5491158346643" },
   ];

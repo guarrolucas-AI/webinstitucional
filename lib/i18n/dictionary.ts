@@ -12,6 +12,7 @@ const es = {
   nav: {
     servicios: "Servicios",
     proyectos: "Proyectos",
+    precios: "Precios",
     contacto: "Contacto",
     whatsapp: "Whatsapp",
   },
@@ -338,6 +339,7 @@ const en: typeof es = {
   nav: {
     servicios: "Services",
     proyectos: "Projects",
+    precios: "Pricing",
     contacto: "Contact",
     whatsapp: "Whatsapp",
   },

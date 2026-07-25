@@ -24,7 +24,7 @@ export default function PackagesSection() {
   };
 
   return (
-    <section id="servicios-paquetes" className="w-full max-w-7xl mx-auto" ref={sectionRef}>
+    <section id="precios" className="w-full max-w-7xl mx-auto" ref={sectionRef}>
       <motion.div
         variants={containerFade}
         initial="hidden"
