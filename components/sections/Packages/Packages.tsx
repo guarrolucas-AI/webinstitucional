@@ -44,7 +44,10 @@ export default function PackagesSection() {
               variants={fadeInUp}
               className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 flex flex-col gap-3"
             >
-              <span className="text-green-300/80 text-sm font-medium">{item.num}</span>
+              <div className="flex items-start justify-between gap-3">
+                <span className="text-green-300/80 text-sm font-medium">{item.num}</span>
+                <span className="text-white text-lg font-semibold whitespace-nowrap">{item.price}</span>
+              </div>
               <h3 className="text-white text-xl font-semibold">{item.name}</h3>
               <span className="text-gray-400 text-xs uppercase tracking-wide">{item.scope}</span>
               <p className="text-white/80 text-sm leading-relaxed">{item.description}</p>

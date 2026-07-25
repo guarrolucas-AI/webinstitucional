@@ -150,6 +150,7 @@ const es = {
         num: "01",
         name: "Sprint de Automatización",
         scope: "2–3 semanas · alcance fijo",
+        price: "Desde USD 4.500",
         description:
           "Tomamos un proceso manual y con errores —cobros, ruteo de leads, sincronización de stock, recordatorios— y lo convertimos en software que funciona solo.",
         proof: "Prueba: portal de pagos online de Cero Cars DMS, sincronización con MercadoLibre.",
@@ -158,6 +159,7 @@ const es = {
         num: "02",
         name: "MVP de Producto",
         scope: "4–8 semanas · alcance fijo",
+        price: "Desde USD 9.000",
         description:
           "Una aplicación web completa por roles para un flujo de negocio central —login, base de datos, dashboards— lista para producción desde el día uno.",
         proof: "Prueba: flujo de aprobación de PintoCert, dashboards por rol de Leopardi Sports.",
@@ -166,6 +168,7 @@ const es = {
         num: "03",
         name: "Marketplace y Pagos",
         scope: "6–10 semanas · alcance fijo",
+        price: "Desde USD 18.000",
         description:
           "Plataformas multi-lado: pagos con split, aislamiento multi-tenant, lógica de ranking o matching entre las dos puntas del mercado.",
         proof: "Prueba: split de pagos de Service Express Alpha, arquitectura multi-tenant de Cero Cars.",
@@ -174,6 +177,7 @@ const es = {
         num: "04",
         name: "Agentes de IA en Producción",
         scope: "3–5 semanas · alcance fijo",
+        price: "Desde USD 7.000",
         description:
           "No un chatbot pegado con cinta adhesiva: un modelo conectado a la lógica de negocio real, con límites numéricos y control de costo.",
         proof: "Prueba: agente de presupuestos de PintoCert, tasación con guardrails de Cero Cars.",
@@ -182,8 +186,9 @@ const es = {
         num: "05",
         name: "Equipo de Desarrollo Fraccional",
         scope: "Continuo · mensual",
+        price: "Desde USD 3.500 / mes",
         description:
-          "Para equipos que ya lanzaron su v1 y necesitan seguir sumando funcionalidades sin contratar in-house.",
+          "Para equipos que ya lanzaron su v1 y necesitan seguir sumando funcionalidades sin contratar in-house. Respaldado por un equipo ampliado de 6 a 8 profesionales a demanda.",
         proof: "Prueba: cada sistema de esta lista tiene historial real de iteración post-lanzamiento.",
       },
     ],
@@ -467,6 +472,7 @@ const en: typeof es = {
         num: "01",
         name: "Automation Sprint",
         scope: "2–3 weeks · fixed scope",
+        price: "Starting at USD 4,500",
         description:
           "Take one manual, error-prone process — payments, lead routing, inventory sync, reminder campaigns — and turn it into software that runs itself.",
         proof: "Proof: Cero Cars DMS's cash-to-online payment portal, MercadoLibre sync.",
@@ -475,6 +481,7 @@ const en: typeof es = {
         num: "02",
         name: "Product MVP Build",
         scope: "4–8 weeks · fixed scope",
+        price: "Starting at USD 9,000",
         description:
           "A full role-based web application for one core business workflow — auth, database, dashboards — production-ready from day one.",
         proof: "Proof: PintoCert's approval workflow, Leopardi Sports' role-based dashboards.",
@@ -483,6 +490,7 @@ const en: typeof es = {
         num: "03",
         name: "Marketplace & Payments",
         scope: "6–10 weeks · fixed scope",
+        price: "Starting at USD 18,000",
         description:
           "Multi-sided platforms: split payments, multi-tenant isolation, ranking or matching logic between two sides of a market.",
         proof: "Proof: Service Express Alpha's MercadoPago Marketplace split, Cero Cars' multi-tenant architecture.",
@@ -491,6 +499,7 @@ const en: typeof es = {
         num: "04",
         name: "AI Agents in Production",
         scope: "3–5 weeks · fixed scope",
+        price: "Starting at USD 7,000",
         description:
           "Not a chatbot bolted on — an LLM wired into real business logic, with numeric guardrails and cost control.",
         proof: "Proof: PintoCert's budgeting agent, Cero Cars' guardrailed appraisal model.",
@@ -499,8 +508,9 @@ const en: typeof es = {
         num: "05",
         name: "Fractional Dev Team",
         scope: "Ongoing · monthly",
+        price: "Starting at USD 3,500 / mo",
         description:
-          "For teams that shipped a v1 and need to keep shipping — bug fixes, new features, infra — without hiring in-house.",
+          "For teams that shipped a v1 and need to keep shipping — bug fixes, new features, infra — without hiring in-house. Backed by an extended bench of 6–8 professionals on demand.",
         proof: "Proof: every system above has a live commit history of post-launch iteration.",
       },
     ],
