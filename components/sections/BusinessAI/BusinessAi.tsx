@@ -22,6 +22,7 @@ import {
   type Industry,
   type SimulationResult,
 } from "@/lib/business-simulator";
+import { submitSimulatorLead } from "@/actions/submit-lead";
 
 const INDUSTRIES: Industry[] = ["retail", "tecnologia", "servicios", "alimentos", "salud", "otro"];
 const SIZES: CompanySize[] = ["small", "medium", "large"];
@@ -42,6 +43,8 @@ export default function BusinessSimulator() {
   const [monthlyRevenue, setMonthlyRevenue] = useState("");
   const [size, setSize] = useState<CompanySize | "">("");
   const [result, setResult] = useState<SimulationResult | null>(null);
+  const [leadEmail, setLeadEmail] = useState("");
+  const [leadStatus, setLeadStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
@@ -83,7 +86,27 @@ export default function BusinessSimulator() {
     setIndustry("");
     setMonthlyRevenue("");
     setSize("");
+    setLeadEmail("");
+    setLeadStatus("idle");
     setActiveTab("manual");
+  };
+
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!result || !leadEmail.trim()) return;
+
+    setLeadStatus("submitting");
+    const response = await submitSimulatorLead({
+      email: leadEmail.trim(),
+      companyName: result.companyName,
+      industry: s.form.industries[result.industry],
+      monthlyRevenue: result.monthlyRevenue,
+      monthlyGrowthRate: result.monthlyGrowthRate,
+      projection3: result.projection3,
+      projection6: result.projection6,
+      projection12: result.projection12,
+    });
+    setLeadStatus(response.success ? "success" : "error");
   };
 
   return (
@@ -267,6 +290,38 @@ export default function BusinessSimulator() {
                         <div className="space-y-1">
                           <p className="text-white/60 text-sm">{s.results.suggestion}</p>
                           <p className="text-white/90 text-sm">{s.suggestions[result.industry]}</p>
+                        </div>
+
+                        <div className="rounded-lg border border-white/20 bg-white/5 p-4 space-y-3">
+                          <div>
+                            <p className="text-white font-medium">{s.lead.heading}</p>
+                            <p className="text-white/70 text-sm">{s.lead.description}</p>
+                          </div>
+                          {leadStatus === "success" ? (
+                            <p className="text-green-300 text-sm">{s.lead.success}</p>
+                          ) : (
+                            <form onSubmit={handleLeadSubmit} className="flex flex-col sm:flex-row gap-2">
+                              <Input
+                                type="email"
+                                value={leadEmail}
+                                onChange={(e) => setLeadEmail(e.target.value)}
+                                placeholder={s.lead.emailPlaceholder}
+                                className="bg-transparent border-white/30 text-white flex-1"
+                                required
+                                disabled={leadStatus === "submitting"}
+                              />
+                              <Button
+                                type="submit"
+                                disabled={leadStatus === "submitting" || !leadEmail.trim()}
+                                className="bg-white text-black hover:bg-white/90 disabled:opacity-50 whitespace-nowrap"
+                              >
+                                {leadStatus === "submitting" ? s.lead.submitting : s.lead.submit}
+                              </Button>
+                            </form>
+                          )}
+                          {leadStatus === "error" && (
+                            <p className="text-red-300 text-sm">{s.lead.error}</p>
+                          )}
                         </div>
 
                         <div className="flex items-center justify-between pt-2">

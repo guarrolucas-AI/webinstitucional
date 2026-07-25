@@ -144,6 +144,15 @@ const es = {
         "* Proyección estimada según promedios del rubro. No constituye asesoramiento financiero.",
       newSimulation: "Nueva simulación",
     },
+    lead: {
+      heading: "¿Querés lograr este crecimiento?",
+      description: "Dejanos tu email y te ayudamos a hacerlo realidad.",
+      emailPlaceholder: "tu@email.com",
+      submit: "Quiero que me ayuden",
+      submitting: "Enviando...",
+      success: "¡Listo! Te vamos a contactar pronto.",
+      error: "No se pudo enviar. Intentalo de nuevo o escribinos por WhatsApp.",
+    },
     suggestions: {
       retail:
         "Fortalecé tu presencia en redes sociales y programas de fidelización para aumentar la frecuencia de compra.",
@@ -359,6 +368,15 @@ const en: typeof es = {
       disclaimer:
         "* Estimated projection based on industry averages. Not financial advice.",
       newSimulation: "New simulation",
+    },
+    lead: {
+      heading: "Want to achieve this growth?",
+      description: "Leave us your email and we'll help make it happen.",
+      emailPlaceholder: "your@email.com",
+      submit: "I want help with this",
+      submitting: "Sending...",
+      success: "Done! We'll be in touch soon.",
+      error: "Couldn't send it. Try again or message us on WhatsApp.",
     },
     suggestions: {
       retail:
