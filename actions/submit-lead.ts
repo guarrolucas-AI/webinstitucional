@@ -19,7 +19,10 @@ export async function submitSimulatorLead(data: SimulatorLeadData) {
     const auth = getCalendarAuth()
     const calendar = google.calendar({ version: "v3", auth })
 
-    const start = new Date()
+    // Start a couple minutes in the future (not literally "now"): a reminder whose
+    // trigger time is already in the past when the event is created is unreliable
+    // to deliver, especially by email.
+    const start = new Date(Date.now() + 2 * 60000)
     const end = new Date(start.getTime() + 15 * 60000)
 
     const event = {
@@ -49,7 +52,10 @@ Generado automáticamente. Contactar para ofrecer una consultoría.
       },
       reminders: {
         useDefault: false,
-        overrides: [{ method: "popup", minutes: 0 }],
+        overrides: [
+          { method: "email", minutes: 1 },
+          { method: "popup", minutes: 1 },
+        ],
       },
     }
 
