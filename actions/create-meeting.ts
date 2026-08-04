@@ -44,47 +44,42 @@ const calendar = google.calendar({ version: "v3", auth })
 }
 
 async function getAvailableSlots(auth: any, date: string): Promise<string[]> {
-  try {
-    const calendar = google.calendar({ version: "v3", auth})
-    const [year, month, day] = date.split("-")
+  const calendar = google.calendar({ version: "v3", auth})
+  const [year, month, day] = date.split("-")
 
-    const dayStart = new Date(Number(year), Number(month) - 1, Number(day), 9, 0)
-    const dayEnd = new Date(Number(year), Number(month) - 1, Number(day), 18, 0)
+  const dayStart = new Date(Number(year), Number(month) - 1, Number(day), 9, 0)
+  const dayEnd = new Date(Number(year), Number(month) - 1, Number(day), 18, 0)
 
-    const response = await calendar.events.list({
-      calendarId,
-      timeMin: dayStart.toISOString(),
-      timeMax: dayEnd.toISOString(),
-      singleEvents: true,
-      orderBy: "startTime",
-    })
+  const response = await calendar.events.list({
+    calendarId,
+    timeMin: dayStart.toISOString(),
+    timeMax: dayEnd.toISOString(),
+    singleEvents: true,
+    orderBy: "startTime",
+  })
 
-    const busySlots: TimeSlot[] = (response.data.items ?? []).map(event => ({
-      start: new Date(event.start?.dateTime || event.start?.date || ""),
-      end: new Date(event.end?.dateTime || event.end?.date || ""),
-    }))
+  const busySlots: TimeSlot[] = (response.data.items ?? []).map(event => ({
+    start: new Date(event.start?.dateTime || event.start?.date || ""),
+    end: new Date(event.end?.dateTime || event.end?.date || ""),
+  }))
 
-    const availableSlots: string[] = []
-    const current = new Date(dayStart)
+  const availableSlots: string[] = []
+  const current = new Date(dayStart)
 
-    while (current < dayEnd) {
-      const slotEnd = new Date(current.getTime() + 30 * 60000)
-      const isBusy = busySlots.some(busy =>
-        (current >= busy.start && current < busy.end) ||
-        (slotEnd > busy.start && slotEnd <= busy.end) ||
-        (current <= busy.start && slotEnd >= busy.end)
-      )
-      if (!isBusy) {
-        availableSlots.push(current.toTimeString().slice(0, 5))
-      }
-      current.setMinutes(current.getMinutes() + 30)
+  while (current < dayEnd) {
+    const slotEnd = new Date(current.getTime() + 30 * 60000)
+    const isBusy = busySlots.some(busy =>
+      (current >= busy.start && current < busy.end) ||
+      (slotEnd > busy.start && slotEnd <= busy.end) ||
+      (current <= busy.start && slotEnd >= busy.end)
+    )
+    if (!isBusy) {
+      availableSlots.push(current.toTimeString().slice(0, 5))
     }
-
-    return availableSlots
-  } catch (error) {
-    console.error("Error getting available slots:", error)
-    return []
+    current.setMinutes(current.getMinutes() + 30)
   }
+
+  return availableSlots
 }
 
 export async function createMeetingAction(data: MeetingData) {
