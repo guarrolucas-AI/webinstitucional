@@ -84,9 +84,18 @@ export default function ContactForm() {
       const result = await getAvailableSlotsAction(date);
       if (result.success) {
         setAvailableSlots(result.slots);
+      } else {
+        setAvailableSlots([]);
+        setSubmitStatus({
+          type: "error",
+          message: result.error || c.status.connectionError,
+        });
       }
     } catch {
-      // Error checking availability
+      setSubmitStatus({
+        type: "error",
+        message: c.status.connectionError,
+      });
     } finally {
       setIsCheckingAvailability(false);
     }

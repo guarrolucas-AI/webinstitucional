@@ -190,6 +190,7 @@ export async function getAvailableSlotsAction(date: string) {
     return {
       success: false,
       slots: [],
+      error: "No se pudo conectar con Google Calendar. Probá de nuevo más tarde o contactanos directamente.",
     }
   }
 }
