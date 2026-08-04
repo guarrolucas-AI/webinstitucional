@@ -319,6 +319,7 @@ const es = {
       alternativeSlots: "Horarios alternativos disponibles:",
       genericError: "Error al crear la reunión. Inténtalo de nuevo.",
       unexpectedError: "Error inesperado. Por favor, inténtalo de nuevo.",
+      connectionError: "No se pudo conectar con Google Calendar. Probá de nuevo más tarde o contactanos directamente.",
     },
   },
   footer: {
@@ -642,6 +643,7 @@ const en: typeof es = {
       alternativeSlots: "Available alternative time slots:",
       genericError: "Error creating the meeting. Please try again.",
       unexpectedError: "Unexpected error. Please try again.",
+      connectionError: "Could not connect to Google Calendar. Try again later or contact us directly.",
     },
   },
   footer: {
