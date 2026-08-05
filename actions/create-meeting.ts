@@ -3,6 +3,7 @@
 
 import { google } from "googleapis"
 import { getCalendarAuth, CALENDAR_ID } from "@/lib/google-calendar-auth"
+import { sendMeetingNotificationEmail } from "@/lib/notify-meeting"
 
 interface MeetingData {
   nombre: string
@@ -154,6 +155,25 @@ Esta reunión fue creada automáticamente desde el formulario web.
       conferenceDataVersion: 1,
       sendUpdates: "all", // Envía invitaciones automáticamente
     })
+
+    try {
+      await sendMeetingNotificationEmail({
+        nombre: data.nombre,
+        apellido: data.apellido,
+        email: data.email,
+        telefono: data.telefono,
+        asunto: data.asunto,
+        startDate,
+        endDate,
+        duracion: data.duracion,
+        participantes: data.participantes,
+        agenda: data.agenda,
+        meetLink: response.data.hangoutLink,
+        htmlLink: response.data.htmlLink,
+      })
+    } catch (error) {
+      console.error("Error sending meeting notification email:", error)
+    }
 
     return {
       success: true,
