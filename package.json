@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.34.5",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -32,8 +33,7 @@
     "react-intersection-observer": "^9.16.0",
     "resend": "^6.18.1",
     "tailwind-merge": "^3.0.2",
-    "tw-animate-css": "^1.2.4",
-    "zod": "^4.6.2"
+    "tw-animate-css": "^1.2.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
