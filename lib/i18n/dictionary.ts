@@ -266,10 +266,11 @@ const es = {
     },
     chat: {
       title: "Chat IA para Consultoría Empresarial",
-      developing: "Chat AI en desarrollo",
-      soon: "Muy pronto disponible",
+      empty: "Contame sobre tu empresa (rubro, ingresos, tamaño) y armamos la proyección juntos.",
+      calculating: "Calculando proyección...",
       placeholder: "Escribí tu mensaje...",
       send: "Enviar",
+      error: "Hubo un problema con el chat. Probá de nuevo en un momento.",
     },
   },
   contact: {
@@ -590,10 +591,11 @@ const en: typeof es = {
     },
     chat: {
       title: "AI Chat for Business Consulting",
-      developing: "AI Chat in development",
-      soon: "Coming soon",
+      empty: "Tell us about your company (industry, revenue, size) and we'll build the projection together.",
+      calculating: "Running projection...",
       placeholder: "Type your message...",
       send: "Send",
+      error: "Something went wrong with the chat. Please try again shortly.",
     },
   },
   contact: {
