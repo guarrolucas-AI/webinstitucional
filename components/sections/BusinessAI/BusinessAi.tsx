@@ -54,6 +54,12 @@ export default function BusinessSimulator() {
     transport: new DefaultChatTransport({ api: "/api/simulator-chat" }),
   });
   const handledToolCallIds = useRef(new Set<string>());
+  const chatScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = chatScrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [messages]);
 
   useEffect(() => {
     for (const message of messages) {
@@ -259,7 +265,7 @@ export default function BusinessSimulator() {
                   <div className="border border-white/20 rounded-lg p-6 text-white flex flex-col h-[420px]">
                     <h3 className="text-xl mb-3">{s.chat.title}</h3>
 
-                    <div className="flex-1 overflow-y-auto space-y-3 mb-4 pr-1">
+                    <div ref={chatScrollRef} className="flex-1 overflow-y-auto space-y-3 mb-4 pr-1">
                       {messages.length === 0 && (
                         <p className="text-white/50 text-sm">{s.chat.empty}</p>
                       )}
