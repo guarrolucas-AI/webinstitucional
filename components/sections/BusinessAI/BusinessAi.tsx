@@ -1,7 +1,9 @@
 "use client";
 
 import type React from "react";
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,6 +24,7 @@ import {
   type Industry,
   type SimulationResult,
 } from "@/lib/business-simulator";
+import type { SimulatorUIMessage } from "@/lib/simulator-agent";
 import { submitSimulatorLead } from "@/actions/submit-lead";
 
 const INDUSTRIES: Industry[] = ["retail", "tecnologia", "servicios", "alimentos", "salud", "otro"];
@@ -45,6 +48,35 @@ export default function BusinessSimulator() {
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [leadEmail, setLeadEmail] = useState("");
   const [leadStatus, setLeadStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [chatInput, setChatInput] = useState("");
+
+  const { messages, status: chatStatus, error: chatError, sendMessage } = useChat<SimulatorUIMessage>({
+    transport: new DefaultChatTransport({ api: "/api/simulator-chat" }),
+  });
+  const handledToolCallIds = useRef(new Set<string>());
+
+  useEffect(() => {
+    for (const message of messages) {
+      for (const part of message.parts) {
+        if (
+          part.type === "tool-runSimulation" &&
+          part.state === "output-available" &&
+          !handledToolCallIds.current.has(part.toolCallId)
+        ) {
+          handledToolCallIds.current.add(part.toolCallId);
+          setResult(part.output as SimulationResult);
+          setActiveTab("dashboard");
+        }
+      }
+    }
+  }, [messages]);
+
+  const handleChatSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!chatInput.trim() || chatStatus !== "ready") return;
+    sendMessage({ text: chatInput.trim() });
+    setChatInput("");
+  };
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-20% 0px" });
@@ -224,27 +256,62 @@ export default function BusinessSimulator() {
                 </TabsContent>
 
                 <TabsContent value="chat">
-                  <div className="relative border border-white/20 rounded-lg p-6 text-white overflow-hidden">
-                    <div className="absolute inset-0 z-10 bg-black/20 backdrop-blur-sm flex items-center justify-center rounded-lg">
-                      <div className="text-center">
-                        <p className="text-white text-xl font-semibold px-4 mb-2">
-                          {s.chat.developing}
-                        </p>
-                        <p className="text-white/70 text-sm">
-                          {s.chat.soon}
-                        </p>
-                      </div>
+                  <div className="border border-white/20 rounded-lg p-6 text-white flex flex-col h-[420px]">
+                    <h3 className="text-xl mb-3">{s.chat.title}</h3>
+
+                    <div className="flex-1 overflow-y-auto space-y-3 mb-4 pr-1">
+                      {messages.length === 0 && (
+                        <p className="text-white/50 text-sm">{s.chat.empty}</p>
+                      )}
+                      {messages.map((message) => (
+                        <div
+                          key={message.id}
+                          className={message.role === "user" ? "flex justify-end" : "flex justify-start"}
+                        >
+                          <div
+                            className={`rounded-lg px-3 py-2 max-w-[85%] text-sm whitespace-pre-wrap ${
+                              message.role === "user"
+                                ? "bg-white text-black"
+                                : "bg-white/10 text-white"
+                            }`}
+                          >
+                            {message.parts.map((part, i) => {
+                              if (part.type === "text") {
+                                return <span key={i}>{part.text}</span>;
+                              }
+                              if (part.type === "tool-runSimulation" && part.state !== "output-available") {
+                                return (
+                                  <span key={i} className="italic text-white/60">
+                                    {s.chat.calculating}
+                                  </span>
+                                );
+                              }
+                              return null;
+                            })}
+                          </div>
+                        </div>
+                      ))}
                     </div>
 
-                    <div className="pointer-events-none select-none opacity-30 space-y-6">
-                      <h3 className="text-xl mb-3">{s.chat.title}</h3>
-                      <form className="mt-4 flex gap-2">
-                        <Input type="text" placeholder={s.chat.placeholder} className="bg-transparent border-white/30 text-white flex-1" disabled />
-                        <Button type="submit" className="bg-white text-black hover:bg-white/90" disabled>
-                          {s.chat.send}
-                        </Button>
-                      </form>
-                    </div>
+                    {chatError && <p className="text-red-300 text-xs mb-2">{s.chat.error}</p>}
+
+                    <form onSubmit={handleChatSubmit} className="flex gap-2">
+                      <Input
+                        type="text"
+                        value={chatInput}
+                        onChange={(e) => setChatInput(e.target.value)}
+                        placeholder={s.chat.placeholder}
+                        className="bg-transparent border-white/30 text-white flex-1"
+                        disabled={chatStatus !== "ready"}
+                      />
+                      <Button
+                        type="submit"
+                        className="bg-white text-black hover:bg-white/90 disabled:opacity-50"
+                        disabled={chatStatus !== "ready" || !chatInput.trim()}
+                      >
+                        {s.chat.send}
+                      </Button>
+                    </form>
                   </div>
                 </TabsContent>
 
